@@ -132,10 +132,8 @@ export class BtnPoint extends Component {
 export class BtnDote extends Component {
   pressHandler = () => {
     const { currentState, value, click } = this.props;
-    click(currentState + ".");
-
-    if (currentState.indexOf(".") != -1) {
-      click(String(currentState));
+    if (!currentState.includes(".")){
+        click(String(currentState + "."));
     }
   };
 
