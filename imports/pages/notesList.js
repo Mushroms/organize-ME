@@ -9,10 +9,7 @@ export default class NoteList extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
-          <Calendar
-            style={style}
-            theme={huy}
-          />
+          <Calendar style={style} theme={calendare} />
         </View>
       </View>
     );
@@ -42,10 +39,9 @@ const styles = StyleSheet.create({
 const style = {
   borderRadius: 10,
   paddingTop: 20
-}
+};
 
-
-const huy = {
+const calendare = {
   backgroundColor: "#ffffff",
   calendarBackground: "#00BFFF",
   textSectionTitleColor: "#000000",
@@ -65,7 +61,7 @@ const huy = {
   textDayFontSize: 19,
   textMonthFontSize: 20,
   textDayHeaderFontSize: 17
-}
+};
 
 LocaleConfig.locales["ru"] = {
   monthNames: [
