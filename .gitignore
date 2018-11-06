@@ -39,6 +39,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+
 # BUCK
 buck-out/
 \.buckd/
@@ -55,3 +56,4 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 android/app/fabric.properties
+package-lock.json
