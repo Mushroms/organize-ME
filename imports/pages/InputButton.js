@@ -132,8 +132,8 @@ export class BtnPoint extends Component {
 export class BtnDote extends Component {
   pressHandler = () => {
     const { currentState, value, click } = this.props;
-    if (!currentState.includes(".")){
-        click(String(currentState + "."));
+    if (!currentState.includes(".")) {
+      click(String(currentState + "."));
     }
   };
 
@@ -237,13 +237,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "700",
     fontSize: 26,
-    paddingTop: "15%"
+    paddingTop: "17%"
   },
   buttonTextWhite: {
     color: "#00BFFF",
     textAlign: "center",
     fontWeight: "700",
     fontSize: 26,
-    paddingTop: "15%"
+    paddingTop: "17%"
   }
 });
