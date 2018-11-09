@@ -237,13 +237,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "700",
     fontSize: 26,
-    paddingTop: "15%"
+    paddingTop: "20%"
   },
   buttonTextWhite: {
     color: "#00BFFF",
     textAlign: "center",
     fontWeight: "700",
     fontSize: 26,
-    paddingTop: "15%"
+    paddingTop: "20%"
   }
 });
