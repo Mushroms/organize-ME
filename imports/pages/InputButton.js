@@ -198,7 +198,6 @@ export class BtnResult extends Component {
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#000000",
-    paddingTop: 10,
     width: "25%",
     height: "100%",
     borderRadius: 15,
@@ -218,7 +217,6 @@ const styles = StyleSheet.create({
   },
   buttonContainerOperation: {
     backgroundColor: "#000000",
-    paddingTop: 10,
     width: "25%",
     height: "100%",
     borderRadius: 15,
@@ -228,7 +226,6 @@ const styles = StyleSheet.create({
   },
   buttonContainerGrey: {
     backgroundColor: "#000000",
-    paddingTop: 10,
     width: "25%",
     height: "100%",
     borderRadius: 15,

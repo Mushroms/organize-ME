@@ -104,4 +104,4 @@ LocaleConfig.locales["ru"] = {
   dayNamesShort: ["Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."]
 };
 
-LocaleConfig.defaultLocale = "ru";
+LocaleConfig.defaultLocale = "";
