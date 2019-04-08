@@ -204,7 +204,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#00BFFF",
     borderWidth: 1,
-    alignItems: "stretch"
+    alignItems: "stretch",
+    justifyContent: "center"
   },
   buttonContainerZero: {
     backgroundColor: "#000000",
@@ -212,7 +213,8 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 15,
     borderColor: "#00BFFF",
-    borderWidth: 1
+    borderWidth: 1,
+    justifyContent: "center"
   },
   buttonContainerOperation: {
     backgroundColor: "#000000",
@@ -221,7 +223,8 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 15,
     borderColor: "#00BFFF",
-    borderWidth: 1
+    borderWidth: 1,
+    justifyContent: "center"
   },
   buttonContainerGrey: {
     backgroundColor: "#000000",
@@ -230,22 +233,20 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 15,
     borderColor: "#00BFFF",
-    borderWidth: 1
+    borderWidth: 1,
+    justifyContent: "center"
   },
   buttonText: {
     color: "#00BFFF",
     textAlign: "center",
     fontWeight: "700",
     fontSize: 26,
-    paddingTop: "20%"
-
+    alignSelf: "center"
   },
   buttonTextWhite: {
     color: "#00BFFF",
     textAlign: "center",
     fontWeight: "700",
-    fontSize: 26,
-    paddingTop: "20%"
-  
+    fontSize: 26
   }
 });

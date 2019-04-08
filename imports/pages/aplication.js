@@ -8,7 +8,7 @@ import Swiper from "react-native-swiper";
 import CalculatorPage from "./Calculator.js";
 import WelcomePage from "./welcome-page.js";
 import NoteList from "./notesList.js";
-import createReactClass from 'create-react-class';
+import createReactClass from "create-react-class";
 
 const Application = createReactClass({
   mixins: [TimerMixin],

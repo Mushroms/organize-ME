@@ -34,19 +34,22 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     marginRight: 12,
     backgroundColor: "#00BFFF",
+    alignItems: "center",
     borderRadius: 10
   },
   Organize_container: {
     marginTop: "50%",
-    marginLeft: "5%",
+    //marginLeft: "5%",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignSelf: "center"
   },
   Me_container: {
-    marginLeft: "10%",
+    //marginLeft: "10%",
     marginTop: "2%",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignSelf: "center"
   }
 });
 

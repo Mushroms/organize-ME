@@ -4134,9 +4134,10 @@ react-is@^16.5.0:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.5.2.tgz#e2a7b7c3f5d48062eb769fcb123505eb928722e3"
 
-react-native-calendars@^1.21.0:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.21.0.tgz#c8df92a131c7ebd3f9cf38d271e1b1cba4f8792d"
+react-native-calendars@^1.32.0:
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.32.0.tgz#3dc3d4c624f32f750731aa859efea80b2d3cb18b"
+  integrity sha512-dFwUexh76f5UHSRaKzICGNsKUsr0v+uiRbNwb6bcyf9S4nSyjbK+2VR/Ue0vf+xD4dxFgzapxRzqZ7bHwibvxA==
   dependencies:
     lodash.get "^4.4.2"
     lodash.isequal "^4.5.0"

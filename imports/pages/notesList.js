@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, Image, View } from "react-native";
 //import AddNote from 'organizeME/imports/pages/components/addNote.js';
-import { Calendar, CalendarList, Agenda } from "react-native-calendars";
+import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 
 export default class NoteList extends Component {
