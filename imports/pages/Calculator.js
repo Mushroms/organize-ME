@@ -11,6 +11,7 @@ import {
   BtnPercent,
   BtnResult
 } from "./InputButton.js";
+import { ifIphoneX } from "react-native-iphone-x-helper";
 
 class Calc extends React.Component {
   state = {
@@ -150,16 +151,36 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "stretch",
     flexDirection: "column",
+    alignSelf: "center",
     backgroundColor: "#000000"
   },
   row: {
-    flexDirection: "row",
+    //flexDirection: "row",
     //textAlign: 'right',
-    width: "100%",
-    height: "15%"
+    //width: "100%",
+    //height: "15%",
+    ...ifIphoneX(
+      {
+        flexDirection: "row",
+        //textAlign: 'right',
+
+        width: "100%",
+        height: "12%",
+        bottom: 25,
+        // marginLeft: 1,
+        // marginRight:1,
+      },
+      {
+        flexDirection: "row",
+        //textAlign: 'right',
+        width: "100%",
+        height: "15%"
+      }
+    )
   },
   rowCenter: {
-    flex: 2
+    flex: 2,
+
   },
   textInput: {
     color: "#000000",
@@ -167,13 +188,33 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
     alignSelf: "flex-end",
-    padding: 10,
-    paddingTop: "10%",
-    width: "100%",
-    height: "95%",
+    //padding: 10,
+    //paddingTop: "10%",
+    //width: "100%",
+    //height: "95%",
     textAlign: "right",
-    borderRadius: 10,
-    marginTop: 3
+    //borderRadius: 10,
+    //marginTop: 3,
+    ...ifIphoneX(
+      {
+        padding: "5%",
+        paddingTop: "25%",
+        marginTop: 0,
+        borderRadius: 40,
+        marginBottom: 10,
+        flexDirection: "column",
+        width: "100%",
+        height: "90%"
+      },
+      {
+        padding: "5%",
+        paddingTop: "15%",
+        flexDirection: "row",
+        borderRadius: 10,
+        width: "100%",
+        height: "95%"
+      }
+    )
   }
 });
 
