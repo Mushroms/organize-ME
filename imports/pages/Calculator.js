@@ -30,7 +30,13 @@ class Calc extends React.Component {
     return (
       <View style={styles.wrapper}>
         <View style={styles.rowCenter}>
-          <Text style={styles.textInput}>{this.state.text}</Text>
+          <Text
+            style={styles.textInput}
+            multiline={true}
+            maxLength="9"
+          >
+              {this.state.text}
+          </Text>
         </View>
 
         <View style={styles.row}>
@@ -147,12 +153,16 @@ class Calc extends React.Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
+    //display: 'flex',
+    //flex: 1,
     justifyContent: "flex-end",
-    alignItems: "stretch",
-    flexDirection: "column",
+    //alignItems: "stretch",
+    //flexDirection: "column",
     alignSelf: "center",
-    backgroundColor: "#000000"
+    backgroundColor: "#000000",
+
   },
   row: {
     //flexDirection: "row",
@@ -161,42 +171,35 @@ const styles = StyleSheet.create({
     //height: "15%",
     ...ifIphoneX(
       {
-        flexDirection: "row",
-        //textAlign: 'right',
 
+        flexDirection: "row",
         width: "100%",
         height: "12%",
-        bottom: 25,
-        // marginLeft: 1,
-        // marginRight:1,
+        bottom: 25
       },
       {
         flexDirection: "row",
-        //textAlign: 'right',
         width: "100%",
         height: "15%"
       }
     )
   },
   rowCenter: {
-    flex: 2,
-
+    flex: 1,
+    // flexWrap: 'wrap'
   },
   textInput: {
+    //flexDirection: "row",
     color: "#000000",
     backgroundColor: "#00BFFF",
     fontSize: 35,
     fontWeight: "bold",
-    alignSelf: "flex-end",
-    //padding: 10,
-    //paddingTop: "10%",
-    //width: "100%",
-    //height: "95%",
+    alignSelf: "center",
     textAlign: "right",
-    //borderRadius: 10,
-    //marginTop: 3,
+
     ...ifIphoneX(
       {
+        justifyContent: 'center',
         padding: "5%",
         paddingTop: "25%",
         marginTop: 0,
@@ -204,15 +207,15 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         flexDirection: "column",
         width: "100%",
-        height: "90%"
+        height: "91%"
       },
       {
         padding: "5%",
         paddingTop: "15%",
-        flexDirection: "row",
+        flexDirection: "column",
         borderRadius: 10,
         width: "100%",
-        height: "95%"
+        height: "98%"
       }
     )
   }

@@ -124,6 +124,7 @@ export class BtnPoint extends Component {
         pressHandler={this.pressHandler}
         buttonText={styles.buttonText}
         value={this.props.value}
+        maxLength="9"
       />
     );
   }
@@ -144,6 +145,7 @@ export class BtnDote extends Component {
         pressHandler={this.pressHandler}
         buttonText={styles.buttonText}
         value={this.props.value}
+        maxLength="9"
       />
     );
   }
@@ -163,6 +165,7 @@ export class BtnPercent extends Component {
         pressHandler={this.pressHandler}
         buttonText={styles.buttonText}
         value={this.props.value}
+        maxLength="9"
       />
     );
   }
@@ -190,6 +193,7 @@ export class BtnResult extends Component {
         pressHandler={this.pressHandler}
         buttonText={styles.buttonTextWhite}
         value={this.props.value}
+        maxLength="9"
       />
     );
   }
