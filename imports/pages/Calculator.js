@@ -33,7 +33,6 @@ class Calc extends React.Component {
           <Text
             style={styles.textInput}
             multiline={true}
-            maxLength="9"
           >
               {this.state.text}
           </Text>
@@ -155,20 +154,13 @@ const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     height: "100%",
-    //display: 'flex',
-    //flex: 1,
     justifyContent: "flex-end",
-    //alignItems: "stretch",
-    //flexDirection: "column",
     alignSelf: "center",
     backgroundColor: "#000000",
 
   },
   row: {
-    //flexDirection: "row",
-    //textAlign: 'right',
-    //width: "100%",
-    //height: "15%",
+
     ...ifIphoneX(
       {
 
@@ -186,10 +178,9 @@ const styles = StyleSheet.create({
   },
   rowCenter: {
     flex: 1,
-    // flexWrap: 'wrap'
+
   },
   textInput: {
-    //flexDirection: "row",
     color: "#000000",
     backgroundColor: "#00BFFF",
     fontSize: 35,

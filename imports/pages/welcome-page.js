@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
         }, {
             marginTop: 2,
-            marginBottom: 8,
+            marginBottom: 2,
             borderRadius: 10,
             marginLeft: 12,
             marginRight: 12,
