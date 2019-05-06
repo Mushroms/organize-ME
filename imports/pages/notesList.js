@@ -3,17 +3,47 @@ import { StyleSheet, Text, Image, View } from "react-native";
 //import AddNote from 'organizeME/imports/pages/components/addNote.js';
 import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+import ModalExample from "./modal_component.js";
 
-export default class NoteList extends Component {
+export default class CalendarsScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.onDayPress = this.onDayPress.bind(this);
+  }
+
   render() {
     return (
+      //<ScrollView style={styles.container}>
+      // <Text style={styles.text}>
+      //   Calendar with selectable date and arrows
+      // </Text>
       <View style={styles.container}>
         <View style={styles.Blu_container}>
-          <Calendar style={style} theme={calendare} />
+          <Calendar
+            onDayPress={this.onDayPress}
+            style={style}
+            theme={calendare}
+            hideExtraDays
+            markedDates={{
+              [this.state.selected]: {
+                selected: true,
+                disableTouchEvent: true,
+                selectedDotColor: "orange"
+              }
+            }}
+          />
+          <ModalExample />
         </View>
       </View>
     );
+  }
+
+  onDayPress(day) {
+    this.setState({
+      selected: day.dateString
+    });
   }
 }
 
@@ -70,7 +100,7 @@ const calendare = {
   backgroundColor: "#ffffff",
   calendarBackground: "#00BFFF",
   textSectionTitleColor: "#000000",
-  selectedDayBackgroundColor: "#00adf5",
+  selectedDayBackgroundColor: "#ff4000",
   selectedDayTextColor: "#000000",
   todayTextColor: "#ff0000",
   dayTextColor: "#000000",
