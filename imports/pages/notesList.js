@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput
 } from "react-native";
 //import AddNote from 'organizeME/imports/pages/components/addNote.js';
 import { Calendar } from "react-native-calendars";
@@ -16,16 +17,48 @@ import Modal from "react-native-modal";
 
 export default class CalendarsScreen extends Component {
   state = {
-    isModalVisible: false
+    visibleModalId: null
   };
+
   constructor(props) {
     super(props);
     this.state = {};
-    this.onDayPress = this.onDayPress.bind(this);
+    //this.onDayPress = this.onDayPress.bind(this);
+    this.onDayLongPress = this.onDayLongPress.bind(this);
   }
   toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
+    this.setState({ visibleModal: null });
   };
+
+  renderModalContent = () => (
+    <View style={styles.content}>
+      <TextInput
+        style={{
+          height: "50%",
+          width: "98%"
+        }}
+        //placeholder="Day"
+        placeholderTextColor="#00BFFF"
+        multiline={true}
+        maxLength={300}
+        style={[
+          styles.placeholder,
+          {
+            fontSize: 20,
+            textAlign: "left",
+            textAlignVertical: "top",
+            color: "#00BFFF",
+            width: "90%",
+            height: "75%"
+          }
+        ]}
+      />
+      <Button
+        onPress={() => this.setState({ visibleModal: null })}
+        title="Close"
+      />
+    </View>
+  );
 
   render() {
     return (
@@ -36,8 +69,8 @@ export default class CalendarsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
-            onDayPress={this.onDayPress}
-            onDayLongPress={this.toggleModal}
+            //onDayPress={this.onDayPress}
+            onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
             hideExtraDays
@@ -50,11 +83,20 @@ export default class CalendarsScreen extends Component {
             }}
           />
           <View style={{ flex: 1 }}>
-            <Modal isVisible={this.state.isModalVisible}>
-              <View style={{ flex: 1 }}>
-                <Text>Hello!</Text>
-                <Button title="Hide modal" onPress={this.toggleModal} />
-              </View>
+            <Modal
+              isVisible={this.state.visibleModal === "fancy"}
+              //backdropColor="#B4B3DB"
+              backdropOpacity={0.8}
+              animationIn="zoomInDown"
+              animationOut="zoomOutUp"
+              animationInTiming={600}
+              animationOutTiming={600}
+              backdropTransitionInTiming={600}
+              backdropTransitionOutTiming={600}
+              onSwipeComplete={this.toggleModal}
+              swipeDirection={["up", "left", "down"]}
+            >
+              {this.renderModalContent()}
             </Modal>
           </View>
         </View>
@@ -62,9 +104,15 @@ export default class CalendarsScreen extends Component {
     );
   }
 
-  onDayPress(day) {
+  // onDayPress(day) {
+  //   this.setState({
+  //     selected: day.dateString
+  //   });
+  // }
+  onDayLongPress(day) {
     this.setState({
-      selected: day.dateString
+      selected: day.dateString,
+      visibleModal: "fancy"
     });
   }
 }
@@ -75,6 +123,54 @@ const styles = StyleSheet.create({
     backgroundColor: "#000000",
     alignItems: "center",
     justifyContent: "center"
+  },
+
+  content: {
+    height: "50%",
+    width: "100%",
+    backgroundColor: "#768489",
+    padding: 22,
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 40,
+    borderColor: "rgba(0, 0, 0, 0.1)"
+  },
+
+  contentTitle: {
+    fontSize: 20,
+    marginBottom: 12
+  },
+
+  Modal_container: {
+    //flex: 1,
+    //height: "100%",
+    //width: "95%",
+    //marginTop: 12,
+    //marginBottom: 8,
+    //marginLeft: 12,
+    //marginRight: 12,
+    backgroundColor: "#768489",
+    //borderRadius: 10,
+    ...ifIphoneX(
+      {
+        marginTop: 0,
+        marginBottom: 0,
+        borderRadius: 40,
+        height: 0,
+        width: "100%"
+        //marginLeft: 1,
+        //marginRight: 1,
+      },
+      {
+        //marginTop: 2,
+        //marginBottom: 2,
+        //marginLeft: 10,
+        //marginRight: 10,
+        //borderRadius: 10,
+        height: "100%",
+        width: "67%"
+      }
+    )
   },
   Blu_container: {
     flex: 1,
