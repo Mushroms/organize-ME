@@ -23,7 +23,7 @@ export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    //this.onDayPress = this.onDayPress.bind(this);
+    this.onDayPress = this.onDayPress.bind(this);
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
   toggleModal = () => {
@@ -40,7 +40,7 @@ export default class CalendarsScreen extends Component {
         //placeholder="Day"
         placeholderTextColor="#00BFFF"
         multiline={true}
-        maxLength={300}
+        maxLength={240}
         style={[
           styles.placeholder,
           {
@@ -62,14 +62,10 @@ export default class CalendarsScreen extends Component {
 
   render() {
     return (
-      //<ScrollView style={styles.container}>
-      // <Text style={styles.text}>
-      //   Calendar with selectable date and arrows
-      // </Text>
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
-            //onDayPress={this.onDayPress}
+            onDayPress={this.onDayPress}
             onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
@@ -104,11 +100,11 @@ export default class CalendarsScreen extends Component {
     );
   }
 
-  // onDayPress(day) {
-  //   this.setState({
-  //     selected: day.dateString
-  //   });
-  // }
+  onDayPress(day) {
+    this.setState({
+      selected: day.dateString
+    });
+  }
   onDayLongPress(day) {
     this.setState({
       selected: day.dateString,
@@ -142,13 +138,6 @@ const styles = StyleSheet.create({
   },
 
   Modal_container: {
-    //flex: 1,
-    //height: "100%",
-    //width: "95%",
-    //marginTop: 12,
-    //marginBottom: 8,
-    //marginLeft: 12,
-    //marginRight: 12,
     backgroundColor: "#768489",
     //borderRadius: 10,
     ...ifIphoneX(
@@ -158,15 +147,8 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         height: 0,
         width: "100%"
-        //marginLeft: 1,
-        //marginRight: 1,
       },
       {
-        //marginTop: 2,
-        //marginBottom: 2,
-        //marginLeft: 10,
-        //marginRight: 10,
-        //borderRadius: 10,
         height: "100%",
         width: "67%"
       }
@@ -174,14 +156,7 @@ const styles = StyleSheet.create({
   },
   Blu_container: {
     flex: 1,
-    //height: "100%",
-    //width: "95%",
-    //marginTop: 12,
-    //marginBottom: 8,
-    //marginLeft: 12,
-    //marginRight: 12,
     backgroundColor: "#00BFFF",
-    //borderRadius: 10,
     ...ifIphoneX(
       {
         marginTop: 5,
@@ -189,8 +164,6 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         height: "100%",
         width: "97%"
-        //marginLeft: 1,
-        //marginRight: 1,
       },
       {
         marginTop: 2,
@@ -206,8 +179,6 @@ const styles = StyleSheet.create({
 });
 
 const style = {
-  //borderRadius: 10,
-  //paddingTop: 20,
   ...ifIphoneX(
     {
       borderRadius: 40,
