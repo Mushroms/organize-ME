@@ -14,6 +14,7 @@ import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 //import ModalExample from "./modal_component.js";
 import Modal from "react-native-modal";
+import Circle_Component from "./circle_component";
 
 export default class CalendarsScreen extends Component {
   state = {
@@ -32,10 +33,11 @@ export default class CalendarsScreen extends Component {
 
   renderModalContent = () => (
     <View style={styles.content}>
+      <Circle_Component />
       <TextInput
         style={{
           height: "50%",
-          width: "98%"
+          width: "50%"
         }}
         //placeholder="Day"
         placeholderTextColor="#00BFFF"
@@ -49,7 +51,8 @@ export default class CalendarsScreen extends Component {
             textAlignVertical: "top",
             color: "#00BFFF",
             width: "90%",
-            height: "75%"
+            height: "65%",
+            top: "2%"
           }
         ]}
       />
@@ -212,46 +215,3 @@ const calendare = {
   textMonthFontSize: 20,
   textDayHeaderFontSize: 17
 };
-
-LocaleConfig.locales["ru"] = {
-  monthNames: [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь"
-  ],
-  monthNamesShort: [
-    "Янв.",
-    "Фев.",
-    "Мар",
-    "Апр",
-    "Май",
-    "Июн",
-    "Июл.",
-    "Авг",
-    "Сен.",
-    "Окт.",
-    "Ноя.",
-    "Дек."
-  ],
-  dayNames: [
-    "Воскресенье",
-    "Понедельник",
-    "Вторник",
-    "Среда",
-    "Четверг",
-    "Пятница",
-    "Суббота"
-  ],
-  dayNamesShort: ["Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."]
-};
-
-LocaleConfig.defaultLocale = "";
