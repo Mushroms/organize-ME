@@ -14,15 +14,30 @@ export class Circle_Component extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: "25%",
-    width: "20%",
-    backgroundColor: "#00BFFF",
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "flex-start",
-    borderRadius: 50
+    ...ifIphoneX(
+      {
+        flex: 1,
+        height: "20%",
+        width: "27%",
+        backgroundColor: "#00BFFF",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "flex-start",
+        borderRadius: 50
+      },
+      {
+        flex: 1,
+        height: "25%",
+        width: "20%",
+        backgroundColor: "#00BFFF",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "flex-start",
+        borderRadius: 50
+      }
+    )
   },
+
   number: {
     fontSize: 30
   }
