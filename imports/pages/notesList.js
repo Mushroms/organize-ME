@@ -15,6 +15,7 @@ import { ifIphoneX } from "react-native-iphone-x-helper";
 //import ModalExample from "./modal_component.js";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
+import PropTypes from "prop-types";
 
 export default class CalendarsScreen extends Component {
   state = {
@@ -34,6 +35,7 @@ export default class CalendarsScreen extends Component {
   renderModalContent = () => (
     <View style={styles.content}>
       <Circle_Component />
+
       <TextInput
         style={{
           height: "50%",
@@ -58,7 +60,7 @@ export default class CalendarsScreen extends Component {
       />
       <Button
         onPress={() => this.setState({ visibleModal: null })}
-        title="Close"
+        title="Save"
       />
     </View>
   );
