@@ -8,18 +8,18 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
-//import AddNote from 'organizeME/imports/pages/components/addNote.js';
 import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
-//import ModalExample from "./modal_component.js";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
 export default class CalendarsScreen extends Component {
   state = {
-    visibleModalId: null
+    visibleModalId: null,
+    selectedDay: null,
+    selectedDate: null
   };
 
   constructor(props) {
@@ -28,44 +28,57 @@ export default class CalendarsScreen extends Component {
     this.onDayPress = this.onDayPress.bind(this);
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
+
   toggleModal = () => {
     this.setState({ visibleModal: null });
   };
 
-  renderModalContent = () => (
-    <View style={styles.content}>
-      <Circle_Component />
+  renderModalContent = () => {
+    const { selectedDay } = this.state;
 
-      <TextInput
-        style={{
-          height: "50%",
-          width: "50%"
-        }}
-        //placeholder="Day"
-        placeholderTextColor="#00BFFF"
-        multiline={true}
-        maxLength={240}
-        style={[
-          styles.placeholder,
-          {
-            fontSize: 20,
-            textAlign: "left",
-            textAlignVertical: "top",
-            color: "#00BFFF",
-            width: "90%",
-            height: "65%",
-            top: "2%"
-          }
-        ]}
-      />
-      <Button
-        onPress={() => this.setState({ visibleModal: null })}
-        title="Save"
-      />
-    </View>
-  );
+    return (
+      <View style={styles.content}>
+        <Circle_Component selectedDay={selectedDay} />
+
+        <TextInput
+          style={{
+            height: "50%",
+            width: "50%"
+          }}
+          //placeholder="Day"
+          placeholderTextColor="#00BFFF"
+          multiline={true}
+          maxLength={240}
+          style={[
+            styles.placeholder,
+            {
+              fontSize: 20,
+              textAlign: "left",
+              textAlignVertical: "top",
+              color: "#00BFFF",
+              width: "90%",
+              height: "65%",
+              top: "2%"
+            }
+          ]}
+        />
+        <Button
+          onPress={() => this.setState({ visibleModal: null })}
+          title="Save"
+        />
+      </View>
+    );
+  };
 
   render() {
+    const markedDates = {
+      [this.state.selectedDate]: {
+        selected: true,
+        disableTouchEvent: true,
+        selectedDotColor: "orange"
+      }
+    };
+
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
@@ -75,13 +88,7 @@ export default class CalendarsScreen extends Component {
             style={style}
             theme={calendare}
             hideExtraDays
-            markedDates={{
-              [this.state.selected]: {
-                selected: true,
-                disableTouchEvent: true,
-                selectedDotColor: "orange"
-              }
-            }}
+            markedDates={markedDates}
           />
           <View style={{ flex: 1 }}>
             <Modal
@@ -107,12 +114,14 @@ export default class CalendarsScreen extends Component {
 
   onDayPress(day) {
     this.setState({
-      selected: day.dateString
+      selectedDay: day.day,
+      selectedDate: day.dateString
     });
   }
+
   onDayLongPress(day) {
     this.setState({
-      selected: day.dateString,
+      selectedDay: day.day,
       visibleModal: "fancy"
     });
   }
