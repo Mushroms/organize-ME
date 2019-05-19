@@ -1,215 +1,164 @@
 import React, { Component } from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
-import Swiper from "react-native-swiper";
-import {
-  BtnOrdinary,
-  BtnZero,
-  BtnAC,
-  BtnOperation,
-  BtnPoint,
-  BtnDote,
-  BtnPercent,
-  BtnResult
-} from "./InputButton.js";
-import { ifIphoneX } from "react-native-iphone-x-helper";
+import { View, Text, AppRegistry } from "react-native";
 
-class Calc extends React.Component {
-  state = {
-    text: "0",
-    prev: ""
-  };
+import Style from "./StyleCalc.js";
+import InputButton from "./InputButton.js";
 
-  handleClick = (value, prev) => {
-    this.setState({
-      text: value,
-      prev: prev || this.state.prev
-    });
-  };
+const inputButtons = [
+  ["C", "CE"],
+  [1, 2, 3, "/"],
+  [4, 5, 6, "*"],
+  [7, 8, 9, "-"],
+  [0, ".", "=", "+"]
+];
+
+var initialState;
+
+export default class Calc extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      previousInputValue: 0,
+      inputValue: 0,
+      selectedSymbol: null,
+      isDecimal: null,
+      memorizedNumber: 0
+    };
+
+    this.initialState = this.state;
+  }
 
   render() {
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.rowCenter}>
-          <Text
-            style={styles.textInput}
-            multiline={true}
-          >
-              {this.state.text}
-          </Text>
+      <View style={Style.rootContainer}>
+        <View style={Style.displayContainer}>
+          <Text style={Style.historyDisplayText}>{this.state.history}</Text>
+          <Text style={Style.displayText}>{this.state.inputValue}</Text>
         </View>
-
-        <View style={styles.row}>
-          <BtnAC
-            prev={this.state.prev}
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="AC"
-          />
-          <BtnPoint
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="+/-"
-          />
-          <BtnPercent
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="%"
-          />
-          <BtnOperation
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="/"
-          />
-        </View>
-        <View style={styles.row}>
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="1"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="2"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="3"
-          />
-          <BtnOperation
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="*"
-          />
-        </View>
-        <View style={styles.row}>
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="4"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="5"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="6"
-          />
-          <BtnOperation
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="-"
-          />
-        </View>
-        <View style={styles.row}>
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="7"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="8"
-          />
-          <BtnOrdinary
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="9"
-          />
-          <BtnOperation
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="+"
-          />
-        </View>
-        <View style={styles.row}>
-          <BtnZero
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="0"
-          />
-          <BtnDote
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="."
-          />
-          <BtnResult
-            prev={this.state.prev}
-            currentState={this.state.text}
-            click={this.handleClick}
-            value="="
-          />
-        </View>
+        <View style={Style.inputContainer}>{this._renderInputButtons()}</View>
       </View>
     );
   }
+
+  _renderInputButtons() {
+    let views = [];
+
+    for (var r = 0; r < inputButtons.length; r++) {
+      let row = inputButtons[r];
+
+      let inputRow = [];
+      for (var i = 0; i < row.length; i++) {
+        let input = row[i];
+
+        inputRow.push(
+          <InputButton
+            value={input}
+            highlight={this.state.selectedSymbol === input}
+            onPress={this._onInputButtonPressed.bind(this, input)}
+            key={r + "-" + i}
+          />
+        );
+      }
+
+      views.push(
+        <View style={Style.inputRow} key={"row-" + r}>
+          {inputRow}
+        </View>
+      );
+    }
+
+    return views;
+  }
+
+  _onInputButtonPressed(input) {
+    switch (typeof input) {
+      case "number":
+        return this._handleNumberInput(input);
+      case "string":
+        return this._handleStringInput(input);
+    }
+  }
+
+  _handleNumberInput(num) {
+    let inputValue = this.state.inputValue,
+      isDecimal = this.state.isDecimal;
+
+    if (isDecimal) {
+      if (num > 0) {
+        inputValue = eval(inputValue + num).toString();
+      } else {
+        inputValue = inputValue + num;
+      }
+    } else {
+      inputValue = inputValue * 10 + num;
+    }
+
+    this.setState({
+      inputValue: inputValue,
+      isDecimal: isDecimal
+      //history: this.state.history + inputValue
+    });
+  }
+
+  _handleStringInput(str) {
+    switch (str) {
+      case "/":
+      case "*":
+      case "+":
+      case "-":
+        this.setState({
+          selectedSymbol: str,
+          previousInputValue: this.state.inputValue,
+          inputValue: 0,
+          isDecimal: null
+        });
+        break;
+      case "=":
+        let symbol = this.state.selectedSymbol,
+          inputValue = this.state.inputValue,
+          previousInputValue = this.state.previousInputValue;
+
+        if (!symbol) {
+          return;
+        }
+
+        result = eval(previousInputValue + symbol + inputValue);
+
+        this.setState({
+          previousInputValue: 0,
+          inputValue: result,
+          selectedSymbol: null,
+          isDecimal: null
+        });
+        break;
+      case "C":
+        this.setState({
+          isDecimal: null,
+          selectedSymbol: null,
+          previousInputValue: 0,
+          inputValue: 0
+        });
+        break;
+      case "CE":
+        this.setState({
+          isDecimal: this.initialState.isDecimal,
+          selectedSymbol: this.initialState.selectedSymbol,
+          previousInputValue: this.initialState.previousInputValue,
+          inputValue: this.initialState.inputValue
+        });
+        break;
+      case ".":
+        let isDecimal = this.state.isDecimal;
+        if (isDecimal) break;
+
+        this.setState({
+          isDecimal: true,
+          inputValue: this.state.inputValue + str
+        });
+        break;
+    }
+  }
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "flex-end",
-    alignSelf: "center",
-    backgroundColor: "#000000",
-
-  },
-  row: {
-
-    ...ifIphoneX(
-      {
-
-        flexDirection: "row",
-        width: "100%",
-        height: "12%",
-        bottom: 25
-      },
-      {
-        flexDirection: "row",
-        width: "100%",
-        height: "15%"
-      }
-    )
-  },
-  rowCenter: {
-    flex: 1,
-
-  },
-  textInput: {
-    color: "#000000",
-    backgroundColor: "#00BFFF",
-    fontSize: 35,
-    fontWeight: "bold",
-    alignSelf: "center",
-    textAlign: "right",
-
-    ...ifIphoneX(
-      {
-        justifyContent: 'center',
-        padding: "5%",
-        paddingTop: "25%",
-        marginTop: 0,
-        borderRadius: 40,
-        marginBottom: 10,
-        flexDirection: "column",
-        width: "100%",
-        height: "91%"
-      },
-      {
-        padding: "5%",
-        paddingTop: "15%",
-        flexDirection: "column",
-        borderRadius: 10,
-        width: "100%",
-        height: "98%"
-      }
-    )
-  }
-});
-
-export default Calc;
+//export default Calc;
