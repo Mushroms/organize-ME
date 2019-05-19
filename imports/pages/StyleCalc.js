@@ -8,7 +8,7 @@ var Style = StyleSheet.create({
   },
 
   displayContainer: {
-    flex: 2,
+    flex: 3,
     backgroundColor: "#00BFFF",
     justifyContent: "center"
   },
@@ -42,7 +42,7 @@ var Style = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: "#00BFFF",
     borderRadius: 10
   },
