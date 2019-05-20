@@ -10,7 +10,8 @@ var Style = StyleSheet.create({
   displayContainer: {
     flex: 3,
     backgroundColor: "#00BFFF",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderRadius: 10
   },
 
   displayText: {
