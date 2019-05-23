@@ -13,6 +13,13 @@ import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
+import {
+  deleteNoteList,
+  newNoteList,
+  updateNoteList
+} from "../dataBase/allSchemas.js";
+import realm from "../dataBase/allSchemas.js";
+const Realm = require("realm");
 //import PropTypes from "prop-types";
 
 export default class CalendarsScreen extends Component {
@@ -24,8 +31,10 @@ export default class CalendarsScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-    this.onDayPress = this.onDayPress.bind(this);
+    this.state = {
+      NoteList: ""
+    };
+    //this.onDayPress = this.onDayPress.bind(this);
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
 
@@ -35,6 +44,7 @@ export default class CalendarsScreen extends Component {
 
   renderModalContent = () => {
     const { selectedDay } = this.state;
+    const NoteList = this.state.NoteList;
 
     return (
       <View style={styles.content}>
@@ -45,7 +55,9 @@ export default class CalendarsScreen extends Component {
             height: "50%",
             width: "50%"
           }}
-          //placeholder="Day"
+          onChangeText={text => {
+            this.setState({ NoteList: text });
+          }}
           placeholderTextColor="#00BFFF"
           multiline={true}
           maxLength={240}
@@ -61,7 +73,9 @@ export default class CalendarsScreen extends Component {
               top: "2%"
             }
           ]}
-        />
+        >
+          {NoteList}
+        </TextInput>
         <Button
           onPress={() => this.setState({ visibleModal: null })}
           title="Save"
@@ -78,12 +92,12 @@ export default class CalendarsScreen extends Component {
         selectedDotColor: "orange"
       }
     };
-
+    //console.warn(this.state.NoteList);
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
-            onDayPress={this.onDayPress}
+            //onDayPress={this.onDayPress}
             onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
@@ -112,12 +126,12 @@ export default class CalendarsScreen extends Component {
     );
   }
 
-  onDayPress(day) {
-    this.setState({
-      selectedDay: day.day,
-      selectedDate: day.dateString
-    });
-  }
+  // onDayPress(day) {
+  //   this.setState({
+  //     selectedDay: day.day,
+  //     selectedDate: day.dateString
+  //   });
+  // }
 
   onDayLongPress(day) {
     this.setState({
