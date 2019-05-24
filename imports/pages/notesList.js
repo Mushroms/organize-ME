@@ -13,14 +13,17 @@ import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
-import {
-  deleteNoteList,
-  newNoteList,
-  updateNoteList
-} from "../dataBase/allSchemas.js";
-import realm from "../dataBase/allSchemas.js";
+
 const Realm = require("realm");
-//import PropTypes from "prop-types";
+
+const NoteListSchema = {
+  name: "NoteList",
+
+  properties: {
+    name: "string",
+    NoteList: "string"
+  }
+};
 
 export default class CalendarsScreen extends Component {
   state = {
@@ -35,11 +38,23 @@ export default class CalendarsScreen extends Component {
       NoteList: ""
     };
     //this.onDayPress = this.onDayPress.bind(this);
+    this.onPressSave = this.onPressSave.bind(this);
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
 
   toggleModal = () => {
     this.setState({ visibleModal: null });
+  };
+
+  newNoteList = () => {
+    Realm.open({
+      schema: [{ name: "NoteListSchema", properties: { name: "string" } }]
+    }).then(realm => {
+      realm.write(() => {
+        realm.create(NoteListSchema);
+      });
+      this.setState({ NoteList });
+    });
   };
 
   renderModalContent = () => {
@@ -77,7 +92,12 @@ export default class CalendarsScreen extends Component {
           {NoteList}
         </TextInput>
         <Button
-          onPress={() => this.setState({ visibleModal: null })}
+          onPress={() =>
+            this.setState({
+              visibleModal: null,
+              createNewNoteList: this.newNoteList
+            })
+          }
           title="Save"
         />
       </View>
@@ -92,7 +112,7 @@ export default class CalendarsScreen extends Component {
         selectedDotColor: "orange"
       }
     };
-    //console.warn(this.state.NoteList);
+    console.warn(NoteListSchema);
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
@@ -139,8 +159,14 @@ export default class CalendarsScreen extends Component {
       visibleModal: "fancy"
     });
   }
-}
 
+  onPressSave() {
+    this.setState({
+      visibleModal: null,
+      createNewNoteList: this.newNoteList
+    });
+  }
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
