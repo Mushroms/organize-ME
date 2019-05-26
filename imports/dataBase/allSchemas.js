@@ -11,7 +11,7 @@ import Realm from "realm";
 //     done: { type: "bool", default: false }
 //   }
 // };
-//
+
 // export const NoteListSchema = {
 //   name: NOTELIST_SCHEMA,
 //   primaryKey: "id",
@@ -21,7 +21,7 @@ import Realm from "realm";
 //     note: { type: "list", objectType: NOTE_SCHEMA }
 //   }
 // };
-//
+
 // const databaseOptions = {
 //   path: "organize-MEApp.realm",
 //   scema: [Note, NoteListSchema]
@@ -37,7 +37,7 @@ import Realm from "realm";
 //       })
 //       .catch(error => reject(error));
 //   });
-//
+
 // export const updateNoteList = NoteList =>
 //   new Promise((resolve, reject) => {
 //     Realm.open(databaseOptions)
@@ -53,7 +53,7 @@ import Realm from "realm";
 //       })
 //       .catch(error => reject(error));
 //   });
-//
+
 // export const deleteNoteList = NoteListId =>
 //   new Promise((resolve, reject) => {
 //     Realm.open(databaseOptions)

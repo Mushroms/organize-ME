@@ -44,7 +44,8 @@ export default class CalendarsScreen extends Component {
       selectedDate: null,
       selectedDay: null,
       NoteListName: null,
-      NoteListFromDB: null
+      NoteListFromDB: null,
+      updateText: ""
     };
     //this.onDayPress = this.onDayPress.bind(this);
     this.onPressSave = this.onPressSave.bind(this);
@@ -67,21 +68,33 @@ export default class CalendarsScreen extends Component {
       });
     });
   };
-  readeFromRealm = () => {
+
+  readFromRealm = () => {
     Realm.open(databaseOptions).then(realm => {
       let NoteLists = realm.objects("NoteList");
       let NoteListByDate = NoteLists.filtered(
         "date == $0",
         this.state.selectedDate
       );
-      console.warn("NoteLists", NoteLists);
-      console.warn("NoteListByDate", NoteListByDate[0].name);
+      //console.warn("NoteLists", NoteLists);
+      //console.warn("NoteListByDate", NoteListByDate[0].name);
       if (NoteListByDate[0] != null && NoteListByDate[0].name !== "") {
         this.setState({ NoteListName: NoteListByDate[0].name });
       }
       //return NoteListByDate;
     });
   };
+
+  updateNoteList = () => {
+    const updateText = this.state.updateText;
+    Realm.open(databaseOptions).then(realm => {
+      let target = realm.objects(NoteList).filtered("name=${text}")[0];
+      realm.write(() => {
+        target.name = updateText;
+      });
+    });
+  };
+
   renderModalContent = () => {
     const { selectedDay } = this.state;
     //const NoteListFromDB = this.state.NoteListFromDB;
@@ -131,7 +144,7 @@ export default class CalendarsScreen extends Component {
       }
     };
 
-    console.warn(this.state.selectedDate);
+    //console.warn(this.state.selectedDate);
     //console.warn(NoteListSchema);
     return (
       <View style={styles.container}>
@@ -179,7 +192,7 @@ export default class CalendarsScreen extends Component {
       visibleModal: "fancy",
       selectedDate: day.dateString
     });
-    this.readeFromRealm();
+    this.readFromRealm();
   }
 
   onPressSave(day) {
