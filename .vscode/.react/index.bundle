@@ -83965,9 +83965,16 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var NoteListSchema = {
     name: "NoteList",
+    primaryKey: "id",
     properties: {
+      id: {
+        type: "int",
+        default: 0
+      },
       name: "string",
-      NoteList: "string"
+      indexed: true,
+      NoteList: "string",
+      date: "date"
     }
   };
 
@@ -83994,14 +84001,26 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _this.newNoteList = function () {
         Realm.open({
           schema: [{
-            name: "NoteListSchema",
+            name: "NoteList",
+            primaryKey: "id",
             properties: {
-              name: "string"
+              name: "string",
+              id: {
+                type: "int",
+                default: 0
+              },
+              indexed: true,
+              date: "date"
             }
           }]
         }).then(function (realm) {
           realm.write(function () {
-            realm.create(NoteListSchema);
+            var ID = realm.objects("NoteListShema").length + 1;
+            realm.create("NoteListSchema", {
+              id: ID,
+              NoteList: _this.state.NoteList,
+              selectedDay: _this.state
+            });
           });
 
           _this.setState({
@@ -84017,13 +84036,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 65
+            lineNumber: 84
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 66
+            lineNumber: 85
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           style: {
@@ -84049,7 +84068,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           }],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 68
+            lineNumber: 87
           }
         }, NoteList), _react.default.createElement(_reactNative.Button, {
           onPress: function onPress() {
@@ -84061,7 +84080,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 94
+            lineNumber: 113
           }
         }));
       };
@@ -84087,13 +84106,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117
+            lineNumber: 136
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 118
+            lineNumber: 137
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onDayLongPress: this.onDayLongPress,
@@ -84103,7 +84122,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119
+            lineNumber: 138
           }
         }), _react.default.createElement(_reactNative.View, {
           style: {
@@ -84111,7 +84130,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 127
+            lineNumber: 146
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.state.visibleModal === "fancy",
@@ -84126,7 +84145,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 128
+            lineNumber: 147
           }
         }, this.renderModalContent()))));
       }
@@ -84140,10 +84159,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }, {
       key: "onPressSave",
-      value: function onPressSave() {
+      value: function onPressSave(date) {
         this.setState({
           visibleModal: null,
-          createNewNoteList: this.newNoteList
+          createNewNoteList: this.newNoteList,
+          selectedDate: date.dateString
         });
       }
     }]);

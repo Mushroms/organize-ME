@@ -18,10 +18,13 @@ const Realm = require("realm");
 
 const NoteListSchema = {
   name: "NoteList",
-
+  primaryKey: "id",
   properties: {
+    id: { type: "int", default: 0 },
     name: "string",
-    NoteList: "string"
+    indexed: true,
+    NoteList: "string",
+    date: "date"
   }
 };
 
@@ -48,10 +51,26 @@ export default class CalendarsScreen extends Component {
 
   newNoteList = () => {
     Realm.open({
-      schema: [{ name: "NoteListSchema", properties: { name: "string" } }]
+      schema: [
+        {
+          name: "NoteList",
+          primaryKey: "id",
+          properties: {
+            name: "string",
+            id: { type: "int", default: 0 },
+            indexed: true,
+            date: "date"
+          }
+        }
+      ]
     }).then(realm => {
       realm.write(() => {
-        realm.create(NoteListSchema);
+        let ID = realm.objects("NoteListShema").length + 1;
+        realm.create("NoteListSchema", {
+          id: ID,
+          NoteList: this.state.NoteList,
+          selectedDay: this.state
+        });
       });
       this.setState({ NoteList });
     });
@@ -160,10 +179,11 @@ export default class CalendarsScreen extends Component {
     });
   }
 
-  onPressSave() {
+  onPressSave(date) {
     this.setState({
       visibleModal: null,
-      createNewNoteList: this.newNoteList
+      createNewNoteList: this.newNoteList,
+      selectedDate: date.dateString
     });
   }
 }
