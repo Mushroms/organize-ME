@@ -40,7 +40,11 @@ export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      NoteListName: ""
+      NoteListName: "",
+      selectedDate: null,
+      selectedDay: null,
+      NoteListName: null,
+      NoteListFromDB: null
     };
     //this.onDayPress = this.onDayPress.bind(this);
     this.onPressSave = this.onPressSave.bind(this);
@@ -66,11 +70,21 @@ export default class CalendarsScreen extends Component {
   readeFromRealm = () => {
     Realm.open(databaseOptions).then(realm => {
       let NoteLists = realm.objects("NoteList");
+      let NoteListByDate = NoteLists.filtered(
+        "date == $0",
+        this.state.selectedDate
+      );
       console.warn("NoteLists", NoteLists);
+      console.warn("NoteListByDate", NoteListByDate[0].name);
+      if (NoteListByDate[0] != null && NoteListByDate[0].name !== "") {
+        this.setState({ NoteListName: NoteListByDate[0].name });
+      }
+      //return NoteListByDate;
     });
   };
   renderModalContent = () => {
     const { selectedDay } = this.state;
+    //const NoteListFromDB = this.state.NoteListFromDB;
     const NoteListName = this.state.NoteListName;
 
     return (
@@ -100,9 +114,9 @@ export default class CalendarsScreen extends Component {
               top: "2%"
             }
           ]}
-        >
-          {NoteListName}
-        </TextInput>
+          value={NoteListName}
+        />
+
         <Button onPress={this.onPressSave} title="Save" />
       </View>
     );
@@ -116,7 +130,7 @@ export default class CalendarsScreen extends Component {
         selectedDotColor: "orange"
       }
     };
-    this.readeFromRealm();
+
     console.warn(this.state.selectedDate);
     //console.warn(NoteListSchema);
     return (
@@ -165,11 +179,16 @@ export default class CalendarsScreen extends Component {
       visibleModal: "fancy",
       selectedDate: day.dateString
     });
+    this.readeFromRealm();
   }
 
   onPressSave(day) {
     this.setState({
-      visibleModal: null
+      visibleModal: null,
+      selectedDate: null,
+      selectedDay: null,
+      NoteListName: null,
+      NoteListFromDB: null
     });
     this.addNoteList();
   }
