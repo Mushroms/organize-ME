@@ -25,7 +25,11 @@ const NoteListSchema = {
     date: "date"
   }
 };
-
+const databaseOptions = {
+  path: "organazeME.realm",
+  schema: [NoteListSchema],
+  schemaVersion: 0
+};
 export default class CalendarsScreen extends Component {
   state = {
     visibleModalId: null,
@@ -48,12 +52,10 @@ export default class CalendarsScreen extends Component {
   };
 
   addNoteList = () => {
-    Realm.open({
-      schema: [NoteListSchema]
-    }).then(realm => {
+    Realm.open(databaseOptions).then(realm => {
       realm.write(() => {
-        let ID = realm.objects("NoteListShema").length + 1;
-        realm.create("NoteListSchema", {
+        let ID = realm.objects("NoteList").length + 1;
+        realm.create("NoteList", {
           id: ID,
           name: this.state.NoteListName,
           date: this.state.selectedDate
@@ -61,7 +63,12 @@ export default class CalendarsScreen extends Component {
       });
     });
   };
-
+  readeFromRealm = () => {
+    Realm.open(databaseOptions).then(realm => {
+      let NoteLists = realm.objects("NoteList");
+      console.warn("NoteLists", NoteLists);
+    });
+  };
   renderModalContent = () => {
     const { selectedDay } = this.state;
     const NoteListName = this.state.NoteListName;
@@ -109,7 +116,9 @@ export default class CalendarsScreen extends Component {
         selectedDotColor: "orange"
       }
     };
-    console.warn(NoteListSchema);
+    this.readeFromRealm();
+    console.warn(this.state.selectedDate);
+    //console.warn(NoteListSchema);
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
@@ -153,11 +162,12 @@ export default class CalendarsScreen extends Component {
   onDayLongPress(day) {
     this.setState({
       selectedDay: day.day,
-      visibleModal: "fancy"
+      visibleModal: "fancy",
+      selectedDate: day.dateString
     });
   }
 
-  onPressSave() {
+  onPressSave(day) {
     this.setState({
       visibleModal: null
     });
