@@ -83972,8 +83972,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         default: 0
       },
       name: "string",
-      indexed: true,
-      NoteList: "string",
       date: "date"
     }
   };
@@ -83998,33 +83996,17 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         });
       };
 
-      _this.newNoteList = function () {
+      _this.addNoteList = function () {
         Realm.open({
-          schema: [{
-            name: "NoteList",
-            primaryKey: "id",
-            properties: {
-              name: "string",
-              id: {
-                type: "int",
-                default: 0
-              },
-              indexed: true,
-              date: "date"
-            }
-          }]
+          schema: [NoteListSchema]
         }).then(function (realm) {
           realm.write(function () {
             var ID = realm.objects("NoteListShema").length + 1;
             realm.create("NoteListSchema", {
               id: ID,
-              NoteList: _this.state.NoteList,
-              selectedDay: _this.state
+              name: _this.state.NoteListName,
+              date: _this.state.selectedDate
             });
-          });
-
-          _this.setState({
-            NoteList: NoteList
           });
         });
       };
@@ -84036,13 +84018,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 84
+            lineNumber: 70
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 71
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           style: {
@@ -84051,7 +84033,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           onChangeText: function onChangeText(text) {
             _this.setState({
-              NoteList: text
+              NoteListName: text
             });
           },
           placeholderTextColor: "#00BFFF",
@@ -84068,25 +84050,20 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           }],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 87
+            lineNumber: 73
           }
         }, NoteList), _react.default.createElement(_reactNative.Button, {
-          onPress: function onPress() {
-            return _this.setState({
-              visibleModal: null,
-              createNewNoteList: _this.newNoteList
-            });
-          },
+          onPress: _this.onPressSave,
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 113
+            lineNumber: 99
           }
         }));
       };
 
       _this.state = {
-        NoteList: ""
+        NoteListName: ""
       };
       _this.onPressSave = _this.onPressSave.bind((0, _assertThisInitialized2.default)(_this));
       _this.onDayLongPress = _this.onDayLongPress.bind((0, _assertThisInitialized2.default)(_this));
@@ -84106,13 +84083,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 136
+            lineNumber: 114
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 137
+            lineNumber: 115
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onDayLongPress: this.onDayLongPress,
@@ -84122,7 +84099,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 138
+            lineNumber: 116
           }
         }), _react.default.createElement(_reactNative.View, {
           style: {
@@ -84130,7 +84107,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 146
+            lineNumber: 124
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.state.visibleModal === "fancy",
@@ -84145,7 +84122,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 147
+            lineNumber: 125
           }
         }, this.renderModalContent()))));
       }
@@ -84159,12 +84136,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }, {
       key: "onPressSave",
-      value: function onPressSave(date) {
+      value: function onPressSave() {
         this.setState({
-          visibleModal: null,
-          createNewNoteList: this.newNoteList,
-          selectedDate: date.dateString
+          visibleModal: null
         });
+        this.addNoteList();
       }
     }]);
     return CalendarsScreen;

@@ -22,8 +22,6 @@ const NoteListSchema = {
   properties: {
     id: { type: "int", default: 0 },
     name: "string",
-    indexed: true,
-    NoteList: "string",
     date: "date"
   }
 };
@@ -38,7 +36,7 @@ export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      NoteList: ""
+      NoteListName: ""
     };
     //this.onDayPress = this.onDayPress.bind(this);
     this.onPressSave = this.onPressSave.bind(this);
@@ -49,36 +47,24 @@ export default class CalendarsScreen extends Component {
     this.setState({ visibleModal: null });
   };
 
-  newNoteList = () => {
+  addNoteList = () => {
     Realm.open({
-      schema: [
-        {
-          name: "NoteList",
-          primaryKey: "id",
-          properties: {
-            name: "string",
-            id: { type: "int", default: 0 },
-            indexed: true,
-            date: "date"
-          }
-        }
-      ]
+      schema: [NoteListSchema]
     }).then(realm => {
       realm.write(() => {
         let ID = realm.objects("NoteListShema").length + 1;
         realm.create("NoteListSchema", {
           id: ID,
-          NoteList: this.state.NoteList,
-          selectedDay: this.state
+          name: this.state.NoteListName,
+          date: this.state.selectedDate
         });
       });
-      this.setState({ NoteList });
     });
   };
 
   renderModalContent = () => {
     const { selectedDay } = this.state;
-    const NoteList = this.state.NoteList;
+    const NoteListName = this.state.NoteListName;
 
     return (
       <View style={styles.content}>
@@ -90,7 +76,7 @@ export default class CalendarsScreen extends Component {
             width: "50%"
           }}
           onChangeText={text => {
-            this.setState({ NoteList: text });
+            this.setState({ NoteListName: text });
           }}
           placeholderTextColor="#00BFFF"
           multiline={true}
@@ -108,17 +94,9 @@ export default class CalendarsScreen extends Component {
             }
           ]}
         >
-          {NoteList}
+          {NoteListName}
         </TextInput>
-        <Button
-          onPress={() =>
-            this.setState({
-              visibleModal: null,
-              createNewNoteList: this.newNoteList
-            })
-          }
-          title="Save"
-        />
+        <Button onPress={this.onPressSave} title="Save" />
       </View>
     );
   };
@@ -179,12 +157,11 @@ export default class CalendarsScreen extends Component {
     });
   }
 
-  onPressSave(date) {
+  onPressSave() {
     this.setState({
-      visibleModal: null,
-      createNewNoteList: this.newNoteList,
-      selectedDate: date.dateString
+      visibleModal: null
     });
+    this.addNoteList();
   }
 }
 const styles = StyleSheet.create({
