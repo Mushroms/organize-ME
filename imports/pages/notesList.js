@@ -88,9 +88,9 @@ export default class CalendarsScreen extends Component {
   updateNoteList = () => {
     const updateText = this.state.updateText;
     Realm.open(databaseOptions).then(realm => {
-      let target = realm.objects(NoteList).filtered("name=${text}")[0];
+      let target = realm.objects(NoteListName).filtered("name=${text}")[0];
       realm.write(() => {
-        target.name = updateText;
+        target.name = NoteListName;
       });
     });
   };
@@ -198,9 +198,9 @@ export default class CalendarsScreen extends Component {
   onPressSave(day) {
     this.setState({
       visibleModal: null,
-      selectedDate: null,
+      selectedDate: this.state.selectedDate,
       selectedDay: null,
-      NoteListName: null,
+      NoteListName: "",
       NoteListFromDB: null
     });
     this.addNoteList();

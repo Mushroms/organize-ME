@@ -84030,9 +84030,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _this.updateNoteList = function () {
         var updateText = _this.state.updateText;
         Realm.open(databaseOptions).then(function (realm) {
-          var target = realm.objects(NoteList).filtered("name=${text}")[0];
+          var target = realm.objects(NoteListName).filtered("name=${text}")[0];
           realm.write(function () {
-            target.name = updateText;
+            target.name = NoteListName;
           });
         });
       };
@@ -84172,9 +84172,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       value: function onPressSave(day) {
         this.setState({
           visibleModal: null,
-          selectedDate: null,
+          selectedDate: this.state.selectedDate,
           selectedDay: null,
-          NoteListName: null,
+          NoteListName: "",
           NoteListFromDB: null
         });
         this.addNoteList();
