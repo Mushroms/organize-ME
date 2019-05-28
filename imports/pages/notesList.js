@@ -13,6 +13,7 @@ import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
+import Delete_pic from "./delete_component";
 
 const Realm = require("realm");
 
@@ -43,11 +44,12 @@ export default class CalendarsScreen extends Component {
       NoteListName: "",
       selectedDate: null,
       selectedDay: null,
-      NoteListName: null,
+      //NoteListName: null,
       NoteListFromDB: null,
       updateText: ""
     };
     //this.onDayPress = this.onDayPress.bind(this);
+    this.onPressDelete = this.onPressDelete.bind(this);
     this.onPressSave = this.onPressSave.bind(this);
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
@@ -88,9 +90,24 @@ export default class CalendarsScreen extends Component {
   updateNoteList = () => {
     const updateText = this.state.updateText;
     Realm.open(databaseOptions).then(realm => {
-      let target = realm.objects(NoteListName).filtered("name=${text}")[0];
+      let target = realm.objects("NoteList").filtered("name=$0");
       realm.write(() => {
-        target.name = NoteListName;
+        target.name = NoteList.name;
+      });
+      this.setState({ NoteListName });
+    });
+  };
+
+  deleteNoteList = () => {
+    Realm.open(databaseOptions).then(realm => {
+      realm.write(() => {
+        let ID = realm.objects("NoteList").length + 1;
+        realm.create("NoteList", {
+          id: ID,
+          name: this.state.NoteListName,
+          date: this.state.selectedDate
+        });
+        realm.delete("NoteList");
       });
     });
   };
@@ -130,7 +147,17 @@ export default class CalendarsScreen extends Component {
           value={NoteListName}
         />
 
-        <Button onPress={this.onPressSave} title="Save" />
+        <Button
+          style={{
+            height: "10%",
+            width: "10%",
+            borderWidth: 1,
+            borderColor: "red"
+          }}
+          onPress={this.onPressSave}
+          title="Save"
+        />
+        <Delete_pic onPress={this.onPressDelete} />
       </View>
     );
   };
@@ -160,7 +187,7 @@ export default class CalendarsScreen extends Component {
           <View style={{ flex: 1 }}>
             <Modal
               isVisible={this.state.visibleModal === "fancy"}
-              //backdropColor="#B4B3DB"
+              //style={styles.Modal_container}
               backdropOpacity={0.8}
               animationIn="zoomInDown"
               animationOut="zoomOutUp"
@@ -205,6 +232,10 @@ export default class CalendarsScreen extends Component {
     });
     this.addNoteList();
   }
+
+  onPressDelete() {
+    this.deleteNoteList();
+  }
 }
 const styles = StyleSheet.create({
   container: {
@@ -215,7 +246,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    height: "50%",
+    height: "67%",
     width: "100%",
     backgroundColor: "#768489",
     padding: 22,
@@ -238,8 +269,8 @@ const styles = StyleSheet.create({
         marginTop: 0,
         marginBottom: 0,
         borderRadius: 40,
-        height: 0,
-        width: "100%"
+        height: "100%",
+        width: "50%"
       },
       {
         height: "100%",
