@@ -123,10 +123,7 @@ export default class CalendarsScreen extends Component {
         <Circle_Component selectedDay={selectedDay} />
 
         <TextInput
-          style={{
-            height: "50%",
-            width: "50%"
-          }}
+          value={this.state.NoteListName}
           onChangeText={text => {
             this.setState({ NoteListName: text });
           }}
@@ -145,20 +142,21 @@ export default class CalendarsScreen extends Component {
               top: "2%"
             }
           ]}
-          value={NoteListName}
         />
-
-        <Button
-          style={{
-            height: "10%",
-            width: "10%",
-            borderWidth: 1,
-            borderColor: "red"
-          }}
-          onPress={this.onPressSave}
-          title="Save"
-        />
-        <Delete_pic />
+        <View style={styles.modalButton}>
+          <Delete_pic />
+          <Button
+            style={{
+              height: "10%",
+              width: "10%",
+              justifyContent: "center",
+              alignSelf: "center",
+              alignItems: "center"
+            }}
+            onPress={this.onPressSave}
+            title="Save"
+          />
+        </View>
       </View>
     );
   };
@@ -172,7 +170,7 @@ export default class CalendarsScreen extends Component {
       }
     };
 
-    console.warn(this.state.selectedDate);
+    //console.warn(this.state.selectedDate);
     //console.warn(NoteListSchema);
     return (
       <View style={styles.container}>
@@ -213,7 +211,9 @@ export default class CalendarsScreen extends Component {
   //     selectedDate: day.dateString
   //   });
   // }
-
+  // onChangeValue(text) {
+  //   this.setState({ NoteListName: text });
+  // }
   onDayLongPress(day) {
     this.setState({
       selectedDay: day.day,
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    height: "67%",
+    height: "50%",
     width: "100%",
     backgroundColor: "#768489",
     padding: 22,
@@ -303,6 +303,13 @@ const styles = StyleSheet.create({
         width: "97%"
       }
     )
+  },
+  modalButton: {
+    //borderWidth: 1,
+    width: "100%",
+    justifyContent: "space-between",
+    //alignItems: "center",
+    flexDirection: "row"
   }
 });
 

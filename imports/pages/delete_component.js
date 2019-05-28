@@ -23,18 +23,19 @@ export class Delete_pic extends React.Component {
 }
 const styles = StyleSheet.create({
   container_Delete: {
-    flex: 1,
-    //borderWidth: 1,
+    height: 40,
+    width: 40,
     // borderColor: "red",
     // alignItems: "flex-start",
-    justifyContent: "flex-start",
-    alignSelf: "flex-start"
+    //justifyContent: "space-between",
+    alignSelf: "flex-start",
+    alignItems: "flex-start"
   },
   container: {
     ...ifIphoneX(
       {
         flex: 1,
-        height: 3,
+        height: 35,
         width: 35,
         alignItems: "flex-start",
         justifyContent: "flex-start",
@@ -42,9 +43,8 @@ const styles = StyleSheet.create({
       },
       {
         flex: 1,
-        height: 3,
+        height: 35,
         width: 35,
-        flex: 1,
         alignItems: "flex-start",
         justifyContent: "flex-start",
         alignSelf: "flex-start"
