@@ -12,7 +12,10 @@ export class Delete_pic extends React.Component {
     const Delete_pic = require("../../resourses/delete-icon.png");
 
     return (
-      <TouchableOpacity style={styles.container_Delete}>
+      <TouchableOpacity
+        style={styles.container_Delete}
+        onPress={() => console.warn("tests")}
+      >
         <Image style={styles.container} source={Delete_pic} />
       </TouchableOpacity>
     );

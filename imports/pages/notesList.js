@@ -87,28 +87,29 @@ export default class CalendarsScreen extends Component {
     });
   };
 
-  updateNoteList = () => {
-    const updateText = this.state.updateText;
-    Realm.open(databaseOptions).then(realm => {
-      let target = realm.objects("NoteList").filtered("name=$0");
-      realm.write(() => {
-        target.name = NoteList.name;
-      });
-      this.setState({ NoteListName });
-    });
-  };
+  // updateNoteList = () => {
+  //   const updateText = this.state.updateText;
+  //   Realm.open(databaseOptions).then(realm => {
+  //     let ID = realm.objects("NoteList").length + 1;
+  //     realm.create("NoteList", {
+  //       id: ID,
+  //       name: this.state.NoteListName,
+  //       date: this.state.selectedDate
+  //     });
+  //   });
+  // };
 
   deleteNoteList = () => {
     Realm.open(databaseOptions).then(realm => {
-      realm.write(() => {
-        let ID = realm.objects("NoteList").length + 1;
-        realm.create("NoteList", {
-          id: ID,
-          name: this.state.NoteListName,
-          date: this.state.selectedDate
-        });
-        realm.delete("NoteList");
-      });
+      let NoteLists = realm.objects("NoteList");
+      let NoteListByDate = NoteLists.filtered(
+        "date == $0",
+        this.state.selectedDate
+      );
+      if (NoteListByDate[0] != null && NoteListByDate[0].name !== "") {
+        this.setState({ NoteListName: NoteListByDate[0].name });
+      }
+      realm.delete(NoteListByDate);
     });
   };
 
@@ -157,7 +158,7 @@ export default class CalendarsScreen extends Component {
           onPress={this.onPressSave}
           title="Save"
         />
-        <Delete_pic onPress={this.onPressDelete} />
+        <Delete_pic />
       </View>
     );
   };
@@ -166,12 +167,12 @@ export default class CalendarsScreen extends Component {
     const markedDates = {
       [this.state.selectedDate]: {
         selected: true,
-        disableTouchEvent: true,
+        disableTouchEvent: false,
         selectedDotColor: "orange"
       }
     };
 
-    //console.warn(this.state.selectedDate);
+    console.warn(this.state.selectedDate);
     //console.warn(NoteListSchema);
     return (
       <View style={styles.container}>
@@ -233,7 +234,10 @@ export default class CalendarsScreen extends Component {
     this.addNoteList();
   }
 
-  onPressDelete() {
+  onPressDelete(day) {
+    this.setState({
+      NoteListName: this.state.NoteListName
+    });
     this.deleteNoteList();
   }
 }

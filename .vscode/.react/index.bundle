@@ -84029,31 +84029,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         });
       };
 
-      _this.updateNoteList = function () {
-        var updateText = _this.state.updateText;
-        Realm.open(databaseOptions).then(function (realm) {
-          var target = realm.objects("NoteList").filtered("name=$0");
-          realm.write(function () {
-            target.name = NoteList.name;
-          });
-
-          _this.setState({
-            NoteListName: NoteListName
-          });
-        });
-      };
-
       _this.deleteNoteList = function () {
         Realm.open(databaseOptions).then(function (realm) {
-          realm.write(function () {
-            var ID = realm.objects("NoteList").length + 1;
-            realm.create("NoteList", {
-              id: ID,
-              name: _this.state.NoteListName,
-              date: _this.state.selectedDate
+          var NoteLists = realm.objects("NoteList");
+          var NoteListByDate = NoteLists.filtered("date == $0", _this.state.selectedDate);
+
+          if (NoteListByDate[0] != null && NoteListByDate[0].name !== "") {
+            _this.setState({
+              NoteListName: NoteListByDate[0].name
             });
-            realm.delete("NoteList");
-          });
+          }
+
+          realm.delete(NoteListByDate);
         });
       };
 
@@ -84064,13 +84051,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 121
+            lineNumber: 122
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 122
+            lineNumber: 123
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           style: {
@@ -84097,7 +84084,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           value: NoteListName,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 124
+            lineNumber: 125
           }
         }), _react.default.createElement(_reactNative.Button, {
           style: {
@@ -84110,13 +84097,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 150
+            lineNumber: 151
           }
         }), _react.default.createElement(_delete_component.default, {
-          onPress: _this.onPressDelete,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 160
+            lineNumber: 161
           }
         }));
       };
@@ -84139,20 +84125,21 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       value: function render() {
         var markedDates = (0, _defineProperty2.default)({}, this.state.selectedDate, {
           selected: true,
-          disableTouchEvent: true,
+          disableTouchEvent: false,
           selectedDotColor: "orange"
         });
+        console.warn(this.state.selectedDate);
         return _react.default.createElement(_reactNative.View, {
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 177
+            lineNumber: 178
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 178
+            lineNumber: 179
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onDayLongPress: this.onDayLongPress,
@@ -84162,7 +84149,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 179
+            lineNumber: 180
           }
         }), _react.default.createElement(_reactNative.View, {
           style: {
@@ -84170,7 +84157,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 187
+            lineNumber: 188
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.state.visibleModal === "fancy",
@@ -84185,7 +84172,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 188
+            lineNumber: 189
           }
         }, this.renderModalContent()))));
       }
@@ -84213,7 +84200,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }, {
       key: "onPressDelete",
-      value: function onPressDelete() {
+      value: function onPressDelete(day) {
+        this.setState({
+          NoteListName: this.state.NoteListName
+        });
         this.deleteNoteList();
       }
     }]);
@@ -84304,7 +84294,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     textMonthFontSize: 20,
     textDayHeaderFontSize: 17
   };
-},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,586,610,635,611],"imports/pages/notesList.js");
+},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,586,610,611,613],"imports/pages/notesList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93570,6 +93560,137 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.default = _default2;
 },610,[1,541,49,19,20,35,38,41,53,181,2,544,70],"imports/pages/circle_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = exports.Delete_pic = void 0;
+
+  var _objectSpread2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/objectSpread"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/createClass"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/inherits"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
+
+  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./../../node_modules/react-transform-hmr/lib/index.js"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[10], "react-native");
+
+  var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[11], "react-native-iphone-x-helper");
+
+  var _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/delete_component.js";
+  var _components = {
+    Delete_pic: {
+      displayName: "Delete_pic"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
+    filename: "/Users/macbookair/organize-ME/imports/pages/delete_component.js",
+    components: _components,
+    locals: [module],
+    imports: [_react.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var Delete_pic = function (_React$Component) {
+    (0, _inherits2.default)(Delete_pic, _React$Component);
+
+    function Delete_pic(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, Delete_pic);
+      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Delete_pic).call(this, props));
+      _this.state = {};
+      return _this;
+    }
+
+    (0, _createClass2.default)(Delete_pic, [{
+      key: "render",
+      value: function render() {
+        var Delete_pic = _$$_REQUIRE(_dependencyMap[12], "../../resourses/delete-icon.png");
+
+        return _react.default.createElement(_reactNative.TouchableOpacity, {
+          style: styles.container_Delete,
+          onPress: function onPress() {
+            return console.warn("tetst");
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 15
+          }
+        }, _react.default.createElement(_reactNative.Image, {
+          style: styles.container,
+          source: Delete_pic,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19
+          }
+        }));
+      }
+    }]);
+    return Delete_pic;
+  }(_react.default.Component);
+
+  exports.Delete_pic = Delete_pic;
+  exports.Delete_pic = Delete_pic = _wrapComponent("Delete_pic")(Delete_pic);
+
+  var styles = _reactNative.StyleSheet.create({
+    container_Delete: {
+      flex: 1,
+      justifyContent: "flex-start",
+      alignSelf: "flex-start"
+    },
+    container: (0, _objectSpread2.default)({}, (0, _reactNativeIphoneXHelper.ifIphoneX)({
+      flex: 1,
+      height: 3,
+      width: 35,
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      alignSelf: "flex-start"
+    }, {
+      flex: 1,
+      height: 3,
+      width: 35,
+      flex: 1,
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      alignSelf: "flex-start"
+    }))
+  });
+
+  var _default2 = Delete_pic;
+  exports.default = _default2;
+},611,[1,541,49,19,20,35,38,41,53,181,2,544,612],"imports/pages/delete_component.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/resourses",
+    "width": 512,
+    "height": 512,
+    "scales": [1],
+    "hash": "d0d56ce6f92c20fbb3bf5c96f36c8c67",
+    "name": "delete-icon",
+    "type": "png"
+  });
+},612,[176],"resourses/delete-icon.png");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
   var require_method = _$$_REQUIRE;
@@ -93671,7 +93792,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = realmConstructor;
-},611,[612,632],"node_modules/realm/lib/index.js");
+},613,[614,634],"node_modules/realm/lib/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -93918,7 +94039,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw new Error('Realm failed to connect to the embedded debug server inside the app. ' + 'If attempting to use Chrome debugging from a device, ensure the device is ' + 'reachable on the same network as this machine.');
     }
   }
-},612,[541,1,19,20,2,613,614,618,619,620,621,622,623,616,615,624],"node_modules/realm/lib/browser/index.js");
+},614,[541,1,19,20,2,615,616,620,621,622,623,624,625,618,617,626],"node_modules/realm/lib/browser/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -93946,7 +94067,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       enumerable: true
     });
   });
-},613,[],"node_modules/realm/lib/browser/constants.js");
+},615,[],"node_modules/realm/lib/browser/constants.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94059,7 +94180,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     collection[mutable] = _mutable;
     return new Proxy(collection, traps);
   }
-},614,[541,1,19,613,615,616],"node_modules/realm/lib/browser/collections.js");
+},616,[541,1,19,615,617,618],"node_modules/realm/lib/browser/collections.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94178,7 +94299,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       rpc.setProperty(this[_constants.keys.realm], this[_constants.keys.id], name, value);
     };
   }
-},615,[541,613,616],"node_modules/realm/lib/browser/util.js");
+},617,[541,615,618],"node_modules/realm/lib/browser/util.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94646,7 +94767,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }, pollTimeout);
     }
   }
-},616,[541,1,8,617,615,613],"node_modules/realm/lib/browser/rpc.js");
+},618,[541,1,8,619,617,615],"node_modules/realm/lib/browser/rpc.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94724,7 +94845,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         return base64;
     }
   }
-},617,[],"node_modules/realm/lib/browser/base64.js");
+},619,[],"node_modules/realm/lib/browser/base64.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94770,7 +94891,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createList(realmId, info) {
     return (0, _collections.createCollection)(List.prototype, realmId, info, true);
   }
-},618,[541,1,19,35,38,41,614,613,615],"node_modules/realm/lib/browser/lists.js");
+},620,[541,1,19,35,38,41,616,615,617],"node_modules/realm/lib/browser/lists.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94816,7 +94937,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createResults(realmId, info) {
     return (0, _collections.createCollection)(Results.prototype, realmId, info);
   }
-},619,[541,1,19,35,38,41,614,613,615],"node_modules/realm/lib/browser/results.js");
+},621,[541,1,19,35,38,41,616,615,617],"node_modules/realm/lib/browser/results.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94908,7 +95029,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     throw new Error("Constructor was not registered in the schema for this Realm");
   }
-},620,[541,1,19,613,615,616],"node_modules/realm/lib/browser/objects.js");
+},622,[541,1,19,615,617,618],"node_modules/realm/lib/browser/objects.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94977,7 +95098,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _extends2.default)(userProxy, info.data);
     return userProxy;
   }
-},621,[1,8,19,20,616,613,615],"node_modules/realm/lib/browser/user.js");
+},623,[1,8,19,20,618,615,617],"node_modules/realm/lib/browser/user.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95024,7 +95145,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     sessionProxy.config = (0, _rpc.deserialize)(realmId, info.data.config);
     return sessionProxy;
   }
-},622,[1,19,613,615,616],"node_modules/realm/lib/browser/session.js");
+},624,[1,19,615,617,618],"node_modules/realm/lib/browser/session.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95068,7 +95189,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     subscription[_constants.keys.type] = _constants.objectTypes.SUBSCRIPTION;
     return subscription;
   }
-},623,[1,19,613,615],"node_modules/realm/lib/browser/subscription.js");
+},625,[1,19,615,617],"node_modules/realm/lib/browser/subscription.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95823,7 +95944,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     instance: instanceMethods,
     credentials: credentialsMethods
   };
-},624,[8,19,20,9,625,626,631,627,630],"node_modules/realm/lib/user-methods.js");
+},626,[8,19,20,9,627,628,633,629,632],"node_modules/realm/lib/user-methods.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95841,7 +95962,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   AuthError.__proto__ = Error;
   AuthError.prototype.__proto__ = Error.prototype;
   exports['AuthError'] = AuthError;
-},625,[8],"node_modules/realm/lib/errors.js");
+},627,[8],"node_modules/realm/lib/errors.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96081,7 +96202,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       });
     }
   };
-},626,[627,630],"node_modules/realm/lib/permission-api.js");
+},628,[629,632],"node_modules/realm/lib/permission-api.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96362,7 +96483,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Url.trimLeft = trimLeft;
   Url.qs = qs;
   module.exports = Url;
-},627,[628,629],"node_modules/url-parse/index.js");
+},629,[630,631],"node_modules/url-parse/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96392,7 +96513,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return port !== 0;
   };
-},628,[],"node_modules/requires-port/index.js");
+},630,[],"node_modules/requires-port/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96457,7 +96578,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.stringify = querystringify;
   exports.parse = querystring;
-},629,[],"node_modules/querystringify/index.js");
+},631,[],"node_modules/querystringify/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96594,7 +96715,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }
   }];
-},630,[],"node_modules/realm/lib/management-schema.js");
+},632,[],"node_modules/realm/lib/management-schema.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.deepmerge = factory();
@@ -96684,7 +96805,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var deepmerge_1 = deepmerge;
     return deepmerge_1;
   });
-},631,[],"node_modules/deepmerge/dist/umd.js");
+},633,[],"node_modules/deepmerge/dist/umd.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97375,7 +97496,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       configurable: true
     });
   };
-},632,[627,633,624,625,634,2],"node_modules/realm/lib/extensions.js");
+},634,[629,635,626,627,636,2],"node_modules/realm/lib/extensions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97444,7 +97565,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   });
   exports[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] = exports.values;
-},633,[],"node_modules/realm/lib/collection-methods.js");
+},635,[],"node_modules/realm/lib/collection-methods.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "_from": "realm",
@@ -97611,135 +97732,7 @@ __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   "version": "2.28.0"
 }
 ;
-},634,[],"node_modules/realm/package.json");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
-
-  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = exports.Delete_pic = void 0;
-
-  var _objectSpread2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/objectSpread"));
-
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/classCallCheck"));
-
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/createClass"));
-
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
-
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
-
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/inherits"));
-
-  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
-
-  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./../../node_modules/react-transform-hmr/lib/index.js"));
-
-  var _reactNative = _$$_REQUIRE(_dependencyMap[10], "react-native");
-
-  var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[11], "react-native-iphone-x-helper");
-
-  var _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/delete_component.js";
-  var _components = {
-    Delete_pic: {
-      displayName: "Delete_pic"
-    }
-  };
-
-  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
-    filename: "/Users/macbookair/organize-ME/imports/pages/delete_component.js",
-    components: _components,
-    locals: [module],
-    imports: [_react.default]
-  });
-
-  function _wrapComponent(id) {
-    return function (Component) {
-      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
-    };
-  }
-
-  var Delete_pic = function (_React$Component) {
-    (0, _inherits2.default)(Delete_pic, _React$Component);
-
-    function Delete_pic(props) {
-      var _this;
-
-      (0, _classCallCheck2.default)(this, Delete_pic);
-      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Delete_pic).call(this, props));
-      _this.state = {};
-      return _this;
-    }
-
-    (0, _createClass2.default)(Delete_pic, [{
-      key: "render",
-      value: function render() {
-        var Delete_pic = _$$_REQUIRE(_dependencyMap[12], "../../resourses/delete-icon.png");
-
-        return _react.default.createElement(_reactNative.TouchableOpacity, {
-          style: styles.container_Delete,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
-          }
-        }, _react.default.createElement(_reactNative.Image, {
-          style: styles.container,
-          source: Delete_pic,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 16
-          }
-        }));
-      }
-    }]);
-    return Delete_pic;
-  }(_react.default.Component);
-
-  exports.Delete_pic = Delete_pic;
-  exports.Delete_pic = Delete_pic = _wrapComponent("Delete_pic")(Delete_pic);
-
-  var styles = _reactNative.StyleSheet.create({
-    container_Delete: {
-      flex: 1,
-      justifyContent: "flex-start",
-      alignSelf: "flex-start"
-    },
-    container: (0, _objectSpread2.default)({}, (0, _reactNativeIphoneXHelper.ifIphoneX)({
-      flex: 1,
-      height: 3,
-      width: 35,
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
-      alignSelf: "flex-start"
-    }, {
-      flex: 1,
-      height: 3,
-      width: 35,
-      flex: 1,
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
-      alignSelf: "flex-start"
-    }))
-  });
-
-  var _default2 = Delete_pic;
-  exports.default = _default2;
-},635,[1,541,49,19,20,35,38,41,53,181,2,544,636],"imports/pages/delete_component.js");
-__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
-  module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
-    "__packager_asset": true,
-    "httpServerLocation": "/assets/resourses",
-    "width": 512,
-    "height": 512,
-    "scales": [1],
-    "hash": "d0d56ce6f92c20fbb3bf5c96f36c8c67",
-    "name": "delete-icon",
-    "type": "png"
-  });
-},636,[176],"resourses/delete-icon.png");
+},636,[],"node_modules/realm/package.json");
 __r(93);
 __r(0);
 //# sourceMappingURL=index.map
