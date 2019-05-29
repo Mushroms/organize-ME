@@ -84004,14 +84004,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           var notesByDate = AllNotes.filtered("date == $0", dateString);
           var firstNodeByDate = notesByDate[0];
           var shouldWeUpdate = false;
-          var noteId = AllNotes.length + 1;
+          var noteId = -1;
+          AllNotes.forEach(function (note) {
+            if (note && note.id) {
+              if (note.id > noteId) noteId = note.id;
+            }
+          });
+          noteId += 1;
 
           if (firstNodeByDate && firstNodeByDate !== null) {
+            console.log("firstNodeByDate: ", firstNodeByDate);
             shouldWeUpdate = true;
             noteId = firstNodeByDate.id;
-            console.log(" ============= ");
-            console.log(shouldWeUpdate, noteId);
-            console.log(" ============= ");
           }
 
           realm.write(function () {
@@ -84030,7 +84034,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           var NoteListByDate = allNotes.filtered("date == $0", selectedDate);
           var noteMessage = "";
 
-          if (NoteListByDate[0] && NoteListByDate[0].name !== "") {
+          if (NoteListByDate[0]) {
             noteMessage = NoteListByDate[0].name;
           }
 
@@ -84061,13 +84065,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 117
+            lineNumber: 120
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 118
+            lineNumber: 121
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           value: NoteListName,
@@ -84090,19 +84094,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 120
+            lineNumber: 123
           }
         }), _react.default.createElement(_reactNative.View, {
           style: styles.modalButton,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 141
+            lineNumber: 144
           }
         }, _react.default.createElement(_delete_component.default, {
           onVanyaBitchPress: _this.onPressDelete,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 142
+            lineNumber: 145
           }
         }), _react.default.createElement(_reactNative.Button, {
           style: {
@@ -84116,7 +84120,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 143
+            lineNumber: 146
           }
         })));
       };
@@ -84159,13 +84163,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 169
+            lineNumber: 172
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 170
+            lineNumber: 173
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onDayLongPress: this.onDayLongPress,
@@ -84175,7 +84179,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 171
+            lineNumber: 174
           }
         }), _react.default.createElement(_reactNative.View, {
           style: {
@@ -84183,7 +84187,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 178
+            lineNumber: 181
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.state.visibleModal === "fancy",
@@ -84198,7 +84202,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 179
+            lineNumber: 182
           }
         }, this.renderModalContent()))));
       }

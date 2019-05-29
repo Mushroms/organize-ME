@@ -60,15 +60,18 @@ export default class CalendarsScreen extends Component {
       const firstNodeByDate = notesByDate[0];
 
       let shouldWeUpdate = false;
-      let noteId = AllNotes.length + 1;
+      let noteId = -1;
+      AllNotes.forEach(note => {
+        if (note && note.id) {
+          if (note.id > noteId) noteId = note.id;
+        }
+      });
+      noteId += 1;
 
       if (firstNodeByDate && firstNodeByDate !== null) {
+        console.log("firstNodeByDate: ", firstNodeByDate);
         shouldWeUpdate = true;
         noteId = firstNodeByDate.id;
-
-        console.log(" ============= ");
-        console.log(shouldWeUpdate, noteId);
-        console.log(" ============= ");
       }
 
       realm.write(() => {
@@ -90,7 +93,7 @@ export default class CalendarsScreen extends Component {
       let allNotes = realm.objects("NoteList");
       let NoteListByDate = allNotes.filtered("date == $0", selectedDate);
       let noteMessage = "";
-      if (NoteListByDate[0] && NoteListByDate[0].name !== "") {
+      if (NoteListByDate[0]) {
         noteMessage = NoteListByDate[0].name;
       }
       this.setState({ NoteListName: noteMessage });
