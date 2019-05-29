@@ -14,7 +14,7 @@ export class Delete_pic extends React.Component {
     return (
       <TouchableOpacity
         style={styles.container_Delete}
-        onPress={() => console.warn("tests")}
+        onPress={() => this.props.onVanyaBitchPress()}
       >
         <Image style={styles.container} source={Delete_pic} />
       </TouchableOpacity>
