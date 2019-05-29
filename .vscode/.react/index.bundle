@@ -83935,11 +83935,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[14], "react-native-iphone-x-helper");
 
-  var _reactNativeModal = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "react-native-modal"));
-
-  var _circle_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[16], "./circle_component"));
-
-  var _delete_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[17], "./delete_component"));
+  var _modal_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "./modal_component"));
 
   var _temp,
       _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/notesList.js";
@@ -83963,26 +83959,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   }
 
-  var Realm = _$$_REQUIRE(_dependencyMap[18], "realm");
-
-  var NoteListSchema = {
-    name: "NoteList",
-    primaryKey: "id",
-    properties: {
-      id: {
-        type: "int",
-        default: 0
-      },
-      name: "string",
-      date: "date"
-    }
-  };
-  var databaseOptions = {
-    path: "organazeME.realm",
-    schema: [NoteListSchema],
-    schemaVersion: 0
-  };
-
   var CalendarsScreen = _wrapComponent("CalendarsScreen")((_temp = function (_Component) {
     (0, _inherits2.default)(CalendarsScreen, _Component);
 
@@ -83994,159 +83970,16 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
       _this.toggleModal = function () {
         _this.setState({
-          visibleModal: null
-        });
-      };
-
-      _this.addNoteList = function (dateString, newName) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var AllNotes = realm.objects("NoteList");
-          var notesByDate = AllNotes.filtered("date == $0", dateString);
-          var firstNodeByDate = notesByDate[0];
-          var shouldWeUpdate = false;
-          var noteId = -1;
-          AllNotes.forEach(function (note) {
-            if (note && note.id) {
-              if (note.id > noteId) noteId = note.id;
-            }
-          });
-          noteId += 1;
-
-          if (firstNodeByDate && firstNodeByDate !== null) {
-            console.log("firstNodeByDate: ", firstNodeByDate);
-            shouldWeUpdate = true;
-            noteId = firstNodeByDate.id;
-          }
-
-          realm.write(function () {
-            realm.create("NoteList", {
-              id: noteId,
-              name: newName,
-              date: dateString
-            }, shouldWeUpdate);
-          });
-        });
-      };
-
-      _this.readFromRealm = function (selectedDate) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var allNotes = realm.objects("NoteList");
-          var NoteListByDate = allNotes.filtered("date == $0", selectedDate);
-          var noteMessage = "";
-
-          if (NoteListByDate[0]) {
-            noteMessage = NoteListByDate[0].name;
-          }
-
-          _this.setState({
-            NoteListName: noteMessage
-          });
-        });
-      };
-
-      _this.deleteNoteList = function (selectedDate) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var allNotes = realm.objects("NoteList");
-          var noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
-
-          if (noteByDate) {
-            realm.write(function () {
-              realm.delete(noteByDate);
-            });
-          }
-        });
-      };
-
-      _this.renderModalContent = function () {
-        var _this$state = _this.state,
-            selectedDay = _this$state.selectedDay,
-            NoteListName = _this$state.NoteListName;
-        return _react.default.createElement(_reactNative.View, {
-          style: styles.content,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 120
-          }
-        }, _react.default.createElement(_circle_component.default, {
-          selectedDay: selectedDay,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 121
-          }
-        }), _react.default.createElement(_reactNative.TextInput, {
-          value: NoteListName,
-          placeholderTextColor: "#00BFFF",
-          multiline: true,
-          maxLength: 240,
-          style: [styles.placeholder, {
-            fontSize: 20,
-            textAlign: "left",
-            textAlignVertical: "top",
-            color: "#00BFFF",
-            width: "90%",
-            height: "65%",
-            top: "2%"
-          }],
-          onChangeText: function onChangeText(text) {
-            _this.setState({
-              NoteListName: text
-            });
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 123
-          }
-        }), _react.default.createElement(_reactNative.View, {
-          style: styles.modalButton,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 144
-          }
-        }, _react.default.createElement(_delete_component.default, {
-          onVanyaBitchPress: _this.onPressDelete,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 145
-          }
-        }), _react.default.createElement(_reactNative.Button, {
-          style: {
-            height: "10%",
-            width: "10%",
-            justifyContent: "center",
-            alignSelf: "center",
-            alignItems: "center"
-          },
-          onPress: _this.onPressSave,
-          title: "Save",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 146
-          }
-        })));
-      };
-
-      _this.clearState = function () {
-        _this.setState({
-          visibleModal: null,
-          selectedDate: null,
-          selectedDay: null,
-          NoteListName: "",
-          NoteListFromDB: null
+          isOpen: false
         });
       };
 
       _this.messageRef = _react.default.createRef();
       _this.state = {
-        visibleModalId: null,
-        NoteListName: "",
         selectedDate: null,
         selectedDay: null,
-        NoteListFromDB: null,
-        updateText: "",
-        messageContent: ""
+        isOpen: false
       };
-      _this.onPressDelete = _this.onPressDelete.bind((0, _assertThisInitialized2.default)(_this));
-      _this.onPressSave = _this.onPressSave.bind((0, _assertThisInitialized2.default)(_this));
       _this.onDayLongPress = _this.onDayLongPress.bind((0, _assertThisInitialized2.default)(_this));
       return _this;
     }
@@ -84163,13 +83996,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 172
+            lineNumber: 41
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 173
+            lineNumber: 42
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onDayLongPress: this.onDayLongPress,
@@ -84179,54 +84012,27 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 174
+            lineNumber: 43
           }
-        }), _react.default.createElement(_reactNative.View, {
-          style: {
-            flex: 1
-          },
+        }), _react.default.createElement(_modal_component.default, {
+          isOpen: this.state.isOpen,
+          selectedDay: this.state.selectedDay,
+          selectedDate: this.state.selectedDate,
+          toggleModal: this.toggleModal,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 181
+            lineNumber: 50
           }
-        }, _react.default.createElement(_reactNativeModal.default, {
-          isVisible: this.state.visibleModal === "fancy",
-          backdropOpacity: 0.8,
-          animationIn: "zoomInDown",
-          animationOut: "zoomOutUp",
-          animationInTiming: 600,
-          animationOutTiming: 600,
-          backdropTransitionInTiming: 600,
-          backdropTransitionOutTiming: 600,
-          onSwipeComplete: this.toggleModal,
-          swipeDirection: ["up", "left", "down"],
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 182
-          }
-        }, this.renderModalContent()))));
+        })));
       }
     }, {
       key: "onDayLongPress",
       value: function onDayLongPress(day) {
-        this.readFromRealm(day.dateString);
         this.setState({
+          isOpen: true,
           selectedDay: day.day,
-          visibleModal: "fancy",
           selectedDate: day.dateString
         });
-      }
-    }, {
-      key: "onPressSave",
-      value: function onPressSave() {
-        this.addNoteList(this.state.selectedDate, this.state.NoteListName);
-        this.clearState();
-      }
-    }, {
-      key: "onPressDelete",
-      value: function onPressDelete() {
-        this.deleteNoteList(this.state.selectedDate);
-        this.clearState();
       }
     }]);
     return CalendarsScreen;
@@ -84321,7 +84127,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     textMonthFontSize: 20,
     textDayHeaderFontSize: 17
   };
-},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,586,610,611,613],"imports/pages/notesList.js");
+},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,638],"imports/pages/notesList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -90679,6 +90485,347 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.VelocityTracker = VelocityTracker;
 },585,[1,19,20],"node_modules/react-native-calendars/src/input.js");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
+
+  var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/interopRequireWildcard");
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var _objectSpread2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/objectSpread"));
+
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/classCallCheck"));
+
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/createClass"));
+
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
+
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
+
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/inherits"));
+
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
+
+  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./../../node_modules/react-transform-hmr/lib/index.js"));
+
+  var _reactNative = _$$_REQUIRE(_dependencyMap[10], "react-native");
+
+  var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[11], "react-native-iphone-x-helper");
+
+  var _reactNativeModal = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "react-native-modal"));
+
+  var _circle_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[13], "./circle_component"));
+
+  var _delete_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[14], "./delete_component"));
+
+  var _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/modal_component.js";
+  var _components = {
+    ModalExample: {
+      displayName: "ModalExample"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index.default)({
+    filename: "/Users/macbookair/organize-ME/imports/pages/modal_component.js",
+    components: _components,
+    locals: [module],
+    imports: [_react.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var Realm = _$$_REQUIRE(_dependencyMap[15], "realm");
+
+  var NoteListSchema = {
+    name: "NoteList",
+    primaryKey: "id",
+    properties: {
+      id: {
+        type: "int",
+        default: 0
+      },
+      name: "string",
+      date: "date"
+    }
+  };
+  var databaseOptions = {
+    path: "organazeME.realm",
+    schema: [NoteListSchema],
+    schemaVersion: 0
+  };
+
+  var ModalExample = function (_Component) {
+    (0, _inherits2.default)(ModalExample, _Component);
+
+    function ModalExample(props) {
+      var _this;
+
+      (0, _classCallCheck2.default)(this, ModalExample);
+      _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ModalExample).call(this, props));
+
+      _this.addNoteList = function (dateString, newName) {
+        Realm.open(databaseOptions).then(function (realm) {
+          var AllNotes = realm.objects("NoteList");
+          var notesByDate = AllNotes.filtered("date == $0", dateString);
+          var firstNodeByDate = notesByDate[0];
+          console.log("firstNodeByDate: ", firstNodeByDate);
+          var shouldWeUpdate = false;
+          var noteId = -1;
+          AllNotes.forEach(function (note) {
+            if (note && note.id) {
+              if (note.id > noteId) noteId = note.id;
+            }
+          });
+          noteId += 1;
+
+          if (firstNodeByDate && firstNodeByDate !== null) {
+            shouldWeUpdate = true;
+            noteId = firstNodeByDate.id;
+          }
+
+          realm.write(function () {
+            realm.create("NoteList", {
+              id: noteId,
+              name: newName,
+              date: dateString
+            }, shouldWeUpdate);
+          });
+        });
+      };
+
+      _this.readFromRealm = function (selectedDate) {
+        Realm.open(databaseOptions).then(function (realm) {
+          var allNotes = realm.objects("NoteList");
+          var NoteListByDate = allNotes.filtered("date == $0", selectedDate);
+          var noteMessage = "";
+
+          if (NoteListByDate[0]) {
+            noteMessage = NoteListByDate[0].name;
+          }
+
+          _this.setState({
+            NoteListName: noteMessage
+          });
+        });
+      };
+
+      _this.deleteNoteList = function (selectedDate) {
+        Realm.open(databaseOptions).then(function (realm) {
+          var allNotes = realm.objects("NoteList");
+          var noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
+
+          if (noteByDate) {
+            realm.write(function () {
+              realm.delete(noteByDate);
+            });
+          }
+        });
+      };
+
+      _this.renderModalContent = function () {
+        var selectedDay = _this.props.selectedDay;
+        var NoteListName = _this.state.NoteListName;
+        return _react.default.createElement(_reactNative.View, {
+          style: styles.content,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 118
+          }
+        }, _react.default.createElement(_circle_component.default, {
+          selectedDay: selectedDay,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 119
+          }
+        }), _react.default.createElement(_reactNative.TextInput, {
+          value: NoteListName,
+          placeholderTextColor: "#00BFFF",
+          multiline: true,
+          maxLength: 240,
+          style: [styles.placeholder, {
+            fontSize: 20,
+            textAlign: "left",
+            textAlignVertical: "top",
+            color: "#00BFFF",
+            width: "90%",
+            height: "65%",
+            top: "2%"
+          }],
+          onChangeText: function onChangeText(text) {
+            _this.setState({
+              NoteListName: text
+            });
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 121
+          }
+        }), _react.default.createElement(_reactNative.View, {
+          style: styles.modalButton,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 142
+          }
+        }, _react.default.createElement(_delete_component.default, {
+          onVanyaBitchPress: _this.onPressDelete,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 143
+          }
+        }), _react.default.createElement(_reactNative.Button, {
+          style: {
+            height: "10%",
+            width: "10%",
+            justifyContent: "center",
+            alignSelf: "center",
+            alignItems: "center"
+          },
+          onPress: _this.onPressSave,
+          title: "Save",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 145
+          }
+        })));
+      };
+
+      _this.onPressSave = function () {
+        _this.addNoteList(_this.props.selectedDate, _this.state.NoteListName);
+
+        _this.clearState();
+
+        _this.props.toggleModal();
+      };
+
+      _this.clearState = function () {
+        console.log("clearState called ");
+
+        _this.setState({
+          NoteListName: ""
+        });
+      };
+
+      _this.onPressDelete = function () {
+        _this.deleteNoteList(_this.props.selectedDate);
+
+        _this.clearState();
+
+        _this.props.toggleModal();
+      };
+
+      _this.state = {
+        NoteListName: "",
+        messageContent: ""
+      };
+      return _this;
+    }
+
+    (0, _createClass2.default)(ModalExample, [{
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps, prevState) {
+        if (this.props.selectedDate !== prevProps.selectedDate) {
+          this.readFromRealm(this.props.selectedDate);
+        }
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return _react.default.createElement(_reactNative.View, {
+          style: {
+            flex: 1
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 182
+          }
+        }, _react.default.createElement(_reactNativeModal.default, {
+          isVisible: this.props.isOpen,
+          backdropOpacity: 0.8,
+          animationIn: "zoomInDown",
+          animationOut: "zoomOutUp",
+          animationInTiming: 600,
+          animationOutTiming: 600,
+          backdropTransitionInTiming: 600,
+          backdropTransitionOutTiming: 600,
+          onSwipeComplete: this.props.toggleModal,
+          swipeDirection: ["up", "left", "down"],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 183
+          }
+        }, this.renderModalContent()));
+      }
+    }]);
+    return ModalExample;
+  }(_react.Component);
+
+  ModalExample = _wrapComponent("ModalExample")(ModalExample);
+  ModalExample.defaultProps = {
+    isOpen: false
+  };
+
+  var styles = _reactNative.StyleSheet.create({
+    content: {
+      height: "50%",
+      width: "100%",
+      backgroundColor: "#768489",
+      padding: 22,
+      justifyContent: "space-between",
+      alignItems: "center",
+      borderRadius: 40,
+      borderColor: "rgba(0, 0, 0, 0.1)"
+    },
+    contentTitle: {
+      fontSize: 20,
+      marginBottom: 12
+    },
+    Modal_container: (0, _objectSpread2.default)({
+      backgroundColor: "#768489"
+    }, (0, _reactNativeIphoneXHelper.ifIphoneX)({
+      marginTop: 0,
+      marginBottom: 0,
+      borderRadius: 40,
+      height: "100%",
+      width: "50%"
+    }, {
+      height: "100%",
+      width: "67%"
+    })),
+    Blu_container: (0, _objectSpread2.default)({
+      flex: 1,
+      backgroundColor: "#00BFFF"
+    }, (0, _reactNativeIphoneXHelper.ifIphoneX)({
+      marginTop: 5,
+      marginBottom: 5,
+      borderRadius: 40,
+      height: "100%",
+      width: "97%"
+    }, {
+      marginTop: 2,
+      marginBottom: 2,
+      marginLeft: 10,
+      marginRight: 10,
+      borderRadius: 10,
+      height: "100%",
+      width: "97%"
+    })),
+    modalButton: {
+      width: "100%",
+      justifyContent: "space-between",
+      flexDirection: "row"
+    }
+  });
+
+  var _default2 = ModalExample;
+  exports.default = _default2;
+},638,[1,541,49,19,20,35,38,41,53,181,2,544,586,610,611,613],"imports/pages/modal_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 

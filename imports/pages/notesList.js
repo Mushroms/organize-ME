@@ -11,153 +11,22 @@ import {
 import { Calendar } from "react-native-calendars";
 import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
-import Modal from "react-native-modal";
-import Circle_Component from "./circle_component";
-import Delete_pic from "./delete_component";
+import ModalExample from "./modal_component";
 
-const Realm = require("realm");
+//const Realm = require("realm");
 
-const NoteListSchema = {
-  name: "NoteList",
-  primaryKey: "id",
-  properties: {
-    id: { type: "int", default: 0 },
-    name: "string",
-    date: "date"
-  }
-};
-const databaseOptions = {
-  path: "organazeME.realm",
-  schema: [NoteListSchema],
-  schemaVersion: 0
-};
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
     this.messageRef = React.createRef();
     this.state = {
-      visibleModalId: null,
-      NoteListName: "",
       selectedDate: null,
       selectedDay: null,
-      NoteListFromDB: null,
-      updateText: "",
-      messageContent: ""
+      isOpen: false
     };
-    this.onPressDelete = this.onPressDelete.bind(this);
-    this.onPressSave = this.onPressSave.bind(this);
+
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
-
-  toggleModal = () => {
-    this.setState({ visibleModal: null });
-  };
-
-  addNoteList = (dateString, newName) => {
-    Realm.open(databaseOptions).then(realm => {
-      const AllNotes = realm.objects("NoteList");
-      const notesByDate = AllNotes.filtered("date == $0", dateString);
-      const firstNodeByDate = notesByDate[0];
-
-      let shouldWeUpdate = false;
-      let noteId = -1;
-      AllNotes.forEach(note => {
-        if (note && note.id) {
-          if (note.id > noteId) noteId = note.id;
-        }
-      });
-      noteId += 1;
-
-      if (firstNodeByDate && firstNodeByDate !== null) {
-        console.log("firstNodeByDate: ", firstNodeByDate);
-        shouldWeUpdate = true;
-        noteId = firstNodeByDate.id;
-      }
-
-      realm.write(() => {
-        realm.create(
-          "NoteList",
-          {
-            id: noteId,
-            name: newName,
-            date: dateString
-          },
-          shouldWeUpdate
-        );
-      });
-    });
-  };
-
-  readFromRealm = selectedDate => {
-    Realm.open(databaseOptions).then(realm => {
-      let allNotes = realm.objects("NoteList");
-      let NoteListByDate = allNotes.filtered("date == $0", selectedDate);
-      let noteMessage = "";
-      if (NoteListByDate[0]) {
-        noteMessage = NoteListByDate[0].name;
-      }
-      this.setState({ NoteListName: noteMessage });
-    });
-  };
-
-  deleteNoteList = selectedDate => {
-    Realm.open(databaseOptions).then(realm => {
-      const allNotes = realm.objects("NoteList");
-      const noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
-
-      if (noteByDate) {
-        realm.write(() => {
-          realm.delete(noteByDate);
-        });
-      }
-    });
-  };
-
-  renderModalContent = () => {
-    const { selectedDay, NoteListName } = this.state;
-
-    return (
-      <View style={styles.content}>
-        <Circle_Component selectedDay={selectedDay} />
-
-        <TextInput
-          value={NoteListName}
-          placeholderTextColor="#00BFFF"
-          multiline={true}
-          maxLength={240}
-          style={[
-            styles.placeholder,
-            {
-              fontSize: 20,
-              textAlign: "left",
-              textAlignVertical: "top",
-              color: "#00BFFF",
-              width: "90%",
-              height: "65%",
-              top: "2%"
-            }
-          ]}
-          onChangeText={text => {
-            this.setState({ NoteListName: text });
-          }}
-        />
-        <View style={styles.modalButton}>
-          <Delete_pic onVanyaBitchPress={this.onPressDelete} />
-          <Button
-            style={{
-              height: "10%",
-              width: "10%",
-              justifyContent: "center",
-              alignSelf: "center",
-              alignItems: "center"
-            }}
-            onPress={this.onPressSave}
-            title="Save"
-          />
-        </View>
-      </View>
-    );
-  };
 
   render() {
     const markedDates = {
@@ -178,55 +47,27 @@ export default class CalendarsScreen extends Component {
             hideExtraDays
             markedDates={markedDates}
           />
-          <View style={{ flex: 1 }}>
-            <Modal
-              isVisible={this.state.visibleModal === "fancy"}
-              backdropOpacity={0.8}
-              animationIn="zoomInDown"
-              animationOut="zoomOutUp"
-              animationInTiming={600}
-              animationOutTiming={600}
-              backdropTransitionInTiming={600}
-              backdropTransitionOutTiming={600}
-              onSwipeComplete={this.toggleModal}
-              swipeDirection={["up", "left", "down"]}
-            >
-              {this.renderModalContent()}
-            </Modal>
-          </View>
+          <ModalExample
+            isOpen={this.state.isOpen}
+            selectedDay={this.state.selectedDay}
+            selectedDate={this.state.selectedDate}
+            toggleModal={this.toggleModal}
+          />
         </View>
       </View>
     );
   }
 
-  onDayLongPress(day) {
-    this.readFromRealm(day.dateString);
-
-    this.setState({
-      selectedDay: day.day,
-      visibleModal: "fancy",
-      selectedDate: day.dateString
-    });
-  }
-
-  onPressSave() {
-    this.addNoteList(this.state.selectedDate, this.state.NoteListName);
-    this.clearState();
-  }
-
-  clearState = () => {
-    this.setState({
-      visibleModal: null,
-      selectedDate: null,
-      selectedDay: null,
-      NoteListName: "",
-      NoteListFromDB: null
-    });
+  toggleModal = () => {
+    this.setState({ isOpen: false });
   };
 
-  onPressDelete() {
-    this.deleteNoteList(this.state.selectedDate);
-    this.clearState();
+  onDayLongPress(day) {
+    this.setState({
+      isOpen: true,
+      selectedDay: day.day,
+      selectedDate: day.dateString
+    });
   }
 }
 const styles = StyleSheet.create({
