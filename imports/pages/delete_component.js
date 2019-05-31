@@ -25,9 +25,6 @@ const styles = StyleSheet.create({
   container_Delete: {
     height: 40,
     width: 40,
-    // borderColor: "red",
-    // alignItems: "flex-start",
-    //justifyContent: "space-between",
     alignSelf: "flex-start",
     alignItems: "flex-start"
   },

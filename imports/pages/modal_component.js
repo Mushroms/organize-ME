@@ -53,7 +53,7 @@ class ModalExample extends Component {
       const AllNotes = realm.objects("NoteList");
       const notesByDate = AllNotes.filtered("date == $0", dateString);
       const firstNodeByDate = notesByDate[0];
-      console.log("firstNodeByDate: ", firstNodeByDate);
+      //console.log("firstNodeByDate: ", firstNodeByDate);
 
       let shouldWeUpdate = false;
       let noteId = -1;
