@@ -237,28 +237,7 @@ const styles = StyleSheet.create({
       }
     )
   },
-  Blu_container: {
-    flex: 1,
-    backgroundColor: "#00BFFF",
-    ...ifIphoneX(
-      {
-        marginTop: 5,
-        marginBottom: 5,
-        borderRadius: 40,
-        height: "100%",
-        width: "97%"
-      },
-      {
-        marginTop: 2,
-        marginBottom: 2,
-        marginLeft: 10,
-        marginRight: 10,
-        borderRadius: 10,
-        height: "100%",
-        width: "97%"
-      }
-    )
-  },
+
   modalButton: {
     //borderWidth: 1,
     width: "100%",

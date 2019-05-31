@@ -78,39 +78,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
 
-  content: {
-    height: "50%",
-    width: "100%",
-    backgroundColor: "#768489",
-    padding: 22,
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderRadius: 40,
-    borderColor: "rgba(0, 0, 0, 0.1)"
-  },
-
-  contentTitle: {
-    fontSize: 20,
-    marginBottom: 12
-  },
-
-  Modal_container: {
-    backgroundColor: "#768489",
-    //borderRadius: 10,
-    ...ifIphoneX(
-      {
-        marginTop: 0,
-        marginBottom: 0,
-        borderRadius: 40,
-        height: "100%",
-        width: "50%"
-      },
-      {
-        height: "100%",
-        width: "67%"
-      }
-    )
-  },
   Blu_container: {
     flex: 1,
     backgroundColor: "#00BFFF",
@@ -132,13 +99,6 @@ const styles = StyleSheet.create({
         width: "97%"
       }
     )
-  },
-  modalButton: {
-    //borderWidth: 1,
-    width: "100%",
-    justifyContent: "space-between",
-    //alignItems: "center",
-    flexDirection: "row"
   }
 });
 
