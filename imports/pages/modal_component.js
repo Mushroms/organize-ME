@@ -20,7 +20,10 @@ const NoteListSchema = {
   name: "NoteList",
   primaryKey: "id",
   properties: {
-    id: { type: "int", default: 0 },
+    id: {
+      type: "int",
+      default: 0
+    },
     name: "string",
     date: "date"
   }
@@ -117,7 +120,6 @@ class ModalExample extends Component {
     return (
       <View style={styles.content}>
         <Circle_Component selectedDay={selectedDay} />
-
         <TextInput
           value={NoteListName}
           placeholderTextColor="#00BFFF"
@@ -136,7 +138,9 @@ class ModalExample extends Component {
             }
           ]}
           onChangeText={text => {
-            this.setState({ NoteListName: text });
+            this.setState({
+              NoteListName: text
+            });
           }}
         />
         <View style={styles.modalButton}>
@@ -179,7 +183,11 @@ class ModalExample extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1
+        }}
+      >
         <Modal
           isVisible={this.props.isOpen}
           backdropOpacity={0.8}
