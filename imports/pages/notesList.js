@@ -9,7 +9,6 @@ import {
   TextInput
 } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 
@@ -29,18 +28,30 @@ export default class CalendarsScreen extends Component {
   }
 
   render() {
+    // console.log(Calendar);
+
+    //console.log("month", Calendar.prototype.addMonth);
     const markedDates = {
       [this.state.selectedDate]: {
+        dots: [massage],
         selected: true,
         disableTouchEvent: false,
-        selectedDotColor: "orange"
+        selectedColor: "#ffffff",
+        selectedDotColor: "red"
       }
     };
+
+    //const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
+    const massage = { key: "massage", color: "red", selectedDotColor: "blue" };
+    //const workout = { key: 'workout', color: 'green' };
 
     return (
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
+            onMonthChange={month => {
+              console.log("month changed", month);
+            }}
             onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
@@ -119,7 +130,7 @@ const calendare = {
   backgroundColor: "#ffffff",
   calendarBackground: "#00BFFF",
   textSectionTitleColor: "#000000",
-  selectedDayBackgroundColor: "#ff4000",
+  selectedDayBackgroundColor: "#ffffff",
   selectedDayTextColor: "#000000",
   todayTextColor: "#ff0000",
   dayTextColor: "#000000",

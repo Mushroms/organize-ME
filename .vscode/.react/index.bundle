@@ -83988,23 +83988,33 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "render",
       value: function render() {
         var markedDates = (0, _defineProperty2.default)({}, this.state.selectedDate, {
+          dots: [massage],
           selected: true,
           disableTouchEvent: false,
-          selectedDotColor: "orange"
+          selectedColor: "#ffffff",
+          selectedDotColor: "red"
         });
+        var massage = {
+          key: "massage",
+          color: "red",
+          selectedDotColor: "blue"
+        };
         return _react.default.createElement(_reactNative.View, {
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 41
+            lineNumber: 49
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 42
+            lineNumber: 50
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
+          onMonthChange: function onMonthChange(month) {
+            console.log("month changed", month);
+          },
           onDayLongPress: this.onDayLongPress,
           style: style,
           theme: calendare,
@@ -84012,7 +84022,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 43
+            lineNumber: 51
           }
         }), _react.default.createElement(_modal_component.default, {
           isOpen: this.state.isOpen,
@@ -84021,7 +84031,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           toggleModal: this.toggleModal,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 50
+            lineNumber: 61
           }
         })));
       }
@@ -84079,7 +84089,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     backgroundColor: "#ffffff",
     calendarBackground: "#00BFFF",
     textSectionTitleColor: "#000000",
-    selectedDayBackgroundColor: "#ff4000",
+    selectedDayBackgroundColor: "#ffffff",
     selectedDayTextColor: "#000000",
     todayTextColor: "#ff0000",
     dayTextColor: "#000000",
@@ -84096,7 +84106,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     textMonthFontSize: 20,
     textDayHeaderFontSize: 17
   };
-},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,638],"imports/pages/notesList.js");
+},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,586],"imports/pages/notesList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -85405,33 +85415,33 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _reactNative = _$$_REQUIRE(_dependencyMap[0], "react-native");
 
-  var foregroundColor = '#ffffff';
+  var foregroundColor = "#ffffff";
   exports.foregroundColor = foregroundColor;
-  var backgroundColor = '#f4f4f4';
+  var backgroundColor = "#f4f4f4";
   exports.backgroundColor = backgroundColor;
-  var separatorColor = '#e8e9ec';
+  var separatorColor = "#e8e9ec";
   exports.separatorColor = separatorColor;
-  var processedColor = '#a7e0a3';
+  var processedColor = "#a7e0a3";
   exports.processedColor = processedColor;
-  var processingColor = '#ffce5c';
+  var processingColor = "#ffce5c";
   exports.processingColor = processingColor;
-  var failedColor = 'rgba(246, 126, 126,1)';
+  var failedColor = "rgba(246, 126, 126,1)";
   exports.failedColor = failedColor;
-  var textDefaultColor = '#2d4150';
+  var textDefaultColor = "#2d4150";
   exports.textDefaultColor = textDefaultColor;
-  var textColor = '#43515c';
+  var textColor = "#43515c";
   exports.textColor = textColor;
-  var textLinkColor = '#00adf5';
+  var textLinkColor = "#00adf5";
   exports.textLinkColor = textLinkColor;
-  var textSecondaryColor = '#7a92a5';
+  var textSecondaryColor = "#7a92a5";
   exports.textSecondaryColor = textSecondaryColor;
-  var textDayFontFamily = 'System';
+  var textDayFontFamily = "System";
   exports.textDayFontFamily = textDayFontFamily;
-  var textMonthFontFamily = 'System';
+  var textMonthFontFamily = "System";
   exports.textMonthFontFamily = textMonthFontFamily;
-  var textDayHeaderFontFamily = 'System';
+  var textDayHeaderFontFamily = "System";
   exports.textDayHeaderFontFamily = textDayHeaderFontFamily;
-  var textMonthFontWeight = '300';
+  var textMonthFontWeight = "300";
   exports.textMonthFontWeight = textMonthFontWeight;
   var textDayFontSize = 16;
   exports.textDayFontSize = textDayFontSize;
@@ -85441,7 +85451,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.textDayHeaderFontSize = textDayHeaderFontSize;
   var calendarBackground = foregroundColor;
   exports.calendarBackground = calendarBackground;
-  var textSectionTitleColor = '#b6c1cd';
+  var textSectionTitleColor = "#b6c1cd";
   exports.textSectionTitleColor = textSectionTitleColor;
   var selectedDayBackgroundColor = textLinkColor;
   exports.selectedDayBackgroundColor = selectedDayBackgroundColor;
@@ -85453,7 +85463,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.todayTextColor = todayTextColor;
   var dayTextColor = textDefaultColor;
   exports.dayTextColor = dayTextColor;
-  var textDisabledColor = '#d9e1e8';
+  var textDisabledColor = "#d9e1e8";
   exports.textDisabledColor = textDisabledColor;
   var dotColor = textLinkColor;
   exports.dotColor = dotColor;
@@ -85463,13 +85473,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.arrowColor = arrowColor;
   var monthTextColor = textDefaultColor;
   exports.monthTextColor = monthTextColor;
-  var agendaDayTextColor = '#7a92a5';
+  var agendaDayTextColor = "#7a92a5";
   exports.agendaDayTextColor = agendaDayTextColor;
-  var agendaDayNumColor = '#7a92a5';
+  var agendaDayNumColor = "#7a92a5";
   exports.agendaDayNumColor = agendaDayNumColor;
   var agendaTodayColor = textLinkColor;
   exports.agendaTodayColor = agendaTodayColor;
-  var agendaKnobColor = _reactNative.Platform.OS === 'ios' ? '#f2F4f5' : '#4ac4f7';
+  var agendaKnobColor = _reactNative.Platform.OS === "ios" ? "#f2F4f5" : "#4ac4f7";
   exports.agendaKnobColor = agendaKnobColor;
 },556,[2],"node_modules/react-native-calendars/src/style.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
@@ -90544,7 +90554,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           var AllNotes = realm.objects("NoteList");
           var notesByDate = AllNotes.filtered("date == $0", dateString);
           var firstNodeByDate = notesByDate[0];
-          console.log("firstNodeByDate: ", firstNodeByDate);
           var shouldWeUpdate = false;
           var noteId = -1;
           AllNotes.forEach(function (note) {
@@ -90605,13 +90614,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 118
+            lineNumber: 119
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119
+            lineNumber: 120
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           value: NoteListName,
@@ -90634,19 +90643,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 121
+            lineNumber: 122
           }
         }), _react.default.createElement(_reactNative.View, {
           style: styles.modalButton,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 142
+            lineNumber: 143
           }
         }, _react.default.createElement(_delete_component.default, {
           onVanyaBitchPress: _this.onPressDelete,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 143
+            lineNumber: 144
           }
         }), _react.default.createElement(_reactNative.Button, {
           style: {
@@ -90660,7 +90669,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 145
+            lineNumber: 146
           }
         })));
       };
@@ -90671,6 +90680,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.clearState();
 
         _this.props.toggleModal();
+
+        _this.props.markedDates;
       };
 
       _this.clearState = function () {
@@ -90687,6 +90698,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.clearState();
 
         _this.props.toggleModal();
+
+        _this.props.markedDates;
       };
 
       _this.state = {
@@ -90712,7 +90725,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 182
+            lineNumber: 185
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.props.isOpen,
@@ -90727,7 +90740,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 183
+            lineNumber: 186
           }
         }, this.renderModalContent()));
       }
@@ -90776,7 +90789,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = ModalExample;
   exports.default = _default2;
-},638,[1,541,49,19,20,35,38,41,53,181,2,544,586,610,611,613],"imports/pages/modal_component.js");
+},586,[1,541,49,19,20,35,38,41,53,181,2,544,587,611,612,614],"imports/pages/modal_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -91460,7 +91473,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.ReactNativeModal = ReactNativeModal = _wrapComponent("ReactNativeModal")(ReactNativeModal);
   var _default2 = ReactNativeModal;
   exports.default = _default2;
-},586,[1,541,8,6,49,19,20,35,38,41,53,181,2,70,587,608,609],"node_modules/react-native-modal/src/index.js");
+},587,[1,541,8,6,49,19,20,35,38,41,53,181,2,70,588,609,610],"node_modules/react-native-modal/src/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireWildcard");
 
@@ -91508,7 +91521,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.Text = Text;
   var Image = (0, _createAnimatableComponent.default)(_reactNative.Image);
   exports.Image = Image;
-},587,[541,1,2,588,594,596,593],"node_modules/react-native-animatable/index.js");
+},588,[541,1,2,589,595,597,594],"node_modules/react-native-animatable/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92101,7 +92114,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       useNativeDriver: false
     }, _temp));
   }
-},588,[1,541,49,19,20,35,38,37,41,8,53,181,70,2,589,590,591,593,594,595],"node_modules/react-native-animatable/createAnimatableComponent.js");
+},589,[1,541,49,19,20,35,38,37,41,8,53,181,70,2,590,591,592,594,595,596],"node_modules/react-native-animatable/createAnimatableComponent.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92129,7 +92142,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     });
     return wrapped;
   }
-},589,[1,50],"node_modules/react-native-animatable/wrapStyleTransforms.js");
+},590,[1,50],"node_modules/react-native-animatable/wrapStyleTransforms.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92150,7 +92163,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     });
     return values;
   }
-},590,[1,591,592],"node_modules/react-native-animatable/getStyleValues.js");
+},591,[1,592,593],"node_modules/react-native-animatable/getStyleValues.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92176,7 +92189,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return flatStyle;
   }
-},591,[1,8,2],"node_modules/react-native-animatable/flattenStyle.js");
+},592,[1,8,2],"node_modules/react-native-animatable/flattenStyle.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92236,7 +92249,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return 0;
   }
-},592,[],"node_modules/react-native-animatable/getDefaultStyleValue.js");
+},593,[],"node_modules/react-native-animatable/getDefaultStyleValue.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92334,7 +92347,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     cache[cacheKey] = compiled;
     return compiled;
   }
-},593,[1,591],"node_modules/react-native-animatable/createAnimation.js");
+},594,[1,592],"node_modules/react-native-animatable/createAnimation.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -92367,7 +92380,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       registerAnimation(animationName, (0, _createAnimation.default)(definitions[animationName]));
     });
   }
-},594,[1,593],"node_modules/react-native-animatable/registry.js");
+},595,[1,594],"node_modules/react-native-animatable/registry.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92409,7 +92422,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = EASING_FUNCTIONS;
   exports.default = _default;
-},595,[2],"node_modules/react-native-animatable/easing.js");
+},596,[2],"node_modules/react-native-animatable/easing.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92546,7 +92559,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     });
   });
-},596,[597,598,599,600,601,602,603,604,605,606,607],"node_modules/react-native-animatable/definitions/index.js");
+},597,[598,599,600,601,602,603,604,605,606,607,608],"node_modules/react-native-animatable/definitions/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92834,7 +92847,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   exports.wobble = wobble;
-},597,[],"node_modules/react-native-animatable/definitions/attention-seekers.js");
+},598,[],"node_modules/react-native-animatable/definitions/attention-seekers.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -92944,7 +92957,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   exports.bounceInLeft = bounceInLeft;
-},598,[],"node_modules/react-native-animatable/definitions/bouncing-entrances.js");
+},599,[],"node_modules/react-native-animatable/definitions/bouncing-entrances.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -93067,7 +93080,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   exports.bounceOutLeft = bounceOutLeft;
-},599,[],"node_modules/react-native-animatable/definitions/bouncing-exits.js");
+},600,[],"node_modules/react-native-animatable/definitions/bouncing-exits.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93114,7 +93127,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.fadeInLeftBig = fadeInLeftBig;
   var fadeInRightBig = makeFadeInTranslation('translateX', 500);
   exports.fadeInRightBig = fadeInRightBig;
-},600,[1,50],"node_modules/react-native-animatable/definitions/fading-entrances.js");
+},601,[1,50],"node_modules/react-native-animatable/definitions/fading-entrances.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93161,7 +93174,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.fadeOutLeftBig = fadeOutLeftBig;
   var fadeOutRightBig = makeFadeOutTranslation('translateX', 500);
   exports.fadeOutRightBig = fadeOutRightBig;
-},601,[1,50],"node_modules/react-native-animatable/definitions/fading-exits.js");
+},602,[1,50],"node_modules/react-native-animatable/definitions/fading-exits.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -93257,7 +93270,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   exports.flipOutY = flipOutY;
-},602,[],"node_modules/react-native-animatable/definitions/flippers.js");
+},603,[],"node_modules/react-native-animatable/definitions/flippers.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -93299,7 +93312,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }
   };
   exports.lightSpeedOut = lightSpeedOut;
-},603,[],"node_modules/react-native-animatable/definitions/lightspeed.js");
+},604,[],"node_modules/react-native-animatable/definitions/lightspeed.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93325,7 +93338,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.slideInLeft = slideInLeft;
   var slideInRight = makeSlideInTranslation('translateX', 100);
   exports.slideInRight = slideInRight;
-},604,[1,50],"node_modules/react-native-animatable/definitions/sliding-entrances.js");
+},605,[1,50],"node_modules/react-native-animatable/definitions/sliding-entrances.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93351,7 +93364,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.slideOutLeft = slideOutLeft;
   var slideOutRight = makeSlideOutTranslation('translateX', 100);
   exports.slideOutRight = slideOutRight;
-},605,[1,50],"node_modules/react-native-animatable/definitions/sliding-exits.js");
+},606,[1,50],"node_modules/react-native-animatable/definitions/sliding-exits.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93404,7 +93417,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.zoomInLeft = zoomInLeft;
   var zoomInRight = makeZoomInTranslation('translateX', -10);
   exports.zoomInRight = zoomInRight;
-},606,[1,50,2],"node_modules/react-native-animatable/definitions/zooming-entrances.js");
+},607,[1,50,2],"node_modules/react-native-animatable/definitions/zooming-entrances.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93459,7 +93472,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.zoomOutLeft = zoomOutLeft;
   var zoomOutRight = makeZoomOutTranslation('translateX', -10);
   exports.zoomOutRight = zoomOutRight;
-},607,[1,50,2],"node_modules/react-native-animatable/definitions/zooming-exits.js");
+},608,[1,50,2],"node_modules/react-native-animatable/definitions/zooming-exits.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireWildcard = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireWildcard");
 
@@ -93537,7 +93550,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var isObject = function isObject(obj) {
     return obj !== null && typeof obj === "object";
   };
-},608,[541,1,50,2,587],"node_modules/react-native-modal/src/utils.js");
+},609,[541,1,50,2,588],"node_modules/react-native-modal/src/utils.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
@@ -93563,7 +93576,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   });
 
   exports.default = _default;
-},609,[2],"node_modules/react-native-modal/src/index.style.js");
+},610,[2],"node_modules/react-native-modal/src/index.style.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93683,7 +93696,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default2 = Circle_Component;
   exports.default = _default2;
-},610,[1,541,49,19,20,35,38,41,53,181,2,544,70],"imports/pages/circle_component.js");
+},611,[1,541,49,19,20,35,38,41,53,181,2,544,70],"imports/pages/circle_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93804,7 +93817,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = Delete_pic;
   exports.default = _default2;
-},611,[1,541,49,19,20,35,38,41,53,181,2,544,612],"imports/pages/delete_component.js");
+},612,[1,541,49,19,20,35,38,41,53,181,2,544,613],"imports/pages/delete_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -93816,7 +93829,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "name": "delete-icon",
     "type": "png"
   });
-},612,[176],"resourses/delete-icon.png");
+},613,[176],"resourses/delete-icon.png");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -93919,7 +93932,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = realmConstructor;
-},613,[614,634],"node_modules/realm/lib/index.js");
+},614,[615,635],"node_modules/realm/lib/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94166,7 +94179,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw new Error('Realm failed to connect to the embedded debug server inside the app. ' + 'If attempting to use Chrome debugging from a device, ensure the device is ' + 'reachable on the same network as this machine.');
     }
   }
-},614,[541,1,19,20,2,615,616,620,621,622,623,624,625,618,617,626],"node_modules/realm/lib/browser/index.js");
+},615,[541,1,19,20,2,616,617,621,622,623,624,625,626,619,618,627],"node_modules/realm/lib/browser/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94194,7 +94207,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       enumerable: true
     });
   });
-},615,[],"node_modules/realm/lib/browser/constants.js");
+},616,[],"node_modules/realm/lib/browser/constants.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94307,7 +94320,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     collection[mutable] = _mutable;
     return new Proxy(collection, traps);
   }
-},616,[541,1,19,615,617,618],"node_modules/realm/lib/browser/collections.js");
+},617,[541,1,19,616,618,619],"node_modules/realm/lib/browser/collections.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94426,7 +94439,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       rpc.setProperty(this[_constants.keys.realm], this[_constants.keys.id], name, value);
     };
   }
-},617,[541,615,618],"node_modules/realm/lib/browser/util.js");
+},618,[541,616,619],"node_modules/realm/lib/browser/util.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94894,7 +94907,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }, pollTimeout);
     }
   }
-},618,[541,1,8,619,617,615],"node_modules/realm/lib/browser/rpc.js");
+},619,[541,1,8,620,618,616],"node_modules/realm/lib/browser/rpc.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94972,7 +94985,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         return base64;
     }
   }
-},619,[],"node_modules/realm/lib/browser/base64.js");
+},620,[],"node_modules/realm/lib/browser/base64.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95018,7 +95031,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createList(realmId, info) {
     return (0, _collections.createCollection)(List.prototype, realmId, info, true);
   }
-},620,[541,1,19,35,38,41,616,615,617],"node_modules/realm/lib/browser/lists.js");
+},621,[541,1,19,35,38,41,617,616,618],"node_modules/realm/lib/browser/lists.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95064,7 +95077,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createResults(realmId, info) {
     return (0, _collections.createCollection)(Results.prototype, realmId, info);
   }
-},621,[541,1,19,35,38,41,616,615,617],"node_modules/realm/lib/browser/results.js");
+},622,[541,1,19,35,38,41,617,616,618],"node_modules/realm/lib/browser/results.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95156,7 +95169,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     throw new Error("Constructor was not registered in the schema for this Realm");
   }
-},622,[541,1,19,615,617,618],"node_modules/realm/lib/browser/objects.js");
+},623,[541,1,19,616,618,619],"node_modules/realm/lib/browser/objects.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95225,7 +95238,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _extends2.default)(userProxy, info.data);
     return userProxy;
   }
-},623,[1,8,19,20,618,615,617],"node_modules/realm/lib/browser/user.js");
+},624,[1,8,19,20,619,616,618],"node_modules/realm/lib/browser/user.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95272,7 +95285,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     sessionProxy.config = (0, _rpc.deserialize)(realmId, info.data.config);
     return sessionProxy;
   }
-},624,[1,19,615,617,618],"node_modules/realm/lib/browser/session.js");
+},625,[1,19,616,618,619],"node_modules/realm/lib/browser/session.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95316,7 +95329,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     subscription[_constants.keys.type] = _constants.objectTypes.SUBSCRIPTION;
     return subscription;
   }
-},625,[1,19,615,617],"node_modules/realm/lib/browser/subscription.js");
+},626,[1,19,616,618],"node_modules/realm/lib/browser/subscription.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96071,7 +96084,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     instance: instanceMethods,
     credentials: credentialsMethods
   };
-},626,[8,19,20,9,627,628,633,629,632],"node_modules/realm/lib/user-methods.js");
+},627,[8,19,20,9,628,629,634,630,633],"node_modules/realm/lib/user-methods.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96089,7 +96102,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   AuthError.__proto__ = Error;
   AuthError.prototype.__proto__ = Error.prototype;
   exports['AuthError'] = AuthError;
-},627,[8],"node_modules/realm/lib/errors.js");
+},628,[8],"node_modules/realm/lib/errors.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96329,7 +96342,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       });
     }
   };
-},628,[629,632],"node_modules/realm/lib/permission-api.js");
+},629,[630,633],"node_modules/realm/lib/permission-api.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96610,7 +96623,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Url.trimLeft = trimLeft;
   Url.qs = qs;
   module.exports = Url;
-},629,[630,631],"node_modules/url-parse/index.js");
+},630,[631,632],"node_modules/url-parse/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96640,7 +96653,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return port !== 0;
   };
-},630,[],"node_modules/requires-port/index.js");
+},631,[],"node_modules/requires-port/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96705,7 +96718,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.stringify = querystringify;
   exports.parse = querystring;
-},631,[],"node_modules/querystringify/index.js");
+},632,[],"node_modules/querystringify/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96842,7 +96855,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }
   }];
-},632,[],"node_modules/realm/lib/management-schema.js");
+},633,[],"node_modules/realm/lib/management-schema.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.deepmerge = factory();
@@ -96932,7 +96945,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var deepmerge_1 = deepmerge;
     return deepmerge_1;
   });
-},633,[],"node_modules/deepmerge/dist/umd.js");
+},634,[],"node_modules/deepmerge/dist/umd.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97623,7 +97636,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       configurable: true
     });
   };
-},634,[629,635,626,627,636,2],"node_modules/realm/lib/extensions.js");
+},635,[630,636,627,628,637,2],"node_modules/realm/lib/extensions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97692,7 +97705,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   });
   exports[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] = exports.values;
-},635,[],"node_modules/realm/lib/collection-methods.js");
+},636,[],"node_modules/realm/lib/collection-methods.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "_from": "realm",
@@ -97859,7 +97872,7 @@ __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   "version": "2.28.0"
 }
 ;
-},636,[],"node_modules/realm/package.json");
+},637,[],"node_modules/realm/package.json");
 __r(93);
 __r(0);
 //# sourceMappingURL=index.map

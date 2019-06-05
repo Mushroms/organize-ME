@@ -53,6 +53,7 @@ class ModalExample extends Component {
       const AllNotes = realm.objects("NoteList");
       const notesByDate = AllNotes.filtered("date == $0", dateString);
       const firstNodeByDate = notesByDate[0];
+
       //console.log("firstNodeByDate: ", firstNodeByDate);
 
       let shouldWeUpdate = false;
@@ -162,6 +163,7 @@ class ModalExample extends Component {
     this.addNoteList(this.props.selectedDate, this.state.NoteListName);
     this.clearState();
     this.props.toggleModal();
+    this.props.markedDates;
   };
 
   clearState = () => {
@@ -175,6 +177,7 @@ class ModalExample extends Component {
     this.deleteNoteList(this.props.selectedDate);
     this.clearState();
     this.props.toggleModal();
+    this.props.markedDates;
   };
 
   render() {
