@@ -146,17 +146,21 @@ class ModalExample extends Component {
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
 
-          <Button
-            style={{
-              height: "10%",
-              width: "10%",
-              justifyContent: "center",
-              alignSelf: "center",
-              alignItems: "center"
-            }}
-            onPress={this.onPressSave}
-            title="Save"
-          />
+          <TouchableOpacity onPress={this.onPressSave}>
+            <Text
+              style={{
+                color: "#00BFFF",
+                //height: "10%",
+                //width: "10%"
+                fontSize: 24,
+                justifyContent: "flex-end",
+                alignSelf: "flex-end",
+                alignItems: "flex-end"
+              }}
+            >
+              Save
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
