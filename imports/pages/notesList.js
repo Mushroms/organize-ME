@@ -9,7 +9,6 @@ import {
   TextInput
 } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { LocaleConfig } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 

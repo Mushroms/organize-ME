@@ -140,7 +140,7 @@ class ModalExample extends Component {
           }}
         />
         <View style={styles.modalButton}>
-          <Delete_pic onVanyaBitchPress={this.onPressDelete} />
+          <Delete_pic onDeletePress={this.onPressDelete} />
 
           <Button
             style={{
