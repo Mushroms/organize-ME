@@ -83987,6 +83987,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _createClass2.default)(CalendarsScreen, [{
       key: "render",
       value: function render() {
+        console.log("Calend", _reactNativeCalendars.Calendar.toString.prototype.toString);
         var markedDates = (0, _defineProperty2.default)({}, this.state.selectedDate, {
           dots: [massage],
           selected: true,
@@ -84003,13 +84004,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 49
+            lineNumber: 48
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 50
+            lineNumber: 49
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onMonthChange: function onMonthChange(month) {
@@ -84022,7 +84023,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 51
+            lineNumber: 50
           }
         }), _react.default.createElement(_modal_component.default, {
           isOpen: this.state.isOpen,
@@ -84031,7 +84032,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           toggleModal: this.toggleModal,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 61
+            lineNumber: 60
           }
         })));
       }

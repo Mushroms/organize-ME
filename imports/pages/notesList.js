@@ -29,8 +29,7 @@ export default class CalendarsScreen extends Component {
 
   render() {
     // console.log(Calendar);
-
-    //console.log("month", Calendar.prototype.addMonth);
+    console.log("Calend", Calendar.toString.prototype.toString);
     const markedDates = {
       [this.state.selectedDate]: {
         dots: [massage],
@@ -41,9 +40,7 @@ export default class CalendarsScreen extends Component {
       }
     };
 
-    //const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
     const massage = { key: "massage", color: "red", selectedDotColor: "blue" };
-    //const workout = { key: 'workout', color: 'green' };
 
     return (
       <View style={styles.container}>
