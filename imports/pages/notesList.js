@@ -11,13 +11,14 @@ import {
 import { Calendar } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
+import moment from "moment";
 
 //const Realm = require("realm");
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
-    this.messageRef = React.createRef();
+    //this.messageRef = React.createRef();
     this.state = {
       selectedDate: null,
       selectedDay: null,
@@ -27,20 +28,41 @@ export default class CalendarsScreen extends Component {
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
 
+  componentDidMount() {
+    console.log("mounted");
+
+    console.log("All month dates: ", this.determineAllMonthDates());
+  }
+
+  determineAllMonthDates = () => {
+    const datesOfMonth = [];
+    const startMonthDateMoment = moment().startOf("month");
+    const daysInCurrentMonth = moment()
+      .startOf("month")
+      .daysInMonth();
+    let dayIndex = 0;
+
+    while (dayIndex < daysInCurrentMonth) {
+      const stringDate = startMonthDateMoment.format("DD.MM.YYYY");
+      datesOfMonth.push(stringDate);
+      startMonthDateMoment.add(1, "day");
+      dayIndex++;
+    }
+
+    return datesOfMonth;
+  };
+
   render() {
     // console.log(Calendar);
-    console.log("Calend", Calendar.toString.prototype.toString);
+    console.log("Calend", Calendar);
     const markedDates = {
       [this.state.selectedDate]: {
-        dots: [massage],
         selected: true,
         disableTouchEvent: false,
         selectedColor: "#ffffff",
         selectedDotColor: "red"
       }
     };
-
-    const massage = { key: "massage", color: "red", selectedDotColor: "blue" };
 
     return (
       <View style={styles.container}>

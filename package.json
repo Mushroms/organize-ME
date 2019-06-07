@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "create-react-class": "^15.6.3",
+    "moment": "^2.24.0",
     "react": "16.5.0",
     "react-native": "0.57.1",
     "react-native-calendars": "^1.32.0",

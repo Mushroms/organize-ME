@@ -141,7 +141,7 @@ class ModalExample extends Component {
           }}
         />
         <View style={styles.modalButton}>
-          <Delete_pic onVanyaBitchPress={this.onPressDelete} />
+          <Delete_pic onPress={this.onPressDelete} />
 
           <Button
             style={{
@@ -158,12 +158,11 @@ class ModalExample extends Component {
       </View>
     );
   };
-
   onPressSave = () => {
     this.addNoteList(this.props.selectedDate, this.state.NoteListName);
     this.clearState();
     this.props.toggleModal();
-    this.props.markedDates;
+    this.props.markedDate;
   };
 
   clearState = () => {
@@ -177,7 +176,7 @@ class ModalExample extends Component {
     this.deleteNoteList(this.props.selectedDate);
     this.clearState();
     this.props.toggleModal();
-    this.props.markedDates;
+    this.props.markedDate;
   };
 
   render() {
