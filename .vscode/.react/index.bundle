@@ -83911,33 +83911,33 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _objectSpread2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/objectSpread"));
 
-  var _defineProperty2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/defineProperty"));
+  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/classCallCheck"));
 
-  var _classCallCheck2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/classCallCheck"));
+  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/createClass"));
 
-  var _createClass2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/createClass"));
+  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/possibleConstructorReturn"));
 
-  var _possibleConstructorReturn2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/possibleConstructorReturn"));
+  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "@babel/runtime/helpers/getPrototypeOf"));
 
-  var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/getPrototypeOf"));
+  var _assertThisInitialized2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "@babel/runtime/helpers/assertThisInitialized"));
 
-  var _assertThisInitialized2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "@babel/runtime/helpers/assertThisInitialized"));
+  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "@babel/runtime/helpers/inherits"));
 
-  var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "@babel/runtime/helpers/inherits"));
+  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "react"));
 
-  var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[10], "react"));
+  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./../../node_modules/react-transform-hmr/lib/index.js"));
 
-  var _index = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "./../../node_modules/react-transform-hmr/lib/index.js"));
+  var _reactNative = _$$_REQUIRE(_dependencyMap[11], "react-native");
 
-  var _reactNative = _$$_REQUIRE(_dependencyMap[12], "react-native");
+  var _reactNativeCalendars = _$$_REQUIRE(_dependencyMap[12], "react-native-calendars");
 
-  var _reactNativeCalendars = _$$_REQUIRE(_dependencyMap[13], "react-native-calendars");
+  var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[13], "react-native-iphone-x-helper");
 
-  var _reactNativeIphoneXHelper = _$$_REQUIRE(_dependencyMap[14], "react-native-iphone-x-helper");
+  var _modal_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[14], "./modal_component"));
 
-  var _modal_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "./modal_component"));
+  var _moment = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "moment"));
 
-  var _moment = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[16], "moment"));
+  var _realmHelper = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[16], "./realmHelper"));
 
   var _temp,
       _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/notesList.js";
@@ -83970,6 +83970,49 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       (0, _classCallCheck2.default)(this, CalendarsScreen);
       _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(CalendarsScreen).call(this, props));
 
+      _this.determineAllMonthDates = function () {
+        var datesOfMonth = [];
+        var startMonthDateMoment = (0, _moment.default)().startOf("month");
+        var daysInCurrentMonth = (0, _moment.default)().startOf("month").daysInMonth();
+        var dayIndex = 0;
+
+        while (dayIndex < daysInCurrentMonth) {
+          var stringDate = startMonthDateMoment.format("YYYY-MM-DD");
+          datesOfMonth.push(stringDate);
+          startMonthDateMoment.add(1, "day");
+          dayIndex++;
+        }
+
+        return datesOfMonth;
+      };
+
+      _this.setFoundDatesIntoState = function (realmResults) {
+        _this.setState({
+          noteListByDatesArray: realmResults
+        });
+      };
+
+      _this.getDatesFromRealm = function () {
+        var allMonthDates = _this.determineAllMonthDates();
+
+        _realmHelper.default.findDateInArray(allMonthDates, _this.setFoundDatesIntoState);
+      };
+
+      _this.generateMarkedDates = function () {
+        var noteListByDatesArray = _this.state.noteListByDatesArray;
+        if (!noteListByDatesArray) return;
+        var markedDates = {};
+        noteListByDatesArray.forEach(function (markedDate) {
+          markedDates[markedDate.date] = {
+            selected: true,
+            disableTouchEvent: false,
+            selectedColor: "#ffffff",
+            selectedDotColor: "red"
+          };
+        });
+        return markedDates;
+      };
+
       _this.toggleModal = function () {
         _this.setState({
           isOpen: false
@@ -83988,42 +84031,23 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _createClass2.default)(CalendarsScreen, [{
       key: "componentDidMount",
       value: function componentDidMount() {
-        console.log("mounted");
-        var datesOfMonth = [];
-        var startMonthDateMoment = (0, _moment.default)().startOf("month");
-        var daysInCurrentMonth = (0, _moment.default)().startOf("month").daysInMonth();
-        var dayIndex = 0;
-
-        while (dayIndex < daysInCurrentMonth) {
-          var stringDate = startMonthDateMoment.format("DD.MM.YYYY");
-          datesOfMonth.push(stringDate);
-          startMonthDateMoment.add(1, "day");
-          dayIndex++;
-        }
-
-        console.log("datesOfMonth: ", datesOfMonth);
+        this.getDatesFromRealm();
       }
     }, {
       key: "render",
       value: function render() {
-        console.log("Calend", _reactNativeCalendars.Calendar);
-        var markedDates = (0, _defineProperty2.default)({}, this.state.selectedDate, {
-          selected: true,
-          disableTouchEvent: false,
-          selectedColor: "#ffffff",
-          selectedDotColor: "red"
-        });
+        var markedDates = this.generateMarkedDates();
         return _react.default.createElement(_reactNative.View, {
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 64
+            lineNumber: 86
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 65
+            lineNumber: 87
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onMonthChange: function onMonthChange(month) {
@@ -84036,16 +84060,17 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 66
+            lineNumber: 88
           }
         }), _react.default.createElement(_modal_component.default, {
           isOpen: this.state.isOpen,
           selectedDay: this.state.selectedDay,
           selectedDate: this.state.selectedDate,
           toggleModal: this.toggleModal,
+          onSave: this.getDatesFromRealm,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 76
+            lineNumber: 98
           }
         })));
       }
@@ -84120,7 +84145,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     textMonthFontSize: 20,
     textDayHeaderFontSize: 17
   };
-},549,[1,541,49,50,19,20,35,38,37,41,53,181,2,550,544,586,639],"imports/pages/notesList.js");
+},549,[1,541,49,19,20,35,38,37,41,53,181,2,550,544,586,639,640],"imports/pages/notesList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -90514,6 +90539,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _delete_component = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[14], "./delete_component"));
 
+  var _realmHelper = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "./realmHelper"));
+
   var _jsxFileName = "/Users/macbookair/organize-ME/imports/pages/modal_component.js";
   var _components = {
     ModalExample: {
@@ -90534,26 +90561,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   }
 
-  var Realm = _$$_REQUIRE(_dependencyMap[15], "realm");
-
-  var NoteListSchema = {
-    name: "NoteList",
-    primaryKey: "id",
-    properties: {
-      id: {
-        type: "int",
-        default: 0
-      },
-      name: "string",
-      date: "date"
-    }
-  };
-  var databaseOptions = {
-    path: "organazeME.realm",
-    schema: [NoteListSchema],
-    schemaVersion: 0
-  };
-
   var ModalExample = function (_Component) {
     (0, _inherits2.default)(ModalExample, _Component);
 
@@ -90563,61 +90570,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       (0, _classCallCheck2.default)(this, ModalExample);
       _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ModalExample).call(this, props));
 
-      _this.addNoteList = function (dateString, newName) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var AllNotes = realm.objects("NoteList");
-          var notesByDate = AllNotes.filtered("date == $0", dateString);
-          var firstNodeByDate = notesByDate[0];
-          var shouldWeUpdate = false;
-          var noteId = -1;
-          AllNotes.forEach(function (note) {
-            if (note && note.id) {
-              if (note.id > noteId) noteId = note.id;
-            }
-          });
-          noteId += 1;
-
-          if (firstNodeByDate && firstNodeByDate !== null) {
-            shouldWeUpdate = true;
-            noteId = firstNodeByDate.id;
-          }
-
-          realm.write(function () {
-            realm.create("NoteList", {
-              id: noteId,
-              name: newName,
-              date: dateString
-            }, shouldWeUpdate);
-          });
-        });
-      };
-
-      _this.readFromRealm = function (selectedDate) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var allNotes = realm.objects("NoteList");
-          var NoteListByDate = allNotes.filtered("date == $0", selectedDate);
-          var noteMessage = "";
-
-          if (NoteListByDate[0]) {
-            noteMessage = NoteListByDate[0].name;
-          }
-
-          _this.setState({
-            NoteListName: noteMessage
-          });
-        });
-      };
-
-      _this.deleteNoteList = function (selectedDate) {
-        Realm.open(databaseOptions).then(function (realm) {
-          var allNotes = realm.objects("NoteList");
-          var noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
-
-          if (noteByDate) {
-            realm.write(function () {
-              realm.delete(noteByDate);
-            });
-          }
+      _this.realmReadCallback = function (noteMessage) {
+        _this.setState({
+          NoteListName: noteMessage
         });
       };
 
@@ -90628,13 +90583,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.content,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 119
+            lineNumber: 48
           }
         }, _react.default.createElement(_circle_component.default, {
           selectedDay: selectedDay,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 120
+            lineNumber: 49
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           value: NoteListName,
@@ -90657,19 +90612,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 122
+            lineNumber: 51
           }
         }), _react.default.createElement(_reactNative.View, {
           style: styles.modalButton,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 143
+            lineNumber: 72
           }
         }, _react.default.createElement(_delete_component.default, {
           onPress: _this.onPressDelete,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 144
+            lineNumber: 73
           }
         }), _react.default.createElement(_reactNative.Button, {
           style: {
@@ -90683,19 +90638,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           title: "Save",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 146
+            lineNumber: 75
           }
         })));
       };
 
       _this.onPressSave = function () {
-        _this.addNoteList(_this.props.selectedDate, _this.state.NoteListName);
+        _realmHelper.default.addNoteList(_this.props.selectedDate, _this.state.NoteListName);
 
         _this.clearState();
 
         _this.props.toggleModal();
 
-        _this.props.markedDate;
+        _this.props.onSave();
       };
 
       _this.clearState = function () {
@@ -90707,13 +90662,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       };
 
       _this.onPressDelete = function () {
-        _this.deleteNoteList(_this.props.selectedDate);
+        _realmHelper.default.deleteNoteList(_this.props.selectedDate);
 
         _this.clearState();
 
         _this.props.toggleModal();
-
-        _this.props.markedDate;
       };
 
       _this.state = {
@@ -90727,7 +90680,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       key: "componentDidUpdate",
       value: function componentDidUpdate(prevProps, prevState) {
         if (this.props.selectedDate !== prevProps.selectedDate) {
-          this.readFromRealm(this.props.selectedDate);
+          var resultRealm = _realmHelper.default.readFromRealm(this.props.selectedDate, this.realmReadCallback);
         }
       }
     }, {
@@ -90739,7 +90692,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 184
+            lineNumber: 112
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.props.isOpen,
@@ -90754,7 +90707,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 185
+            lineNumber: 113
           }
         }, this.renderModalContent()));
       }
@@ -90803,7 +90756,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = ModalExample;
   exports.default = _default2;
-},586,[1,541,49,19,20,35,38,41,53,181,2,544,587,611,612,614],"imports/pages/modal_component.js");
+},586,[1,541,49,19,20,35,38,41,53,181,2,544,587,611,612,640],"imports/pages/modal_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93783,7 +93736,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         return _react.default.createElement(_reactNative.TouchableOpacity, {
           style: styles.container_Delete,
           onPress: function onPress() {
-            return _this2.props.onVanyaBitchPress();
+            return _this2.props.onPress();
           },
           __source: {
             fileName: _jsxFileName,
@@ -93844,6 +93797,95 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     "type": "png"
   });
 },613,[176],"resourses/delete-icon.png");
+__d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = void 0;
+
+  var Realm = _$$_REQUIRE(_dependencyMap[0], "realm");
+
+  var NoteListSchema = {
+    name: "NoteList",
+    primaryKey: "id",
+    properties: {
+      id: {
+        type: "int",
+        default: 0
+      },
+      name: "string",
+      date: "string"
+    }
+  };
+  var databaseOptions = {
+    path: "organazeME.realm",
+    schema: [NoteListSchema],
+    schemaVersion: 0
+  };
+  var RealmHelper = {
+    addNoteList: function addNoteList(dateString, newName) {
+      Realm.open(databaseOptions).then(function (realm) {
+        var AllNotes = realm.objects("NoteList");
+        console.log("dateString: ", dateString);
+        var notesByDate = AllNotes.filtered("date == $0", dateString);
+        var firstNodeByDate = notesByDate[0];
+        var shouldWeUpdate = false;
+        var noteId = -1;
+        noteId = AllNotes.length + 1;
+
+        if (firstNodeByDate && firstNodeByDate !== null) {
+          shouldWeUpdate = true;
+          noteId = firstNodeByDate.id;
+        }
+
+        realm.write(function () {
+          realm.create("NoteList", {
+            id: noteId,
+            name: newName,
+            date: dateString
+          }, shouldWeUpdate);
+        });
+      });
+    },
+    readFromRealm: function readFromRealm(selectedDate, callback) {
+      Realm.open(databaseOptions).then(function (realm) {
+        var allNotes = realm.objects("NoteList");
+        var NoteListByDate = allNotes.filtered("date == $0", selectedDate);
+        var noteMessage = "";
+
+        if (NoteListByDate[0]) {
+          noteMessage = NoteListByDate[0].name;
+        }
+
+        callback(noteMessage);
+      });
+    },
+    findDateInArray: function findDateInArray(allDatesArray, callback) {
+      Realm.open(databaseOptions).then(function (realm) {
+        var allNotes = realm.objects("NoteList");
+        var notesInArray = [];
+        var filtered = allNotes.filtered(allDatesArray.map(function (date) {
+          return 'date == "' + date + '"';
+        }).join(" OR "));
+        callback(Array.from(filtered));
+      });
+    },
+    deleteNoteList: function deleteNoteList(selectedDate) {
+      Realm.open(databaseOptions).then(function (realm) {
+        var allNotes = realm.objects("NoteList");
+        var noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
+
+        if (noteByDate) {
+          realm.write(function () {
+            realm.delete(noteByDate);
+          });
+        }
+      });
+    }
+  };
+  var _default = RealmHelper;
+  exports.default = _default;
+},640,[614],"imports/pages/realmHelper.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
