@@ -90667,6 +90667,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         _this.clearState();
 
         _this.props.toggleModal();
+
+        _this.props.onSave();
       };
 
       _this.state = {
@@ -90692,7 +90694,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 112
+            lineNumber: 113
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.props.isOpen,
@@ -90707,7 +90709,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           swipeDirection: ["up", "left", "down"],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 113
+            lineNumber: 114
           }
         }, this.renderModalContent()));
       }

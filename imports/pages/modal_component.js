@@ -105,6 +105,7 @@ class ModalExample extends Component {
     RealmHelper.deleteNoteList(this.props.selectedDate);
     this.clearState();
     this.props.toggleModal();
+    this.props.onSave();
   };
 
   render() {
