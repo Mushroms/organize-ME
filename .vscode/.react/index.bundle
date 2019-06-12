@@ -84006,7 +84006,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates[markedDate.date] = {
             selected: true,
             disableTouchEvent: false,
-            selectedColor: "#ffffff",
+            selectedColor: "#adff2f",
             selectedDotColor: "red"
           };
         });
@@ -84041,13 +84041,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 86
+            lineNumber: 84
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 87
+            lineNumber: 85
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
           onMonthChange: function onMonthChange(month) {
@@ -84060,7 +84060,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 88
+            lineNumber: 86
           }
         }), _react.default.createElement(_modal_component.default, {
           isOpen: this.state.isOpen,
@@ -84070,7 +84070,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           onSave: this.getDatesFromRealm,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 98
+            lineNumber: 96
           }
         })));
       }
@@ -90707,6 +90707,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           backdropTransitionOutTiming: 600,
           onSwipeComplete: this.props.toggleModal,
           swipeDirection: ["up", "left", "down"],
+          avoidKeyboard: true,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 114
@@ -93637,17 +93638,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var styles = _reactNative.StyleSheet.create({
     container: (0, _objectSpread2.default)({}, (0, _reactNativeIphoneXHelper.ifIphoneX)({
-      flex: 1,
       height: "20%",
-      width: "27%",
+      width: "24%",
       backgroundColor: "#00BFFF",
       alignItems: "center",
       justifyContent: "center",
       alignSelf: "flex-start",
       borderRadius: 50
     }, {
-      flex: 1,
-      height: "27%",
+      height: "22%",
       width: "20%",
       backgroundColor: "#00BFFF",
       alignItems: "center",
@@ -93828,7 +93827,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     addNoteList: function addNoteList(dateString, newName) {
       Realm.open(databaseOptions).then(function (realm) {
         var AllNotes = realm.objects("NoteList");
-        console.log("dateString: ", dateString);
         var notesByDate = AllNotes.filtered("date == $0", dateString);
         var firstNodeByDate = notesByDate[0];
         var shouldWeUpdate = false;

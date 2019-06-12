@@ -20,7 +20,7 @@ let RealmHelper = {
   addNoteList: (dateString, newName) => {
     Realm.open(databaseOptions).then(realm => {
       const AllNotes = realm.objects("NoteList");
-      console.log("dateString: ", dateString);
+      //console.log("dateString: ", dateString);
       const notesByDate = AllNotes.filtered("date == $0", dateString);
       const firstNodeByDate = notesByDate[0];
 

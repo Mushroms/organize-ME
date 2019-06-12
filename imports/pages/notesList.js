@@ -13,12 +13,11 @@ import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 import moment from "moment";
 import RealmHelper from "./realmHelper";
-//const Realm = require("realm");
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
-    //this.messageRef = React.createRef();
+
     this.state = {
       selectedDate: null,
       selectedDay: null,
@@ -58,7 +57,6 @@ export default class CalendarsScreen extends Component {
 
   getDatesFromRealm = () => {
     let allMonthDates = this.determineAllMonthDates();
-    // console.log("allMonthDates: ", allMonthDates);
     RealmHelper.findDateInArray(allMonthDates, this.setFoundDatesIntoState);
   };
 
@@ -71,7 +69,7 @@ export default class CalendarsScreen extends Component {
       markedDates[markedDate.date] = {
         selected: true,
         disableTouchEvent: false,
-        selectedColor: "#ffffff",
+        selectedColor: "#adff2f",
         selectedDotColor: "red"
       };
     });
@@ -86,9 +84,6 @@ export default class CalendarsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
-            onMonthChange={month => {
-              console.log("month changed", month);
-            }}
             onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
