@@ -84050,9 +84050,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             lineNumber: 85
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
-          onMonthChange: function onMonthChange(month) {
-            console.log("month changed", month);
-          },
           onDayLongPress: this.onDayLongPress,
           style: style,
           theme: calendare,
@@ -84070,7 +84067,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           onSave: this.getDatesFromRealm,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 93
           }
         })));
       }
@@ -84145,7 +84142,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     textMonthFontSize: 20,
     textDayHeaderFontSize: 17
   };
-},549,[1,541,49,19,20,35,38,37,41,53,181,2,550,544,586,639,640],"imports/pages/notesList.js");
+},549,[1,541,49,19,20,35,38,37,41,53,181,2,550,544,586,639,614],"imports/pages/notesList.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -90759,7 +90756,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   var _default2 = ModalExample;
   exports.default = _default2;
-},586,[1,541,49,19,20,35,38,41,53,181,2,544,587,611,612,640],"imports/pages/modal_component.js");
+},586,[1,541,49,19,20,35,38,41,53,181,2,544,587,611,612,614],"imports/pages/modal_component.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
 
@@ -93885,7 +93882,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   };
   var _default = RealmHelper;
   exports.default = _default;
-},640,[614],"imports/pages/realmHelper.js");
+},614,[615],"imports/pages/realmHelper.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -93988,7 +93985,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   }
 
   module.exports = realmConstructor;
-},614,[615,635],"node_modules/realm/lib/index.js");
+},615,[616,636],"node_modules/realm/lib/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94235,7 +94232,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       throw new Error('Realm failed to connect to the embedded debug server inside the app. ' + 'If attempting to use Chrome debugging from a device, ensure the device is ' + 'reachable on the same network as this machine.');
     }
   }
-},615,[541,1,19,20,2,616,617,621,622,623,624,625,626,619,618,627],"node_modules/realm/lib/browser/index.js");
+},616,[541,1,19,20,2,617,618,622,623,624,625,626,627,620,619,628],"node_modules/realm/lib/browser/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94263,7 +94260,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       enumerable: true
     });
   });
-},616,[],"node_modules/realm/lib/browser/constants.js");
+},617,[],"node_modules/realm/lib/browser/constants.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94376,7 +94373,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     collection[mutable] = _mutable;
     return new Proxy(collection, traps);
   }
-},617,[541,1,19,616,618,619],"node_modules/realm/lib/browser/collections.js");
+},618,[541,1,19,617,619,620],"node_modules/realm/lib/browser/collections.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94495,7 +94492,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       rpc.setProperty(this[_constants.keys.realm], this[_constants.keys.id], name, value);
     };
   }
-},618,[541,616,619],"node_modules/realm/lib/browser/util.js");
+},619,[541,617,620],"node_modules/realm/lib/browser/util.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -94963,7 +94960,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }, pollTimeout);
     }
   }
-},619,[541,1,8,620,618,616],"node_modules/realm/lib/browser/rpc.js");
+},620,[541,1,8,621,619,617],"node_modules/realm/lib/browser/rpc.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95041,7 +95038,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         return base64;
     }
   }
-},620,[],"node_modules/realm/lib/browser/base64.js");
+},621,[],"node_modules/realm/lib/browser/base64.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95087,7 +95084,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createList(realmId, info) {
     return (0, _collections.createCollection)(List.prototype, realmId, info, true);
   }
-},621,[541,1,19,35,38,41,617,616,618],"node_modules/realm/lib/browser/lists.js");
+},622,[541,1,19,35,38,41,618,617,619],"node_modules/realm/lib/browser/lists.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95133,7 +95130,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function createResults(realmId, info) {
     return (0, _collections.createCollection)(Results.prototype, realmId, info);
   }
-},622,[541,1,19,35,38,41,617,616,618],"node_modules/realm/lib/browser/results.js");
+},623,[541,1,19,35,38,41,618,617,619],"node_modules/realm/lib/browser/results.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95225,7 +95222,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     throw new Error("Constructor was not registered in the schema for this Realm");
   }
-},623,[541,1,19,616,618,619],"node_modules/realm/lib/browser/objects.js");
+},624,[541,1,19,617,619,620],"node_modules/realm/lib/browser/objects.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95294,7 +95291,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     (0, _extends2.default)(userProxy, info.data);
     return userProxy;
   }
-},624,[1,8,19,20,619,616,618],"node_modules/realm/lib/browser/user.js");
+},625,[1,8,19,20,620,617,619],"node_modules/realm/lib/browser/user.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95341,7 +95338,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     sessionProxy.config = (0, _rpc.deserialize)(realmId, info.data.config);
     return sessionProxy;
   }
-},625,[1,19,616,618,619],"node_modules/realm/lib/browser/session.js");
+},626,[1,19,617,619,620],"node_modules/realm/lib/browser/session.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -95385,7 +95382,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     subscription[_constants.keys.type] = _constants.objectTypes.SUBSCRIPTION;
     return subscription;
   }
-},626,[1,19,616,618],"node_modules/realm/lib/browser/subscription.js");
+},627,[1,19,617,619],"node_modules/realm/lib/browser/subscription.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96140,7 +96137,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     instance: instanceMethods,
     credentials: credentialsMethods
   };
-},627,[8,19,20,9,628,629,634,630,633],"node_modules/realm/lib/user-methods.js");
+},628,[8,19,20,9,629,630,635,631,634],"node_modules/realm/lib/user-methods.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96158,7 +96155,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   AuthError.__proto__ = Error;
   AuthError.prototype.__proto__ = Error.prototype;
   exports['AuthError'] = AuthError;
-},628,[8],"node_modules/realm/lib/errors.js");
+},629,[8],"node_modules/realm/lib/errors.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96398,7 +96395,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       });
     }
   };
-},629,[630,633],"node_modules/realm/lib/permission-api.js");
+},630,[631,634],"node_modules/realm/lib/permission-api.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96679,7 +96676,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Url.trimLeft = trimLeft;
   Url.qs = qs;
   module.exports = Url;
-},630,[631,632],"node_modules/url-parse/index.js");
+},631,[632,633],"node_modules/url-parse/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96709,7 +96706,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
     return port !== 0;
   };
-},631,[],"node_modules/requires-port/index.js");
+},632,[],"node_modules/requires-port/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96774,7 +96771,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
   exports.stringify = querystringify;
   exports.parse = querystring;
-},632,[],"node_modules/querystringify/index.js");
+},633,[],"node_modules/querystringify/index.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -96911,7 +96908,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
     }
   }];
-},633,[],"node_modules/realm/lib/management-schema.js");
+},634,[],"node_modules/realm/lib/management-schema.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.deepmerge = factory();
@@ -97001,7 +96998,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var deepmerge_1 = deepmerge;
     return deepmerge_1;
   });
-},634,[],"node_modules/deepmerge/dist/umd.js");
+},635,[],"node_modules/deepmerge/dist/umd.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97692,7 +97689,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       configurable: true
     });
   };
-},635,[630,636,627,628,637,2],"node_modules/realm/lib/extensions.js");
+},636,[631,637,628,629,638,2],"node_modules/realm/lib/extensions.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   'use strict';
 
@@ -97761,7 +97758,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     };
   });
   exports[typeof Symbol === "function" ? Symbol.iterator : "@@iterator"] = exports.values;
-},636,[],"node_modules/realm/lib/collection-methods.js");
+},637,[],"node_modules/realm/lib/collection-methods.js");
 __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   module.exports = {
   "_from": "realm",
@@ -97928,7 +97925,7 @@ __d(function(global, require, _aUnused, _bUnused, module, exports, _cUnused) {
   "version": "2.28.0"
 }
 ;
-},637,[],"node_modules/realm/package.json");
+},638,[],"node_modules/realm/package.json");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   ;
 
