@@ -1,8 +1,7 @@
 package com.organizeme;
 
 import com.facebook.react.ReactActivity;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+
 public class MainActivity extends ReactActivity {
 
     /**

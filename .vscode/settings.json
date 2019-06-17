@@ -1,9 +1,10 @@
 {
 
-    "workbench.iconTheme": "file-icons",
+    "workbench.iconTheme": "material-icon-theme",
 
     
     "workbench.colorTheme": "Andromeda Bordered",
-    "workbench.editor.labelFormat": "short"
+    "workbench.editor.labelFormat": "short",
+    "java.configuration.updateBuildConfiguration": "automatic"
 
 }
