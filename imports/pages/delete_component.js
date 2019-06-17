@@ -14,9 +14,7 @@ export class Delete_pic extends React.Component {
     return (
       <TouchableOpacity
         style={styles.container_Delete}
-
         onPress={() => this.props.onDeletePress()}
-
       >
         <Image style={styles.container} source={Delete_pic} />
       </TouchableOpacity>
@@ -42,6 +40,7 @@ const styles = StyleSheet.create({
       },
       {
         flex: 1,
+        marginBottom: 5,
         height: 35,
         width: 35,
         alignItems: "flex-start",
