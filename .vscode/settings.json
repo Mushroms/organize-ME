@@ -1,3 +1,9 @@
 {
-    "workbench.iconTheme": "file-icons"
+
+    "workbench.iconTheme": "file-icons",
+
+    
+    "workbench.colorTheme": "Andromeda Bordered",
+    "workbench.editor.labelFormat": "short"
+
 }

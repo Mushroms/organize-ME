@@ -13,7 +13,9 @@ import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
 import Delete_pic from "./delete_component";
+
 import RealmHelper from "./realmHelper";
+
 
 class ModalExample extends Component {
   constructor(props) {
@@ -47,7 +49,6 @@ class ModalExample extends Component {
     return (
       <View style={styles.content}>
         <Circle_Component selectedDay={selectedDay} />
-
         <TextInput
           value={NoteListName}
           placeholderTextColor="#00BFFF"
@@ -66,23 +67,31 @@ class ModalExample extends Component {
             }
           ]}
           onChangeText={text => {
-            this.setState({ NoteListName: text });
+            this.setState({
+              NoteListName: text
+            });
           }}
         />
         <View style={styles.modalButton}>
-          <Delete_pic onPress={this.onPressDelete} />
 
-          <Button
-            style={{
-              height: "10%",
-              width: "10%",
-              justifyContent: "center",
-              alignSelf: "center",
-              alignItems: "center"
-            }}
-            onPress={this.onPressSave}
-            title="Save"
-          />
+          <Delete_pic onDeletePress={this.onPressDelete} />
+
+          <TouchableOpacity onPress={this.onPressSave}>
+            <Text
+              style={{
+                color: "#00BFFF",
+                //height: "10%",
+                //width: "10%"
+                fontSize: 24,
+                justifyContent: "flex-end",
+                alignSelf: "flex-end",
+                alignItems: "flex-end"
+              }}
+            >
+              Save
+            </Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     );
@@ -110,7 +119,11 @@ class ModalExample extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1
+        }}
+      >
         <Modal
           isVisible={this.props.isOpen}
           backdropOpacity={0.8}

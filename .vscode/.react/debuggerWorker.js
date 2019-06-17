@@ -100,18 +100,7 @@ console.trace = (function() {
     };
 })();
 
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- */
 
-/* global __fbBatchedBridge, self, importScripts, postMessage, onmessage: true */
-
-/* eslint no-unused-vars: 0 */
 'use strict';
 
 onmessage = function () {
@@ -120,10 +109,13 @@ onmessage = function () {
   var showVisibilityWarning = function () {
     var hasWarned = false;
     return function () {
+
+
       // Wait until `YellowBox` gets initialized before displaying the warning.
       if (hasWarned || console.warn.toString().includes('[native code]')) {
         return;
       }
+
 
       hasWarned = true;
       console.warn('Remote debugger is in a background tab which may cause apps to ' + 'perform slowly. Fix this by foregrounding the tab (or opening it in ' + 'a separate window).');
@@ -138,11 +130,14 @@ onmessage = function () {
 
       var error;
 
+
+
       try {
         importScripts(message.url);
       } catch (err) {
         error = err.message;
       }
+
 
       sendReply(null
       /* result */
@@ -153,11 +148,14 @@ onmessage = function () {
     }
   };
   return function (message) {
+
+
     if (visibilityState === 'hidden') {
       showVisibilityWarning();
     }
 
     var object = message.data;
+
 
     var sendReply = function (result, error) {
       postMessage({
@@ -169,6 +167,8 @@ onmessage = function () {
 
     var handler = messageHandlers[object.method];
 
+
+
     if (handler) {
       // Special cased handlers
       handler(object, sendReply);
@@ -177,9 +177,11 @@ onmessage = function () {
       var returnValue = [[], [], [], 0];
       var error;
 
+
       try {
         if (typeof __fbBatchedBridge === 'object') {
           returnValue = __fbBatchedBridge[object.method].apply(null, object.arguments);
+
         } else {
           error = 'Failed to call function, __fbBatchedBridge is undefined';
         }
@@ -190,7 +192,8 @@ onmessage = function () {
       }
     }
   };
-}();
+
+
 // Notify debugger that we're done with loading
 // and started listening for IPC messages
 postMessage({workerLoaded:true});
