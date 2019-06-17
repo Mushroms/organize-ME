@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
   container: {
     ...ifIphoneX(
       {
-        flex: 1,
+        //flex: 1,
         height: "20%",
-        width: "27%",
+        width: "24%",
         backgroundColor: "#00BFFF",
         alignItems: "center",
         justifyContent: "center",
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
         borderRadius: 50
       },
       {
-        flex: 1,
-        height: "27%",
+        //flex: 1,
+        height: "22%",
         width: "20%",
         backgroundColor: "#00BFFF",
         alignItems: "center",

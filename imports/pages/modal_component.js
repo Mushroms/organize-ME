@@ -14,26 +14,8 @@ import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
 import Delete_pic from "./delete_component";
 
-const Realm = require("realm");
+import RealmHelper from "./realmHelper";
 
-const NoteListSchema = {
-  name: "NoteList",
-  primaryKey: "id",
-  properties: {
-    id: {
-      type: "int",
-      default: 0
-    },
-    name: "string",
-    date: "date"
-  }
-};
-
-const databaseOptions = {
-  path: "organazeME.realm",
-  schema: [NoteListSchema],
-  schemaVersion: 0
-};
 
 class ModalExample extends Component {
   constructor(props) {
@@ -45,73 +27,20 @@ class ModalExample extends Component {
     };
   }
 
+  realmReadCallback = noteMessage => {
+    this.setState({
+      NoteListName: noteMessage
+    });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.selectedDate !== prevProps.selectedDate) {
-      this.readFromRealm(this.props.selectedDate);
+      let resultRealm = RealmHelper.readFromRealm(
+        this.props.selectedDate,
+        this.realmReadCallback
+      );
     }
   }
-
-  addNoteList = (dateString, newName) => {
-    Realm.open(databaseOptions).then(realm => {
-      const AllNotes = realm.objects("NoteList");
-      const notesByDate = AllNotes.filtered("date == $0", dateString);
-      const firstNodeByDate = notesByDate[0];
-      //console.log("firstNodeByDate: ", firstNodeByDate);
-
-      let shouldWeUpdate = false;
-      let noteId = -1;
-      AllNotes.forEach(note => {
-        if (note && note.id) {
-          if (note.id > noteId) noteId = note.id;
-        }
-      });
-      noteId += 1;
-
-      if (firstNodeByDate && firstNodeByDate !== null) {
-        shouldWeUpdate = true;
-        noteId = firstNodeByDate.id;
-      }
-
-      realm.write(() => {
-        realm.create(
-          "NoteList",
-          {
-            id: noteId,
-            name: newName,
-            date: dateString
-          },
-          shouldWeUpdate
-        );
-      });
-    });
-  };
-
-  readFromRealm = selectedDate => {
-    Realm.open(databaseOptions).then(realm => {
-      let allNotes = realm.objects("NoteList");
-      let NoteListByDate = allNotes.filtered("date == $0", selectedDate);
-      let noteMessage = "";
-      if (NoteListByDate[0]) {
-        noteMessage = NoteListByDate[0].name;
-      }
-      this.setState({
-        NoteListName: noteMessage
-      });
-    });
-  };
-
-  deleteNoteList = selectedDate => {
-    Realm.open(databaseOptions).then(realm => {
-      const allNotes = realm.objects("NoteList");
-      const noteByDate = allNotes.filtered("date == $0", selectedDate)[0];
-
-      if (noteByDate) {
-        realm.write(() => {
-          realm.delete(noteByDate);
-        });
-      }
-    });
-  };
 
   renderModalContent = () => {
     const { selectedDay } = this.props;
@@ -144,6 +73,7 @@ class ModalExample extends Component {
           }}
         />
         <View style={styles.modalButton}>
+
           <Delete_pic onDeletePress={this.onPressDelete} />
 
           <TouchableOpacity onPress={this.onPressSave}>
@@ -161,15 +91,16 @@ class ModalExample extends Component {
               Save
             </Text>
           </TouchableOpacity>
+
         </View>
       </View>
     );
   };
-
   onPressSave = () => {
-    this.addNoteList(this.props.selectedDate, this.state.NoteListName);
+    RealmHelper.addNoteList(this.props.selectedDate, this.state.NoteListName);
     this.clearState();
     this.props.toggleModal();
+    this.props.onSave();
   };
 
   clearState = () => {
@@ -180,9 +111,10 @@ class ModalExample extends Component {
   };
 
   onPressDelete = () => {
-    this.deleteNoteList(this.props.selectedDate);
+    RealmHelper.deleteNoteList(this.props.selectedDate);
     this.clearState();
     this.props.toggleModal();
+    this.props.onSave();
   };
 
   render() {
@@ -203,6 +135,7 @@ class ModalExample extends Component {
           backdropTransitionOutTiming={600}
           onSwipeComplete={this.props.toggleModal}
           swipeDirection={["up", "left", "down"]}
+          avoidKeyboard={true}
         >
           {this.renderModalContent()}
         </Modal>

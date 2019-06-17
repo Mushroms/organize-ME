@@ -11,13 +11,13 @@ import {
 import { Calendar } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
-
-//const Realm = require("realm");
+import moment from "moment";
+import RealmHelper from "./realmHelper";
 
 export default class CalendarsScreen extends Component {
   constructor(props) {
     super(props);
-    this.messageRef = React.createRef();
+
     this.state = {
       selectedDate: null,
       selectedDay: null,
@@ -27,14 +27,58 @@ export default class CalendarsScreen extends Component {
     this.onDayLongPress = this.onDayLongPress.bind(this);
   }
 
-  render() {
-    const markedDates = {
-      [this.state.selectedDate]: {
+  componentDidMount() {
+    this.getDatesFromRealm();
+  }
+
+  determineAllMonthDates = () => {
+    const datesOfMonth = [];
+    const startMonthDateMoment = moment().startOf("month");
+    const daysInCurrentMonth = moment()
+      .startOf("month")
+      .daysInMonth();
+    let dayIndex = 0;
+
+    while (dayIndex < daysInCurrentMonth) {
+      const stringDate = startMonthDateMoment.format("YYYY-MM-DD");
+      datesOfMonth.push(stringDate);
+      startMonthDateMoment.add(1, "day");
+      dayIndex++;
+    }
+
+    return datesOfMonth;
+  };
+
+  setFoundDatesIntoState = realmResults => {
+    this.setState({
+      noteListByDatesArray: realmResults
+    });
+  };
+
+  getDatesFromRealm = () => {
+    let allMonthDates = this.determineAllMonthDates();
+    RealmHelper.findDateInArray(allMonthDates, this.setFoundDatesIntoState);
+  };
+
+  generateMarkedDates = () => {
+    const { noteListByDatesArray } = this.state;
+    if (!noteListByDatesArray) return;
+    const markedDates = {};
+
+    noteListByDatesArray.forEach(markedDate => {
+      markedDates[markedDate.date] = {
         selected: true,
         disableTouchEvent: false,
-        selectedDotColor: "orange"
-      }
-    };
+        selectedColor: "#adff2f",
+        selectedDotColor: "red"
+      };
+    });
+
+    return markedDates;
+  };
+
+  render() {
+    const markedDates = this.generateMarkedDates();
 
     return (
       <View style={styles.container}>
@@ -51,6 +95,7 @@ export default class CalendarsScreen extends Component {
             selectedDay={this.state.selectedDay}
             selectedDate={this.state.selectedDate}
             toggleModal={this.toggleModal}
+            onSave={this.getDatesFromRealm}
           />
         </View>
       </View>
@@ -118,7 +163,7 @@ const calendare = {
   backgroundColor: "#ffffff",
   calendarBackground: "#00BFFF",
   textSectionTitleColor: "#000000",
-  selectedDayBackgroundColor: "#ff4000",
+  selectedDayBackgroundColor: "#ffffff",
   selectedDayTextColor: "#000000",
   todayTextColor: "#ff0000",
   dayTextColor: "#000000",
