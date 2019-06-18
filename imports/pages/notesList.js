@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         width: "97%"
       },
       {
-        marginTop: 2,
+        marginTop: 4,
         marginBottom: 2,
         marginLeft: 10,
         marginRight: 10,

@@ -1,9 +1,8 @@
 /** @format */
-import { AppRegistry } from 'react-native';
-import Application from './imports/pages/aplication';
+import { AppRegistry } from "react-native";
+import Application from "./imports/pages/aplication";
 
-
-AppRegistry.registerComponent('organizeME', () => Application);
+AppRegistry.registerComponent("organizeME", () => Application);
 
 // import {AppRegistry} from 'react-native';
 // import App from './App';
