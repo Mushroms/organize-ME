@@ -21,7 +21,8 @@ export default class CalendarsScreen extends Component {
     this.state = {
       selectedDate: null,
       selectedDay: null,
-      isOpen: false
+      isOpen: false,
+      initialDate: moment().format("YYYY-MM-DD")
     };
 
     this.onDayLongPress = this.onDayLongPress.bind(this);
@@ -31,9 +32,16 @@ export default class CalendarsScreen extends Component {
     this.getDatesFromRealm();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.initialDate === this.state.initialDate) return null;
+    this.getDatesFromRealm();
+  }
+
   determineAllMonthDates = () => {
     const datesOfMonth = [];
-    const startMonthDateMoment = moment().startOf("month");
+    const startMonthDateMoment = moment(this.state.initialDate).startOf(
+      "month"
+    );
     const daysInCurrentMonth = moment()
       .startOf("month")
       .daysInMonth();
@@ -84,6 +92,9 @@ export default class CalendarsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.Blu_container}>
           <Calendar
+            onMonthChange={month => {
+              this.setState({ initialDate: month.dateString });
+            }}
             onDayLongPress={this.onDayLongPress}
             style={style}
             theme={calendare}
