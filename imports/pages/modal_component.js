@@ -16,7 +16,6 @@ import Delete_pic from "./delete_component";
 
 import RealmHelper from "./realmHelper";
 
-
 class ModalExample extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +72,6 @@ class ModalExample extends Component {
           }}
         />
         <View style={styles.modalButton}>
-
           <Delete_pic onDeletePress={this.onPressDelete} />
 
           <TouchableOpacity onPress={this.onPressSave}>
@@ -91,20 +89,18 @@ class ModalExample extends Component {
               Save
             </Text>
           </TouchableOpacity>
-
         </View>
       </View>
     );
   };
   onPressSave = () => {
     RealmHelper.addNoteList(this.props.selectedDate, this.state.NoteListName);
-    this.clearState();
+    //this.clearState();
     this.props.toggleModal();
     this.props.onSave();
   };
 
   clearState = () => {
-    console.log("clearState called ");
     this.setState({
       NoteListName: ""
     });
