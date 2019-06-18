@@ -100574,16 +100574,12 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _this.onPressSave = function () {
         _realmHelper.default.addNoteList(_this.props.selectedDate, _this.state.NoteListName);
 
-        _this.clearState();
-
         _this.props.toggleModal();
 
         _this.props.onSave();
       };
 
       _this.clearState = function () {
-        console.log("clearState called ");
-
         _this.setState({
           NoteListName: ""
         });
@@ -100622,7 +100618,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 113
+            lineNumber: 112
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.props.isOpen,
@@ -100638,7 +100634,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           avoidKeyboard: true,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 114
+            lineNumber: 113
           }
         }, this.renderModalContent()));
       }

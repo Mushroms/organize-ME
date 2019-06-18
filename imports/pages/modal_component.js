@@ -89,13 +89,12 @@ class ModalExample extends Component {
   };
   onPressSave = () => {
     RealmHelper.addNoteList(this.props.selectedDate, this.state.NoteListName);
-    this.clearState();
+    //this.clearState();
     this.props.toggleModal();
     this.props.onSave();
   };
 
   clearState = () => {
-    console.log("clearState called ");
     this.setState({
       NoteListName: ""
     });
