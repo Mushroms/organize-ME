@@ -93903,7 +93903,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
       _this.determineAllMonthDates = function () {
         var datesOfMonth = [];
-        var startMonthDateMoment = (0, _moment.default)().startOf("month");
+        var startMonthDateMoment = (0, _moment.default)(_this.state.initialDate).startOf("month");
         var daysInCurrentMonth = (0, _moment.default)().startOf("month").daysInMonth();
         var dayIndex = 0;
 
@@ -93953,7 +93953,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       _this.state = {
         selectedDate: null,
         selectedDay: null,
-        isOpen: false
+        isOpen: false,
+        initialDate: (0, _moment.default)().format("YYYY-MM-DD")
       };
       _this.onDayLongPress = _this.onDayLongPress.bind((0, _assertThisInitialized2.default)(_this));
       return _this;
@@ -93965,22 +93966,35 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         this.getDatesFromRealm();
       }
     }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps, prevState) {
+        if (prevState.initialDate === this.state.initialDate) return null;
+        this.getDatesFromRealm();
+      }
+    }, {
       key: "render",
       value: function render() {
+        var _this2 = this;
+
         var markedDates = this.generateMarkedDates();
         return _react.default.createElement(_reactNative.View, {
           style: styles.container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 84
+            lineNumber: 92
           }
         }, _react.default.createElement(_reactNative.View, {
           style: styles.Blu_container,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 93
           }
         }, _react.default.createElement(_reactNativeCalendars.Calendar, {
+          onMonthChange: function onMonthChange(month) {
+            _this2.setState({
+              initialDate: month.dateString
+            });
+          },
           onDayLongPress: this.onDayLongPress,
           style: style,
           theme: calendare,
@@ -93988,7 +94002,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           markedDates: markedDates,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 86
+            lineNumber: 94
           }
         }), _react.default.createElement(_modal_component.default, {
           isOpen: this.state.isOpen,
@@ -93998,7 +94012,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           onSave: this.getDatesFromRealm,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 93
+            lineNumber: 104
           }
         })));
       }
