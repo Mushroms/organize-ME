@@ -20,14 +20,15 @@ let RealmHelper = {
   addNoteList: (dateString, newName) => {
     Realm.open(databaseOptions).then(realm => {
       const AllNotes = realm.objects("NoteList");
-      //console.log("dateString: ", dateString);
       const notesByDate = AllNotes.filtered("date == $0", dateString);
       const firstNodeByDate = notesByDate[0];
-
       let shouldWeUpdate = false;
-      let noteId = -1;
+      let lastId = realm.objects("NoteList").max("id");
+      if (!lastId) {
+        lastId = 0;
+      }
 
-      noteId = AllNotes.length + 1;
+      noteId = lastId + 1;
 
       if (firstNodeByDate && firstNodeByDate !== null) {
         shouldWeUpdate = true;
