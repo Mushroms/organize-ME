@@ -121,7 +121,7 @@ class ModalExample extends Component {
           backdropTransitionOutTiming={600}
           onSwipeComplete={this.props.toggleModal}
           swipeDirection={["up", "left", "down"]}
-          avoidKeyboard={true}
+          avoidKeyboard={false}
         >
           {this.renderModalContent()}
         </Modal>

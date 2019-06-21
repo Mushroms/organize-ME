@@ -100645,7 +100645,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           backdropTransitionOutTiming: 600,
           onSwipeComplete: this.props.toggleModal,
           swipeDirection: ["up", "left", "down"],
-          avoidKeyboard: true,
+          avoidKeyboard: false,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 113
@@ -103728,10 +103728,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   module.exports = _$$_REQUIRE(_dependencyMap[0], "/Users/macbookair/organize-ME/node_modules/react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
     "httpServerLocation": "/assets/resourses",
-    "width": 512,
-    "height": 512,
+    "width": 54,
+    "height": 54,
     "scales": [1],
-    "hash": "d0d56ce6f92c20fbb3bf5c96f36c8c67",
+    "hash": "39a25559e1ddc8ca2a27e9cfdebf3991",
     "name": "delete-icon",
     "type": "png"
   });
