@@ -123,7 +123,7 @@ export default class Calc extends Component {
           return;
         }
 
-        result = eval(previousInputValue + symbol + inputValue).toFixed(1);
+        result = eval(previousInputValue + symbol + inputValue);
 
         this.setState({
           previousInputValue: 0,
