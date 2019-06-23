@@ -124,6 +124,7 @@ export default class Calc extends Component {
         }
 
         result = eval(previousInputValue + symbol + inputValue);
+        let result = Math.floor(result * 100) / 100;
 
         this.setState({
           previousInputValue: 0,

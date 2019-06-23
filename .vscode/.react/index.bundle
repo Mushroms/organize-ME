@@ -93433,7 +93433,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               return;
             }
 
-            result = eval(previousInputValue + symbol + inputValue).toFixed(1);
+            result = eval(previousInputValue + symbol + inputValue);
+            var result = Math.floor(result * 100) / 100;
             this.setState({
               previousInputValue: 0,
               inputValue: result,
