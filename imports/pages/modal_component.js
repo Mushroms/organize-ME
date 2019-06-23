@@ -143,8 +143,8 @@ ModalExample.defaultProps = {
 
 const styles = StyleSheet.create({
   content: {
-    //flex: 1,
-    height: "50%",
+    //flex: 3,
+    height: "75%",
     width: "100%",
     backgroundColor: "#768489",
     padding: 22,
