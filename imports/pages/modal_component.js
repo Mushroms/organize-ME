@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
-  Alert
+  KeyboardAvoidingView
 } from "react-native";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
@@ -115,11 +115,7 @@ class ModalExample extends Component {
 
   render() {
     return (
-      <View
-        style={{
-          flex: 1
-        }}
-      >
+      <View>
         <Modal
           isVisible={this.props.isOpen}
           backdropOpacity={0.8}
@@ -131,7 +127,8 @@ class ModalExample extends Component {
           backdropTransitionOutTiming={600}
           onSwipeComplete={this.props.toggleModal}
           swipeDirection={["up", "left", "down"]}
-          avoidKeyboard={true}
+          avoidKeyboard={false}
+          hardwareAccelerated={true}
         >
           {this.renderModalContent()}
         </Modal>
@@ -146,6 +143,7 @@ ModalExample.defaultProps = {
 
 const styles = StyleSheet.create({
   content: {
+    //flex: 1,
     height: "50%",
     width: "100%",
     backgroundColor: "#768489",

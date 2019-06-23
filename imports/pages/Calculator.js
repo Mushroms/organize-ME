@@ -33,7 +33,6 @@ export default class Calc extends Component {
     return (
       <View style={Style.rootContainer}>
         <View style={Style.displayContainer}>
-          <Text style={Style.historyDisplayText}>{this.state.history}</Text>
           <Text style={Style.displayText}>{this.state.inputValue}</Text>
         </View>
         <View style={Style.inputContainer}>{this._renderInputButtons()}</View>
@@ -124,6 +123,7 @@ export default class Calc extends Component {
         }
 
         result = eval(previousInputValue + symbol + inputValue);
+        let result = Math.floor(result * 100) / 100;
 
         this.setState({
           previousInputValue: 0,
