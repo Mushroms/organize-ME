@@ -80,6 +80,7 @@ class ModalExample extends Component {
               alignSelf: "center",
               alignItems: "center"
             }}
+            color="#00BFFF"
             onPress={this.onPressSave}
             title="Save"
           />
@@ -170,10 +171,8 @@ const styles = StyleSheet.create({
   },
 
   modalButton: {
-    //borderWidth: 1,
     width: "100%",
     justifyContent: "space-between",
-    //alignItems: "center",
     flexDirection: "row"
   }
 });

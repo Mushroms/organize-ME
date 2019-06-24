@@ -100577,6 +100577,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             alignSelf: "center",
             alignItems: "center"
           },
+          color: "#00BFFF",
           onPress: _this.onPressSave,
           title: "Save",
           __source: {
@@ -100633,7 +100634,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 112
+            lineNumber: 113
           }
         }, _react.default.createElement(_reactNativeModal.default, {
           isVisible: this.props.isOpen,
@@ -100649,7 +100650,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           avoidKeyboard: false,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 113
+            lineNumber: 114
           }
         }, this.renderModalContent()));
       }
@@ -103729,10 +103730,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   module.exports = _$$_REQUIRE(_dependencyMap[0], "/Users/macbookair/organize-ME/node_modules/react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
     "httpServerLocation": "/assets/resourses",
-    "width": 54,
-    "height": 54,
+    "width": 64,
+    "height": 64,
     "scales": [1],
-    "hash": "39a25559e1ddc8ca2a27e9cfdebf3991",
+    "hash": "ae2f651f8a9ae0ef8c6764af5408a5ff",
     "name": "delete-icon",
     "type": "png"
   });
