@@ -6,13 +6,15 @@ import {
   Image,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Modal
 } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 import moment from "moment";
 import RealmHelper from "./realmHelper";
+import DateTimePicker from "react-native-modal-datetime-picker";
 
 export default class CalendarsScreen extends Component {
   constructor(props) {

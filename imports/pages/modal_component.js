@@ -14,6 +14,8 @@ import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
 import Delete_pic from "./delete_component";
 import RealmHelper from "./realmHelper";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from "moment";
 
 class ModalExample extends Component {
   constructor(props) {
@@ -21,9 +23,27 @@ class ModalExample extends Component {
 
     this.state = {
       NoteListName: "",
-      messageContent: ""
+      messageContent: "",
+      isDateTimePickerVisible: false,
+      Time: ""
     };
   }
+  showTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideTimePicker = () => {
+    this.setState({
+      isDateTimePickerVisible: false
+    });
+  };
+
+  handlePicked = Time => {
+    this.setState({
+      isDateTimePickerVisible: false,
+      Time: moment(Time).format("h: mm: ss a")
+    });
+  };
 
   realmReadCallback = noteMessage => {
     this.setState({
@@ -71,7 +91,17 @@ class ModalExample extends Component {
         />
         <View style={styles.modalButton}>
           <Delete_pic onPress={this.onPressDelete} />
-
+          <Button title="Alarm" color="#ee2c2c" onPress={this.showTimePicker} />
+          <DateTimePicker
+            confirmTextStyle={styles.confirmTextStyle}
+            cancelTextStyle={styles.cancelTextStyle}
+            selectedDay={selectedDay}
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this.handlePicked}
+            onCancel={this.hideTimePicker}
+            //date={}
+            mode={"time"}
+          />
           <Button
             style={{
               height: "10%",
@@ -174,6 +204,14 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "space-between",
     flexDirection: "row"
+  },
+  confirmTextStyle: {
+    //backgroundColor: "#768489",
+    color: "#00BFFF"
+  },
+  cancelTextStyle: {
+    //backgroundColor: "#768489",
+    color: "#00BFFF"
   }
 });
 
