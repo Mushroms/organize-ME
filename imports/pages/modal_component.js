@@ -99,7 +99,7 @@ class ModalExample extends Component {
             isVisible={this.state.isDateTimePickerVisible}
             onConfirm={this.handlePicked}
             onCancel={this.hideTimePicker}
-            //date={}
+            date={moment().toDate()}
             mode={"time"}
           />
           <Button

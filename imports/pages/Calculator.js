@@ -125,12 +125,14 @@ export default class Calc extends Component {
 
         result = eval(previousInputValue + symbol + inputValue);
         let result = Math.floor(result * 100) / 100;
+        let isResultDecimal = null;
+        if (result % 1 != 0) isResultDecimal = true;
 
         this.setState({
           previousInputValue: 0,
           inputValue: result,
           selectedSymbol: null,
-          isDecimal: null
+          isDecimal: isResultDecimal
         });
         break;
       case "C":

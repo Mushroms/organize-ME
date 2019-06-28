@@ -92958,11 +92958,13 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
             result = eval(previousInputValue + symbol + inputValue);
             var result = Math.floor(result * 100) / 100;
+            var isResultDecimal = null;
+            if (result % 1 != 0) isResultDecimal = true;
             this.setState({
               previousInputValue: 0,
               inputValue: result,
               selectedSymbol: null,
-              isDecimal: null
+              isDecimal: isResultDecimal
             });
             break;
 
@@ -100123,6 +100125,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           isVisible: _this.state.isDateTimePickerVisible,
           onConfirm: _this.handlePicked,
           onCancel: _this.hideTimePicker,
+          date: (0, _moment.default)().toDate(),
           mode: "time",
           __source: {
             fileName: _jsxFileName,
