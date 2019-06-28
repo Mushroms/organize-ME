@@ -6,7 +6,8 @@ import {
   Image,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView
 } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
@@ -101,6 +102,7 @@ export default class CalendarsScreen extends Component {
             hideExtraDays
             markedDates={markedDates}
           />
+
           <ModalExample
             isOpen={this.state.isOpen}
             selectedDay={this.state.selectedDay}
