@@ -13,8 +13,11 @@ import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
 import Delete_pic from "./delete_component";
-
+import { ListItem } from "react-native-elements";
 import RealmHelper from "./realmHelper";
+import firebase from "react-native-firebase";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from "moment";
 
 class ModalExample extends Component {
   constructor(props) {
@@ -22,9 +25,94 @@ class ModalExample extends Component {
 
     this.state = {
       NoteListName: "",
-      messageContent: ""
+      messageContent: "",
+      isDateTimePickerVisible: false
     };
   }
+
+  componentDidMount() {
+    this.setReminder();
+    this.createNotificationChannel();
+    this.checkPermission();
+  }
+
+  setReminder = async () => {
+    const { notificationTime, enableNotification } = this.state;
+
+    if (enableNotification) {
+      // schedule notification
+      firebase.notifications().scheduleNotification(this.buildNotification(), {
+        fireDate: notificationTime.valueOf(),
+        repeatInterval: "day",
+        exact: true
+      });
+    } else {
+      return false;
+    }
+  };
+
+  createNotificationChannel = () => {
+    // Build a android notification channel
+    const channel = new firebase.notifications.Android.Channel(
+      "reminder", // channelId
+      "Reminders Channel", // channel name
+      firebase.notifications.Android.Importance.High // channel importance
+    ).setDescription("Used for getting reminder notification"); // channel description
+    // Create the android notification channel
+    firebase.notifications().android.createChannel(channel);
+  };
+
+  checkPermission = async () => {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
+      // We've the permission
+      this.notificationListener = firebase
+        .notifications()
+        .onNotification(async notification => {
+          // Display your notification
+          await firebase.notifications().displayNotification(notification);
+        });
+    } else {
+      // user doesn't have permission
+      try {
+        await firebase.messaging().requestPermission();
+      } catch (error) {
+        Alert.alert(
+          "Unable to access the Notification permission. Please enable the Notification Permission from the settings"
+        );
+      }
+    }
+  };
+
+  buildNotification = () => {
+    const title = Platform.OS === "android" ? "Daily Reminder" : "";
+    const notification = new firebase.notifications.Notification()
+      .setNotificationId("1") // Any random ID
+      .setTitle(title) // Title of the notification
+      .setBody("This is a notification") // body of notification
+      .android.setPriority(firebase.notifications.Android.Priority.High) // set priority in Android
+      .android.setChannelId("reminder") // should be the same when creating channel for Android
+      .android.setAutoCancel(true); // To remove notification when tapped on it
+    return notification;
+  };
+
+  enableNotification = value => {
+    this.setState({
+      enableNotification: value
+    });
+  };
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+  handleDatePicked = date => {
+    this.hideDateTimePicker();
+    this.setState({
+      notificationTime: moment(date)
+    });
+  };
 
   realmReadCallback = noteMessage => {
     this.setState({
@@ -33,6 +121,14 @@ class ModalExample extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
+    const { notificationTime, enableNotification } = this.state;
+
+    if (
+      enableNotification !== prevState.enableNotification ||
+      notificationTime !== prevState.notificationTime
+    ) {
+      this.setReminder();
+    }
     if (this.props.selectedDate !== prevProps.selectedDate) {
       let resultRealm = RealmHelper.readFromRealm(
         this.props.selectedDate,
@@ -44,7 +140,11 @@ class ModalExample extends Component {
   renderModalContent = () => {
     const { selectedDay } = this.props;
     const { NoteListName } = this.state;
-
+    const {
+      enableNotification,
+      isDateTimePickerVisible,
+      notificationTime
+    } = this.state;
     return (
       <View style={styles.content}>
         <Circle_Component selectedDay={selectedDay} />
@@ -74,6 +174,27 @@ class ModalExample extends Component {
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
 
+          <TouchableOpacity
+            title="Time"
+            titleStyle={styles.titleStyle}
+            onPress={this.showDateTimePicker}
+            switch={{
+              onValueChange: this.enableNotification,
+              value: enableNotification
+            }}
+          >
+            <Text style={{ color: "#ee2c2c", opacity: 0.7 }}>
+              {moment(notificationTime).format("LT")}
+            </Text>
+          </TouchableOpacity>
+          <DateTimePicker
+            isVisible={isDateTimePickerVisible}
+            onConfirm={this.handleDatePicked}
+            onCancel={this.hideDateTimePicker}
+            mode="time" // show only time picker
+            is24Hour={false}
+            date={new Date(notificationTime)}
+          />
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{
@@ -183,6 +304,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     //alignItems: "center",
     flexDirection: "row"
+  },
+
+  titleStyle: {
+    fontSize: 20,
+    color: "#585858"
   }
 });
 
