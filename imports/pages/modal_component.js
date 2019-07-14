@@ -16,8 +16,7 @@ import Delete_pic from "./delete_component";
 import { ListItem } from "react-native-elements";
 import RealmHelper from "./realmHelper";
 import firebase from "react-native-firebase";
-import DateTimePicker from "react-native-modal-datetime-picker";
-import moment from "moment";
+import AlarmButton from "./alarmButton";
 
 class ModalExample extends Component {
   constructor(props) {
@@ -25,33 +24,14 @@ class ModalExample extends Component {
 
     this.state = {
       NoteListName: "",
-      messageContent: "",
-      isDateTimePickerVisible: false,
-      notificationTime: moment().add(15, "seconds"),
-      enableNotification: ""
+      messageContent: ""
     };
   }
 
   componentDidMount() {
-    this.setReminder();
     this.createNotificationChannel();
     this.checkPermission();
   }
-
-  setReminder = async () => {
-    const { notificationTime, enableNotification } = this.state;
-
-    if (enableNotification) {
-      // schedule notification
-      firebase.notifications().scheduleNotification(this.buildNotification(), {
-        fireDate: notificationTime.valueOf(),
-        repeatInterval: "day",
-        exact: true
-      });
-    } else {
-      return false;
-    }
-  };
 
   createNotificationChannel = () => {
     // Build a android notification channel
@@ -86,38 +66,6 @@ class ModalExample extends Component {
     }
   };
 
-  buildNotification = () => {
-    const title = Platform.OS === "android" ? "Daily Reminder" : "";
-    const notification = new firebase.notifications.Notification()
-      .setNotificationId("1") // Any random ID
-      .setTitle(title) // Title of the notification
-      .setBody("This is a notification") // body of notification
-      .android.setPriority(firebase.notifications.Android.Priority.High) // set priority in Android
-      .android.setChannelId("reminder") // should be the same when creating channel for Android
-      .android.setAutoCancel(true); // To remove notification when tapped on it
-    return notification;
-  };
-
-  enableNotification = value => {
-    this.setState({
-      enableNotification: value
-    });
-  };
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
-  };
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
-  };
-
-  handleDatePicked = date => {
-    console.log(moment(date).isValid);
-    this.hideDateTimePicker();
-    this.setState({
-      notificationTime: moment(date)
-    });
-  };
-
   realmReadCallback = noteMessage => {
     this.setState({
       NoteListName: noteMessage
@@ -125,14 +73,6 @@ class ModalExample extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { notificationTime, enableNotification } = this.state;
-
-    if (
-      enableNotification !== prevState.enableNotification ||
-      notificationTime !== prevState.notificationTime
-    ) {
-      this.setReminder();
-    }
     if (this.props.selectedDate !== prevProps.selectedDate) {
       let resultRealm = RealmHelper.readFromRealm(
         this.props.selectedDate,
@@ -144,11 +84,7 @@ class ModalExample extends Component {
   renderModalContent = () => {
     const { selectedDay } = this.props;
     const { NoteListName } = this.state;
-    const {
-      enableNotification,
-      isDateTimePickerVisible,
-      notificationTime
-    } = this.state;
+
     return (
       <View style={styles.content}>
         <Circle_Component selectedDay={selectedDay} />
@@ -177,25 +113,7 @@ class ModalExample extends Component {
         />
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
-
-          <TouchableOpacity
-            title="Show DatePicker"
-            onPress={this.showDateTimePicker}
-            switch={{
-              onValueChange: this.enableNotification,
-              value: enableNotification
-            }}
-          >
-            <Text style={{ color: "#ee2c2c" }}>Alarm</Text>
-          </TouchableOpacity>
-          <DateTimePicker
-            isVisible={isDateTimePickerVisible}
-            onConfirm={this.handleDatePicked}
-            onCancel={this.hideDateTimePicker}
-            mode="time" // show only time picker
-            is24Hour={true}
-            date={new Date(notificationTime)}
-          />
+          <AlarmButton />
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{
