@@ -26,77 +26,77 @@ class ModalExample extends Component {
     this.state = {
       NoteListName: "",
       messageContent: "",
-      isDateTimePickerVisible: false
-      //notificationTime: moment(date),
-      //enableNotification: value
+      isDateTimePickerVisible: false,
+      notificationTime: moment().add(15, "seconds"),
+      enableNotification: ""
     };
   }
 
-  // componentDidMount() {
-  //   this.setReminder();
-  //   this.createNotificationChannel();
-  //   this.checkPermission();
-  // }
+  componentDidMount() {
+    this.setReminder();
+    this.createNotificationChannel();
+    this.checkPermission();
+  }
 
-  // setReminder = async () => {
-  //   const { notificationTime, enableNotification } = this.state;
+  setReminder = async () => {
+    const { notificationTime, enableNotification } = this.state;
 
-  //   if (enableNotification) {
-  //     // schedule notification
-  //     firebase.notifications().scheduleNotification(this.buildNotification(), {
-  //       fireDate: notificationTime.valueOf(),
-  //       repeatInterval: "day",
-  //       exact: true
-  //     });
-  //   } else {
-  //     return false;
-  //   }
-  // };
+    if (enableNotification) {
+      // schedule notification
+      firebase.notifications().scheduleNotification(this.buildNotification(), {
+        fireDate: notificationTime.valueOf(),
+        repeatInterval: "day",
+        exact: true
+      });
+    } else {
+      return false;
+    }
+  };
 
-  // createNotificationChannel = () => {
-  //   // Build a android notification channel
-  //   const channel = new firebase.notifications.Android.Channel(
-  //     "reminder", // channelId
-  //     "Reminders Channel", // channel name
-  //     firebase.notifications.Android.Importance.High // channel importance
-  //   ).setDescription("Used for getting reminder notification"); // channel description
-  //   // Create the android notification channel
-  //   firebase.notifications().android.createChannel(channel);
-  // };
+  createNotificationChannel = () => {
+    // Build a android notification channel
+    const channel = new firebase.notifications.Android.Channel(
+      "reminder", // channelId
+      "Reminders Channel", // channel name
+      firebase.notifications.Android.Importance.High // channel importance
+    ).setDescription("Used for getting reminder notification"); // channel description
+    // Create the android notification channel
+    firebase.notifications().android.createChannel(channel);
+  };
 
-  // checkPermission = async () => {
-  //   const enabled = await firebase.messaging().hasPermission();
-  //   if (enabled) {
-  //     // We've the permission
-  //     this.notificationListener = firebase
-  //       .notifications()
-  //       .onNotification(async notification => {
-  //         // Display your notification
-  //         await firebase.notifications().displayNotification(notification);
-  //       });
-  //   } else {
-  //     // user doesn't have permission
-  //     try {
-  //       await firebase.messaging().requestPermission();
-  //     } catch (error) {
-  //       Alert.alert(
-  //         "Unable to access the Notification permission. Please enable the Notification Permission from the settings"
-  //       );
-  //     }
-  //   }
-  // };
+  checkPermission = async () => {
+    const enabled = await firebase.messaging().hasPermission();
+    if (enabled) {
+      // We've the permission
+      this.notificationListener = firebase
+        .notifications()
+        .onNotification(async notification => {
+          // Display your notification
+          await firebase.notifications().displayNotification(notification);
+        });
+    } else {
+      // user doesn't have permission
+      try {
+        await firebase.messaging().requestPermission();
+      } catch (error) {
+        Alert.alert(
+          "Unable to access the Notification permission. Please enable the Notification Permission from the settings"
+        );
+      }
+    }
+  };
 
-  // buildNotification = () => {
-  //   const title = Platform.OS === "android" ? "Daily Reminder" : "";
-  //   const notification = new firebase.notifications.Notification()
-  //     .setNotificationId("1") // Any random ID
-  //     .setTitle(title) // Title of the notification
-  //     .setBody("This is a notification") // body of notification
-  //     .android.setPriority(firebase.notifications.Android.Priority.High) // set priority in Android
-  //     .android.setChannelId("reminder") // should be the same when creating channel for Android
-  //     .android.setAutoCancel(true); // To remove notification when tapped on it
-  //   return notification;
-  // };
+  buildNotification = () => {
+    const title = Platform.OS === "android" ? "Daily Reminder" : "";
+    const notification = new firebase.notifications.Notification()
+      .setNotificationId("1") // Any random ID
+      .setTitle(title) // Title of the notification
+      .setBody("This is a notification") // body of notification
+      .android.setPriority(firebase.notifications.Android.Priority.High) // set priority in Android
+      .android.setChannelId("reminder") // should be the same when creating channel for Android
+      .android.setAutoCancel(true); // To remove notification when tapped on it
+    return notification;
+  };
 
   enableNotification = value => {
     this.setState({
@@ -109,7 +109,9 @@ class ModalExample extends Component {
   hideDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: false });
   };
+
   handleDatePicked = date => {
+    console.log(moment(date).isValid);
     this.hideDateTimePicker();
     this.setState({
       notificationTime: moment(date)
@@ -176,9 +178,16 @@ class ModalExample extends Component {
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
 
-          <Button title="Show DatePicker" onPress={this.showDateTimePicker}>
+          <TouchableOpacity
+            title="Show DatePicker"
+            onPress={this.showDateTimePicker}
+            switch={{
+              onValueChange: this.enableNotification,
+              value: enableNotification
+            }}
+          >
             <Text style={{ color: "#ee2c2c" }}>Alarm</Text>
-          </Button>
+          </TouchableOpacity>
           <DateTimePicker
             isVisible={isDateTimePickerVisible}
             onConfirm={this.handleDatePicked}
