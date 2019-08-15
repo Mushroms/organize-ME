@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, Image, View } from "react-native";
 import CalculatorPage from "./Calculator.js";
 import Swiper from "react-native-swiper";
-import { ifIphoneX } from 'react-native-iphone-x-helper'
+import { ifIphoneX } from "react-native-iphone-x-helper";
 
 export default class WelcomePage extends Component {
   render() {
@@ -34,25 +34,27 @@ const styles = StyleSheet.create({
     //marginBottom: 8,
     //marginLeft: 12,
     //marginRight: 12,
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#4BBEE3",
     alignItems: "center",
     //borderRadius: 10,
-    ...ifIphoneX({
-            marginTop: 5,
-            marginBottom: 5,
-            borderRadius: 40,
-            height: "100%",
-            width: "97%",
-
-        }, {
-            marginTop: 2,
-            marginBottom: 2,
-            borderRadius: 10,
-            marginLeft: 12,
-            marginRight: 12,
-            height: "100%",
-            width: "97%",
-        })
+    ...ifIphoneX(
+      {
+        marginTop: 5,
+        marginBottom: 5,
+        borderRadius: 40,
+        height: "100%",
+        width: "97%"
+      },
+      {
+        marginTop: 2,
+        marginBottom: 2,
+        borderRadius: 10,
+        marginLeft: 12,
+        marginRight: 12,
+        height: "100%",
+        width: "97%"
+      }
+    )
   },
   Organize_container: {
     marginTop: "50%",
@@ -73,3 +75,4 @@ const styles = StyleSheet.create({
 //#00BFFF
 //#6600FF
 //#0A0A0D
+//#4BBEE3

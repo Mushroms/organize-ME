@@ -9,7 +9,7 @@ var Style = StyleSheet.create({
 
   displayContainer: {
     flex: 3,
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#4BBEE3",
     justifyContent: "center",
     borderRadius: 10
   },
@@ -44,7 +44,7 @@ var Style = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#00BFFF",
+    borderColor: "#4BBEE3",
     borderRadius: 10
   },
 
@@ -55,7 +55,7 @@ var Style = StyleSheet.create({
   inputButtonText: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#00BFFF"
+    color: "#4BBEE3"
   },
 
   inputRow: {
