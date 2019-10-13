@@ -47,7 +47,7 @@ export default class AlarmButton extends Component {
   };
 
   buildNotification = () => {
-    const title = Platform.OS === "android" ? "Daily Reminder" : "";
+    const title = Platform.OS === "android" ? "Organize ME" : "";
     const notification = new firebase.notifications.Notification()
       .setNotificationId("1")
       .setTitle(title)
