@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 
   Blu_container: {
     flex: 1,
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#4BBEE3",
     ...ifIphoneX(
       {
         marginTop: 5,
@@ -174,7 +174,7 @@ const style = {
 
 const calendare = {
   backgroundColor: "#ffffff",
-  calendarBackground: "#00BFFF",
+  calendarBackground: "#4BBEE3",
   textSectionTitleColor: "#000000",
   selectedDayBackgroundColor: "#ffffff",
   selectedDayTextColor: "#000000",
