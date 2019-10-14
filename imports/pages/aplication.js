@@ -3,38 +3,39 @@
 import React from "react";
 import { View, Text } from "react-native";
 import TimerMixin from "react-timer-mixin";
-//import { StackNavigator } from "react-navigation";
+import SplashScreen from 'react-native-splash-screen';
 import Swiper from "react-native-swiper";
 import CalculatorPage from "./Calculator.js";
-import WelcomePage from "./welcome-page.js";
+//import WelcomePage from "./welcome-page.js";
 import NoteList from "./notesList.js";
 import createReactClass from "create-react-class";
 
 const Application = createReactClass({
-  mixins: [TimerMixin],
-  getInitialState: function() {
-    return {
-      autoplay: true
-    };
-  },
-  componentDidMount: function() {
-    this.setTimeout(() => {
-      this.setState({
-        autoplay: false
-      });
-    }, 1000);
+  // mixins: [TimerMixin],
+  // getInitialState: function () {
+  //   return {
+  //     autoplay: true
+  //   };
+  // },
+  componentDidMount() {
+    SplashScreen.hide()
+    // this.setTimeout(() => {
+    //   this.setState({
+    //     autoplay: false
+    //   });
+    // }, 1000);
   },
 
   render() {
     return (
       <Swiper
         showsButtons={false}
-        loop={false}
+        //loop={false}
         showsPagination={false}
-        autoplay={this.state.autoplay}
-        autoplayTimeout={1}
+      // autoplay={this.state.autoplay}
+      // autoplayTimeout={1}
       >
-        <WelcomePage />
+
         <CalculatorPage />
         <NoteList />
       </Swiper>
@@ -42,3 +43,6 @@ const Application = createReactClass({
   }
 });
 export default Application;
+
+
+//<WelcomePage />
