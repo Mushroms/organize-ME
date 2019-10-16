@@ -156,6 +156,7 @@ android {
 }
 
 dependencies {
+    implementation project(':rn-splash-screen')
     implementation project(':react-native-firebase')
     implementation project(':realm')
     implementation project(':react-native-vector-icons')

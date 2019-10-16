@@ -5639,6 +5639,11 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
+rn-splash-screen@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/rn-splash-screen/-/rn-splash-screen-5.2.0.tgz#1ce509e27d14d3dd0949427667fbc3d2a8dd853c"
+  integrity sha512-sZgF7YkFmx/R2HvDtMPDKwTdhGxPqiyrgbED/P4CAUPdfQRVF0KAs8eOoITHgAs1WeM7hM4S446/saOyjSl7dQ==
+
 rsvp@^3.3.3:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.6.2.tgz#2e96491599a96cde1b515d5674a8f7a91452926a"

@@ -1,8 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
         <!-- Customize your theme here. -->
     </style>
+
+    
 
 </resources>
