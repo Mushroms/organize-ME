@@ -16,4 +16,5 @@ public class MainActivity extends ReactActivity {
         startActivity(intent);
         finish();
     }
+
 }
