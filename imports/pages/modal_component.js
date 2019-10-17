@@ -24,7 +24,8 @@ class ModalExample extends Component {
 
     this.state = {
       NoteListName: "",
-      messageContent: ""
+      messageContent: "",
+      noteId: 0,
     };
   }
 
@@ -66,9 +67,10 @@ class ModalExample extends Component {
     }
   };
 
-  realmReadCallback = noteMessage => {
+  realmReadCallback = (noteMessage, noteId) => {
     this.setState({
-      NoteListName: noteMessage
+      NoteListName: noteMessage,
+      noteId,
     });
   };
 
@@ -83,7 +85,7 @@ class ModalExample extends Component {
 
   renderModalContent = () => {
     const { selectedDay } = this.props;
-    const { NoteListName } = this.state;
+    const { NoteListName, noteId } = this.state;
 
     return (
       <View style={styles.content}>
@@ -113,7 +115,10 @@ class ModalExample extends Component {
         />
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
-          <AlarmButton />
+          <AlarmButton
+            noteId={noteId}
+            noteMessage={NoteListName}
+          />
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{

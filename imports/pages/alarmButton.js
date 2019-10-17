@@ -9,17 +9,29 @@ import {
 import firebase from "react-native-firebase";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
+import PropTypes from "prop-types";
+
+
+
 
 export default class AlarmButton extends Component {
+  static defaultProps = {
+    noteId: PropTypes.int,
+    noteMessage: PropTypes.string,
+  }
+
+
   state = {
     enableNotification: true,
     isDateTimePickerVisible: false,
     notificationTime: moment()
   };
 
+
   componentDidMount() {
     this.setReminder();
   }
+
 
   componentDidUpdate(prevProps, prevState) {
     const { notificationTime, enableNotification } = this.state;
@@ -47,11 +59,15 @@ export default class AlarmButton extends Component {
   };
 
   buildNotification = () => {
+    const { noteId, noteMessage } = this.props;
+
+    console.warn('props: ', noteId, noteMessage)
+
     const title = Platform.OS === "android" ? "Organize ME" : "";
     const notification = new firebase.notifications.Notification()
-      .setNotificationId("1")
+      .setNotificationId(noteId.toString())
       .setTitle(title)
-      .setBody("This is a notification")
+      .setBody(noteMessage)
       .android.setPriority(firebase.notifications.Android.Priority.High)
       .android.setChannelId("reminder")
       .android.setAutoCancel(true);

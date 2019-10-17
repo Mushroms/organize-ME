@@ -54,11 +54,13 @@ let RealmHelper = {
       let allNotes = realm.objects("NoteList");
       let NoteListByDate = allNotes.filtered("date == $0", selectedDate);
       let noteMessage = "";
+      let noteId = 0;
       if (NoteListByDate[0]) {
         noteMessage = NoteListByDate[0].name;
+        noteId = NoteListByDate[0].id;
       }
 
-      callback(noteMessage);
+      callback(noteMessage, noteId);
     });
   },
 
