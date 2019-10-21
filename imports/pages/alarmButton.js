@@ -28,10 +28,6 @@ export default class AlarmButton extends Component {
   };
 
 
-  componentDidMount() {
-    this.setReminder();
-  }
-
 
   componentDidUpdate(prevProps, prevState) {
     const { notificationTime, enableNotification } = this.state;
@@ -48,11 +44,13 @@ export default class AlarmButton extends Component {
     const { notificationTime, enableNotification } = this.state;
 
     if (enableNotification) {
+
+
       firebase.notifications().scheduleNotification(this.buildNotification(), {
         fireDate: notificationTime.valueOf(),
-        repeatInterval: "day",
         exact: true
       });
+
     } else {
       return false;
     }

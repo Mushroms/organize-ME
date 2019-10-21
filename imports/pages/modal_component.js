@@ -18,6 +18,9 @@ import RealmHelper from "./realmHelper";
 import firebase from "react-native-firebase";
 import AlarmButton from "./alarmButton";
 
+
+
+
 class ModalExample extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +43,9 @@ class ModalExample extends Component {
       "reminder", // channelId
       "Reminders Channel", // channel name
       firebase.notifications.Android.Importance.High // channel importance
-    ).setDescription("Used for getting reminder notification"); // channel description
+    ).setDescription("Used for getting reminder notification");
+
+
     // Create the android notification channel
     firebase.notifications().android.createChannel(channel);
   };
@@ -156,6 +161,8 @@ class ModalExample extends Component {
     this.clearState();
     this.props.toggleModal();
     this.props.onSave();
+
+    firebase.notifications().cancelNotification(this.state.noteId.toString());
   };
 
   render() {
