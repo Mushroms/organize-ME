@@ -89,8 +89,9 @@ class ModalExample extends Component {
   }
 
   renderModalContent = () => {
-    const { selectedDay } = this.props;
+    const { selectedDay, selectedDate } = this.props;
     const { NoteListName, noteId } = this.state;
+
 
     return (
       <View style={styles.content}>
@@ -120,7 +121,7 @@ class ModalExample extends Component {
         />
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
-          <AlarmButton noteId={noteId} noteMessage={NoteListName} />
+          <AlarmButton noteId={noteId} noteMessage={selectedDate + ' ' + NoteListName} selectedDate={selectedDate} />
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{

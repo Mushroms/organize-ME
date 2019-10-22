@@ -15,19 +15,7 @@ const Application = createReactClass({
   componentDidMount() {
     setTimeout(() => SplashScreen.hide(), 2000);
   },
-  // mixins: [TimerMixin],
-  // getInitialState: function() {
-  //   return {
-  //     autoplay: true
-  //   };
-  // },
-  // componentDidMount: function() {
-  //   this.setTimeout(() => {
-  //     this.setState({
-  //       autoplay: false
-  //     });
-  //   }, 1000);
-  // },
+
 
   render() {
     return (

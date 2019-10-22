@@ -14,7 +14,8 @@ import PropTypes from "prop-types";
 export default class AlarmButton extends Component {
   static defaultProps = {
     noteId: PropTypes.int,
-    noteMessage: PropTypes.string
+    noteMessage: PropTypes.string,
+    selectedDate: PropTypes.string
   };
 
   state = {
@@ -89,11 +90,14 @@ export default class AlarmButton extends Component {
   };
 
   render() {
+
     const {
       enableNotification,
       isDateTimePickerVisible,
       notificationTime
     } = this.state;
+    const { selectedDate } = this.props;
+    console.warn('Date', selectedDate);
     return (
       <View>
         <TouchableOpacity
@@ -112,7 +116,8 @@ export default class AlarmButton extends Component {
           onCancel={this.hideDateTimePicker}
           mode="time" // show only time picker
           is24Hour={true}
-          date={new Date(notificationTime)}
+          date={new Date(selectedDate)}
+
         />
       </View>
     );
