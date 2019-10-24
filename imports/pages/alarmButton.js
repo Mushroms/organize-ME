@@ -39,6 +39,7 @@ export default class AlarmButton extends Component {
 
   setReminder = async () => {
     const { notificationTime, enableNotification } = this.state;
+    console.warn('notificationTime: ', notificationTime)
 
     if (enableNotification) {
 
@@ -54,6 +55,7 @@ export default class AlarmButton extends Component {
   };
 
   buildNotification = () => {
+
     const { noteId, noteMessage } = this.props;
     const title = Platform.OS === "android" ? "Organize ME" : "";
     const notification = new firebase.notifications.Notification()
@@ -65,12 +67,14 @@ export default class AlarmButton extends Component {
       .android.setAutoCancel(true);
 
     return notification;
+
   };
 
   enableNotification = value => {
     this.setState({
       enableNotification: value
     });
+    //console.warn(enableNotification);
   };
 
   showDateTimePicker = () => {
@@ -87,6 +91,7 @@ export default class AlarmButton extends Component {
     this.setState({
       notificationTime: moment(date)
     });
+    console.warn(date);
   };
 
   render() {
@@ -97,7 +102,7 @@ export default class AlarmButton extends Component {
       notificationTime
     } = this.state;
     const { selectedDate } = this.props;
-    console.warn('Date', selectedDate);
+    //console.warn('Time', notificationTime);
     return (
       <View>
         <TouchableOpacity
