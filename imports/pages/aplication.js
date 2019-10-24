@@ -18,7 +18,7 @@ const Application = createReactClass({
   //   };
   // },
   componentDidMount() {
-    setTimeout(() => SplashScreen.hide(), 1000);
+    setTimeout(() => SplashScreen.hide(), 3000);
     // this.setTimeout(() => {
     //   this.setState({
     //     autoplay: false
