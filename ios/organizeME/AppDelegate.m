@@ -12,6 +12,9 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "SplashScreen.h"
+#import <Firebase.h>
+#import "RNFirebaseNotifications.h"
+
 
 @implementation AppDelegate
 
@@ -30,8 +33,17 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [SplashScreen show];
+  [FIRApp configure];
+  [RNFirebaseNotifications configure];
+  
   return YES;
 }
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+  [[RNFirebaseNotifications instance] didReceiveLocalNotification:notification];
+}
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
