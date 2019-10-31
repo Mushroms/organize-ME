@@ -31,11 +31,9 @@ const Application = createReactClass({
       //autoplay={this.state.autoplay}
       //autoplayTimeout={1}
       >
-
         <CalculatorPage />
         <NoteList />
       </Swiper>
-
     );
   }
 });
