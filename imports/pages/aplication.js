@@ -2,9 +2,10 @@
 
 import React from "react";
 import { View, Text } from "react-native";
-import TimerMixin from "react-timer-mixin";
+//import TimerMixin from "react-timer-mixin";
 //import { StackNavigator } from "react-navigation";
-import Swiper from "react-native-swiper";
+//import Swiper from "react-native-swiper";
+import Swiper from "react-native-swiper-animated";
 import CalculatorPage from "./Calculator.js";
 //import WelcomePage from "./welcome-page.js";
 import NoteList from "./notesList.js";
@@ -20,9 +21,13 @@ const Application = createReactClass({
   render() {
     return (
       <Swiper
-        showsButtons={false}
-        loop={true}
-        showsPagination={false}
+        smoothTransition
+        loop
+        showPagination={false}
+        hidePaginationOnLast
+      // showsButtons={false}
+      // loop={true}
+      // showsPagination={false}
       //autoplay={this.state.autoplay}
       //autoplayTimeout={1}
       >
@@ -30,6 +35,7 @@ const Application = createReactClass({
         <CalculatorPage />
         <NoteList />
       </Swiper>
+
     );
   }
 });
