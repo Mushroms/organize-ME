@@ -38,7 +38,6 @@ export default class AlarmButton extends Component {
 
   setReminder = async () => {
     const { notificationTime, enableNotification } = this.state;
-    console.warn('notificationTime: ', notificationTime)
 
     if (enableNotification) {
 
@@ -90,7 +89,7 @@ export default class AlarmButton extends Component {
     this.setState({
       notificationTime: moment(date)
     });
-    console.warn(date);
+
   };
 
   render() {
