@@ -55,13 +55,14 @@ export default class AlarmButton extends Component {
   buildNotification = () => {
 
     const { noteId, noteMessage } = this.props;
-    const title = Platform.OS === "android" ? "Organize ME" : "";
+    const title = Platform.OS === "android" ? "Attention!" : "";
     const notification = new firebase.notifications.Notification()
       .setNotificationId(noteId.toString())
       .setTitle(title)
       .setBody(noteMessage)
       .android.setPriority(firebase.notifications.Android.Priority.High)
       .android.setChannelId("reminder")
+      .android.setSmallIcon('ic_stat')
       .android.setAutoCancel(true);
 
     return notification;

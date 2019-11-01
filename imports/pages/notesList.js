@@ -17,7 +17,7 @@ export default class CalendarsScreen extends React.Component {
       initialDate: moment().format("YYYY-MM-DD")
     };
 
-    this.onDayLongPress = this.onDayLongPress.bind(this);
+    this.onDayPress = this.onDayPress.bind(this);
   }
 
   componentDidMount() {
@@ -87,7 +87,7 @@ export default class CalendarsScreen extends React.Component {
             onMonthChange={month => {
               this.setState({ initialDate: month.dateString });
             }}
-            onDayLongPress={this.onDayLongPress}
+            onDayPress={this.onDayPress}
             style={style}
             theme={calendare}
             hideExtraDays
@@ -110,7 +110,7 @@ export default class CalendarsScreen extends React.Component {
     this.setState({ isOpen: false });
   };
 
-  onDayLongPress(day) {
+  onDayPress(day) {
     this.setState({
       isOpen: true,
       selectedDay: day.day,
