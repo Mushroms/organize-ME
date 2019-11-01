@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "674749496525",
+    "firebase_url": "https://organizeme-d4a57.firebaseio.com",
+    "project_id": "organizeme-d4a57",
+    "storage_bucket": "organizeme-d4a57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674749496525:android:eaf6a9f93a993383",
+        "android_client_info": {
+          "package_name": "com.organizeme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674749496525-hb450cngustvn5tf8ona6s674rtu3vha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ9v9ImYnA6tJfVU_P0wkpHnDvgvkZMK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674749496525-hb450cngustvn5tf8ona6s674rtu3vha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

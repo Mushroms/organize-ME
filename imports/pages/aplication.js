@@ -1,44 +1,40 @@
 "use strict";
 
 import React from "react";
-import { View, Text } from "react-native";
-import TimerMixin from "react-timer-mixin";
-//import { StackNavigator } from "react-navigation";
 import Swiper from "react-native-swiper";
+//import Swiper from "react-native-swiper-animated";
 import CalculatorPage from "./Calculator.js";
-import WelcomePage from "./welcome-page.js";
 import NoteList from "./notesList.js";
 import createReactClass from "create-react-class";
+import SplashScreen from "rn-splash-screen";
 
 const Application = createReactClass({
-  mixins: [TimerMixin],
-  getInitialState: function() {
-    return {
-      autoplay: true
-    };
+  componentDidMount() {
+    setTimeout(() => SplashScreen.hide(), 2000);
   },
-  componentDidMount: function() {
-    this.setTimeout(() => {
-      this.setState({
-        autoplay: false
-      });
-    }, 1000);
-  },
+
 
   render() {
     return (
       <Swiper
+        // smoothTransition
+        // loop
+        // showPagination={false}
+        // hidePaginationOnLast
         showsButtons={false}
-        loop={false}
+        loop={true}
         showsPagination={false}
-        autoplay={this.state.autoplay}
-        autoplayTimeout={1}
+      //autoplay={this.state.autoplay}
+      // autoplayTimeout={1}
       >
-        <WelcomePage />
         <CalculatorPage />
         <NoteList />
       </Swiper>
     );
   }
 });
+
+
 export default Application;
+
+

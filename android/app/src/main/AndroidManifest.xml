@@ -1,35 +1,66 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    package="com.organizeme">
+<manifest 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.organizeme"
+  xmlns:tools="http://schemas.android.com/tools"
+  
+>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
-
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <permission
+        android:name="${applicationId}.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+    
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme">
+      android:theme="@style/AppTheme"
+      tools:replace="android:appComponentFactory"
+      android:appComponentFactory="android.support.v4.app.CoreComponentFactory">
+
       <activity
-        android:name=".MainActivity"
+          android:name=".MainActivity"
+          android:theme="@style/AppTheme">
+          <intent-filter>
+              <action android:name="android.intent.action.MAIN" />
+              <category android:name="android.intent.category.LAUNCHER" />
+          </intent-filter>
+      </activity>
+      
+      <activity
+        android:name=".MainActivity2"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="adjustResize">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-          <meta-data
-              android:name="io.fabric.ApiKey"
-              android:value="ab60de3485f513f00ac67bee8153babb69718730"
-              />
+        android:launchMode="singleTop"
+        android:windowSoftInputMode="stateHidden|adjustPan">
+        
+       
       </activity>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+
+        <service android:name="io.invertase.firebase.messaging.RNFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="io.invertase.firebase.messaging.RNFirebaseBackgroundMessagingService" />
+        <receiver android:name="io.invertase.firebase.notifications.RNFirebaseNotificationReceiver"/>
+        <receiver android:enabled="true" android:exported="true"  android:name="io.invertase.firebase.notifications.RNFirebaseNotificationsRebootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -1,8 +1,8 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <item name="colorAccent">#4C566A</item>
+    <item name="colorControlActivated">#A3BE8C</item>
+    <item name="colorControlHighlight">#BF616A</item>
     </style>
-
 </resources>
