@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, Image, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import PropTypes from "prop-types";
 
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   container: {
     ...ifIphoneX(
       {
-        //flex: 1,
         height: "20%",
         width: "24%",
         backgroundColor: "#4BBEE3",
@@ -34,7 +33,6 @@ const styles = StyleSheet.create({
         borderRadius: 50
       },
       {
-        //flex: 1,
         height: "15%",
         width: "20%",
         minHeight: "10%",

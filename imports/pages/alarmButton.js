@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Platform,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -74,7 +73,7 @@ export default class AlarmButton extends Component {
     this.setState({
       enableNotification: value
     });
-    //console.warn(enableNotification);
+
   };
 
   showDateTimePicker = () => {
@@ -102,7 +101,7 @@ export default class AlarmButton extends Component {
       notificationTime
     } = this.state;
     const { selectedDate } = this.props;
-    //console.warn('Time', notificationTime);
+
     return (
       <View>
         <TouchableOpacity
@@ -119,7 +118,7 @@ export default class AlarmButton extends Component {
           isVisible={isDateTimePickerVisible}
           onConfirm={this.handleDatePicked}
           onCancel={this.hideDateTimePicker}
-          mode="time" // show only time picker
+          mode="time"
           is24Hour={true}
           date={new Date(selectedDate)}
 

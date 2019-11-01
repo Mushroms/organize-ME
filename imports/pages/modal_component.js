@@ -3,17 +3,13 @@ import {
   StyleSheet,
   TextInput,
   Text,
-  Button,
-  TouchableHighlight,
   TouchableOpacity,
-  View,
-  KeyboardAvoidingView
+  View
 } from "react-native";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import Modal from "react-native-modal";
 import Circle_Component from "./circle_component";
 import Delete_pic from "./delete_component";
-import { ListItem } from "react-native-elements";
 import RealmHelper from "./realmHelper";
 import firebase from "react-native-firebase";
 import AlarmButton from "./alarmButton";
@@ -61,7 +57,7 @@ class ModalExample extends Component {
           await firebase.notifications().displayNotification(notification);
         });
     } else {
-      // user doesn't have permission
+
       try {
         await firebase.messaging().requestPermission();
       } catch (error) {
@@ -126,8 +122,6 @@ class ModalExample extends Component {
             <Text
               style={{
                 color: "#4BBEE3",
-                //height: "10%",
-                //width: "10%"
                 fontSize: 24,
                 justifyContent: "flex-end",
                 alignSelf: "flex-end",
@@ -143,7 +137,6 @@ class ModalExample extends Component {
   };
   onPressSave = () => {
     RealmHelper.addNoteList(this.props.selectedDate, this.state.NoteListName);
-    //this.clearState();
     this.props.toggleModal();
     this.props.onSave();
   };
@@ -193,7 +186,6 @@ ModalExample.defaultProps = {
 
 const styles = StyleSheet.create({
   content: {
-    //flex: 3,
     height: "75%",
     width: "100%",
     backgroundColor: "#768489",
@@ -228,10 +220,8 @@ const styles = StyleSheet.create({
   },
 
   modalButton: {
-    //borderWidth: 1,
     width: "100%",
     justifyContent: "space-between",
-    //alignItems: "center",
     flexDirection: "row"
   },
 

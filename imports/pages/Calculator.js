@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, AppRegistry } from "react-native";
-
+import { View, Text } from "react-native";
 import Style from "./StyleCalc.js";
 import InputButton from "./InputButton.js";
 
@@ -163,4 +162,4 @@ export default class Calc extends Component {
   }
 }
 
-//export default Calc;
+

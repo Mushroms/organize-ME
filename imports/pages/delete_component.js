@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, Image, View } from "react-native";
+import React from "react";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 
 export class Delete_pic extends React.Component {
@@ -9,7 +9,7 @@ export class Delete_pic extends React.Component {
   }
 
   render() {
-    const Delete_pic = require("../../resourses/delete-icon.png");
+    const Delete_pic = require("../../resources/delete-icon.png");
 
     return (
       <TouchableOpacity

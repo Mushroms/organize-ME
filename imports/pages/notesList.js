@@ -1,21 +1,12 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Button,
-  Text,
-  Image,
-  View,
-  TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView
-} from "react-native";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 import moment from "moment";
 import RealmHelper from "./realmHelper";
 
-export default class CalendarsScreen extends Component {
+export default class CalendarsScreen extends React.Component {
   constructor(props) {
     super(props);
 

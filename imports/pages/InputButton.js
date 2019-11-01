@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { TouchableOpacity, Text } from "react-native";
-
 import Style from "./StyleCalc.js";
 
 export default class InputButton extends Component {
@@ -11,7 +10,7 @@ export default class InputButton extends Component {
           Style.inputButton,
           this.props.highlight ? Style.inputButtonHighlighted : null
         ]}
-        //underlayColor="#000000"
+
         onPress={this.props.onPress}
       >
         <Text style={Style.inputButtonText}>{this.props.value}</Text>

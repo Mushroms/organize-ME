@@ -66,4 +66,4 @@ var Style = StyleSheet.create({
 
 export default Style;
 
-//#00BFFF
+
