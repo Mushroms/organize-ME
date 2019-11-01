@@ -1,8 +1,8 @@
 "use strict";
 
 import React from "react";
-//import Swiper from "react-native-swiper";
-import Swiper from "react-native-swiper-animated";
+import Swiper from "react-native-swiper";
+//import Swiper from "react-native-swiper-animated";
 import CalculatorPage from "./Calculator.js";
 import NoteList from "./notesList.js";
 import createReactClass from "create-react-class";
@@ -17,15 +17,15 @@ const Application = createReactClass({
   render() {
     return (
       <Swiper
-        smoothTransition
-        loop
-        showPagination={false}
-        hidePaginationOnLast
-      // showsButtons={false}
-      // loop={true}
-      // showsPagination={false}
+        // smoothTransition
+        // loop
+        // showPagination={false}
+        // hidePaginationOnLast
+        showsButtons={false}
+        loop={true}
+        showsPagination={false}
       //autoplay={this.state.autoplay}
-      //autoplayTimeout={1}
+      // autoplayTimeout={1}
       >
         <CalculatorPage />
         <NoteList />

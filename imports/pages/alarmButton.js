@@ -112,7 +112,7 @@ export default class AlarmButton extends Component {
             value: enableNotification
           }}
         >
-          <Text style={{ color: "#ee2c2c" }}>Alarm</Text>
+          <Text style={{ color: "#BF616A", marginTop: 6, fontSize: 18 }}>Alarm</Text>
         </TouchableOpacity>
         <DateTimePicker
           isVisible={isDateTimePickerVisible}

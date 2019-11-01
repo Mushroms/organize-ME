@@ -94,7 +94,7 @@ class ModalExample extends Component {
         <Circle_Component selectedDay={selectedDay} />
         <TextInput
           value={NoteListName}
-          placeholderTextColor="#4BBEE3"
+          placeholderTextColor="#A3BE8C"
           multiline={true}
           maxLength={240}
           style={[
@@ -103,7 +103,7 @@ class ModalExample extends Component {
               fontSize: 20,
               textAlign: "left",
               textAlignVertical: "top",
-              color: "#4BBEE3",
+              color: "#A3BE8C",
               width: "90%",
               height: "65%",
               top: "2%"
@@ -121,7 +121,7 @@ class ModalExample extends Component {
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{
-                color: "#4BBEE3",
+                color: "#A3BE8C",
                 fontSize: 24,
                 justifyContent: "flex-end",
                 alignSelf: "flex-end",
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   content: {
     height: "75%",
     width: "100%",
-    backgroundColor: "#768489",
+    backgroundColor: "#4C566A",
     padding: 22,
     justifyContent: "space-between",
     alignItems: "center",
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   },
 
   Modal_container: {
-    backgroundColor: "#768489",
+    backgroundColor: "#4C566A",
     //borderRadius: 10,
     ...ifIphoneX(
       {

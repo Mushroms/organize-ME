@@ -69,7 +69,7 @@ export default class CalendarsScreen extends React.Component {
       markedDates[markedDate.date] = {
         selected: true,
         disableTouchEvent: false,
-        selectedColor: "#adff2f",
+        selectedColor: "#A3BE8C",
         selectedDotColor: "red"
       };
     });
@@ -121,30 +121,30 @@ export default class CalendarsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
+    backgroundColor: "#a5c7ff",
     alignItems: "center",
     justifyContent: "center"
   },
 
   Blu_container: {
     flex: 1,
-    backgroundColor: "#4BBEE3",
+    backgroundColor: "#2E3440",
     ...ifIphoneX(
       {
-        marginTop: 5,
+        marginTop: 1,
         marginBottom: 5,
         borderRadius: 40,
         height: "100%",
-        width: "97%"
+        width: "99%"
       },
       {
-        marginTop: 4,
+        marginTop: 1,
         marginBottom: 2,
         marginLeft: 10,
         marginRight: 10,
         borderRadius: 10,
         height: "100%",
-        width: "97%"
+        width: "99%"
       }
     )
   }
@@ -165,17 +165,17 @@ const style = {
 
 const calendare = {
   backgroundColor: "#ffffff",
-  calendarBackground: "#4BBEE3",
-  textSectionTitleColor: "#000000",
+  calendarBackground: "#2E3440",
+  textSectionTitleColor: "#a5c7ff",
   selectedDayBackgroundColor: "#ffffff",
-  selectedDayTextColor: "#000000",
-  todayTextColor: "#ff0000",
-  dayTextColor: "#000000",
+  selectedDayTextColor: "#2E3440",
+  todayTextColor: "#BF616A",
+  dayTextColor: "#a5c7ff",
   textDisabledColor: "#d9e1e8",
   dotColor: "#00adf5",
   selectedDotColor: "#ffffff",
-  arrowColor: "#B14A13",
-  monthTextColor: "#000000",
+  arrowColor: "#9A93E3",
+  monthTextColor: "#a5c7ff",
   textDayFontFamily: "monospace",
   textMonthFontFamily: "monospace",
   textDayHeaderFontFamily: "monospace",
