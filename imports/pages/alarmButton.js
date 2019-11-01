@@ -97,8 +97,7 @@ export default class AlarmButton extends Component {
 
     const {
       enableNotification,
-      isDateTimePickerVisible,
-      notificationTime
+      isDateTimePickerVisible
     } = this.state;
     const { selectedDate } = this.props;
 
