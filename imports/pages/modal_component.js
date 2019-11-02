@@ -39,7 +39,9 @@ class ModalExample extends Component {
       "reminder", // channelId
       "Reminders Channel", // channel name
       firebase.notifications.Android.Importance.High // channel importance
-    ).setDescription("Used for getting reminder notification");
+    ).setDescription("Used for getting reminder notification")
+      .setLockScreenVisibility(firebase.notifications.Android.Visibility.Public)
+      .enableVibration(true);
 
 
     // Create the android notification channel
