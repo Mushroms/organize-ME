@@ -20,6 +20,7 @@
     "react-native-modal-datetime-picker": "^7.5.0",
     "react-native-swiper": "^1.5.14",
     "react-native-swiper-animated": "^1.5.3",
+    "react-native-text-ticker": "^1.0.0",
     "react-native-vector-icons": "^6.4.2",
     "react-timer-mixin": "^0.13.4",
     "realm": "^2.28.0",
