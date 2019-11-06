@@ -57,6 +57,7 @@ export default class MyTextTicker extends Component {
       <View style={styles.container}>
         <TextTicker
           style={{ fontSize: 32, color: "#a5c7ff", }}
+
           duration={10000}
           loop
           bounce
@@ -83,3 +84,4 @@ const styles = StyleSheet.create({
 
 //6be04a644b370f6b41b1158edc7d3fb0
 
+//`Current temperature in ${apiResponse.location.name} is ${apiResponse.current.temperature}℃`
