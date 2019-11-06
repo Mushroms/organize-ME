@@ -121,7 +121,7 @@ export default class CalendarsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#a5c7ff",
+    backgroundColor: "#2E3440",
     alignItems: "center",
     justifyContent: "center"
   },
