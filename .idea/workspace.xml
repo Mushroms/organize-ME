@@ -11,12 +11,10 @@
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/pages/alarmButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/pages/alarmButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/pages/aplication.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/pages/aplication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imports/pages/modal_component.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/pages/modal_component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/organizeME.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/organizeME.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/pages/notesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/pages/notesList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imports/pages/tiker.js" beforeDir="false" afterPath="$PROJECT_DIR$/imports/pages/tiker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,36 +76,6 @@
               <item name="organize-ME" type="b2602c69:ProjectViewProjectNode" />
               <item name="organize-ME" type="462c0819:PsiDirectoryNode" />
               <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="organize-ME" type="b2602c69:ProjectViewProjectNode" />
-              <item name="organize-ME" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="organize-ME" type="b2602c69:ProjectViewProjectNode" />
-              <item name="organize-ME" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="organize-ME" type="b2602c69:ProjectViewProjectNode" />
-              <item name="organize-ME" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="organize-ME" type="b2602c69:ProjectViewProjectNode" />
-              <item name="organize-ME" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -230,33 +198,15 @@
     <entry file="file://$PROJECT_DIR$/android/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/node_modules_reactnativecalendars_src_calendar_img_next.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_deleteicon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_organize.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_me.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/node_modules_reactnativecalendars_src_calendar_img_next.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/node_modules_reactnativecalendars_src_calendar_img_next.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/node_modules_reactnativecalendars_src_calendar_img_next.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_deleteicon.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_organize.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/resourses_me.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/node_modules_reactnativecalendars_src_calendar_img_next.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/node_modules_reactnativecalendars_src_calendar_img_previous.png" />
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/node_modules_reactnativecalendars_src_calendar_img_next.png" />
     <entry file="file://$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png">
       <provider selected="true" editor-type-id="images" />
     </entry>

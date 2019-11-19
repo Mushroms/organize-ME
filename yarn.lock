@@ -5234,6 +5234,11 @@ react-native-firebase@^5.5.4:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.7.2"
 
+react-native-html-parser@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-html-parser/-/react-native-html-parser-0.0.5.tgz#210a76626b7a472a4b5f5a85cb24b37b10344126"
+  integrity sha1-IQp2Ymt6RypLX1qFyySzexA0QSY=
+
 react-native-iphone-x-helper@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 import axios from "axios";
-
+import DOMParser from 'react-native-html-parser';
 
 
 export default class MyTextTicker extends Component {
@@ -17,18 +17,21 @@ export default class MyTextTicker extends Component {
 
 
   getWeather() {
-    const params = {
-      access_key: '6be04a644b370f6b41b1158edc7d3fb0',
-      query: 'Moscow'
-    }
+    // const params = {
+    //   access_key: '6be04a644b370f6b41b1158edc7d3fb0',
+    //   query: 'Moscow'
+    // }
 
-    axios.get('http://api.weatherstack.com/current', { params })
+    axios.get('https://yandex.ru/')
       .then(response => {
-
-        const apiResponse = response.data;
-        const City = apiResponse.location.name;
-        const Temperature = apiResponse.current.temperature;
-        this.setState({ City: City, Temperature: Temperature });
+        const html = response.text();
+        const parser = new DOMParser.DOMParser();
+        const parsed = parser.parseFromString(html, 'text/html');
+        console.warn(parsed);
+        // const apiResponse = response.data;
+        // const City = apiResponse.location.name;
+        // const Temperature = apiResponse.current.temperature;
+        // this.setState({ City: City, Temperature: Temperature });
 
       }).catch(error => {
         console.warn(error);

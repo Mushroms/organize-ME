@@ -5,7 +5,6 @@ import { ifIphoneX } from "react-native-iphone-x-helper";
 import ModalExample from "./modal_component";
 import moment from "moment";
 import RealmHelper from "./realmHelper";
-import MyTextTicker from "./tiker";
 
 export default class CalendarsScreen extends React.Component {
   constructor(props) {
@@ -80,7 +79,6 @@ export default class CalendarsScreen extends React.Component {
 
   render() {
     const markedDates = this.generateMarkedDates();
-    //const City = this.state;
 
     return (
       <View style={styles.container}>
@@ -95,7 +93,7 @@ export default class CalendarsScreen extends React.Component {
             hideExtraDays
             markedDates={markedDates}
           />
-          <MyTextTicker />
+
           <ModalExample
             isOpen={this.state.isOpen}
             selectedDay={this.state.selectedDay}
@@ -123,7 +121,7 @@ export default class CalendarsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#a5c7ff",
+    backgroundColor: "#2E3440",
     alignItems: "center",
     justifyContent: "center"
   },
