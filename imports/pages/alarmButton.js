@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Platform,
-  Text,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { Platform, Text, TouchableOpacity, View } from "react-native";
 import firebase from "react-native-firebase";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
@@ -23,8 +18,6 @@ export default class AlarmButton extends Component {
     notificationTime: moment()
   };
 
-
-
   componentDidUpdate(prevProps, prevState) {
     const { notificationTime, enableNotification } = this.state;
 
@@ -40,21 +33,20 @@ export default class AlarmButton extends Component {
     const { notificationTime, enableNotification } = this.state;
 
     if (enableNotification) {
-
-
       firebase.notifications().scheduleNotification(this.buildNotification(), {
         fireDate: notificationTime.valueOf(),
         exact: true
       });
-
     } else {
       return false;
     }
   };
 
   buildNotification = () => {
-
     const { noteId, noteMessage } = this.props;
+    // const uri = RingtoneManager.getDefaultUri(
+    //   RingtoneManager.TYPE_NOTIFICATION
+    // );
     const title = Platform.OS === "android" ? "Attention!" : "";
     const notification = new firebase.notifications.Notification()
       .setNotificationId(noteId.toString())
@@ -62,18 +54,15 @@ export default class AlarmButton extends Component {
       .setBody(noteMessage)
       .android.setPriority(firebase.notifications.Android.Priority.High)
       .android.setChannelId("reminder")
-      .android.setSmallIcon('ic_stat')
-      .android.setAutoCancel(true);
+      .android.setSmallIcon("ic_stat");
 
     return notification;
-
   };
 
   enableNotification = value => {
     this.setState({
       enableNotification: value
     });
-
   };
 
   showDateTimePicker = () => {
@@ -90,11 +79,9 @@ export default class AlarmButton extends Component {
     this.setState({
       notificationTime: moment(date)
     });
-
   };
 
   render() {
-
     const {
       enableNotification,
       isDateTimePickerVisible,
@@ -112,7 +99,9 @@ export default class AlarmButton extends Component {
             value: enableNotification
           }}
         >
-          <Text style={{ color: "#BF616A", marginTop: 6, fontSize: 18 }}>Alarm</Text>
+          <Text style={{ color: "#BF616A", marginTop: 6, fontSize: 18 }}>
+            Alarm
+          </Text>
         </TouchableOpacity>
         <DateTimePicker
           isVisible={isDateTimePickerVisible}
@@ -121,7 +110,6 @@ export default class AlarmButton extends Component {
           mode="time"
           is24Hour={true}
           date={new Date(selectedDate)}
-
         />
       </View>
     );

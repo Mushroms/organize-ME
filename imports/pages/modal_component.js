@@ -14,9 +14,6 @@ import RealmHelper from "./realmHelper";
 import firebase from "react-native-firebase";
 import AlarmButton from "./alarmButton";
 
-
-
-
 class ModalExample extends Component {
   constructor(props) {
     super(props);
@@ -39,10 +36,10 @@ class ModalExample extends Component {
       "reminder", // channelId
       "Reminders Channel", // channel name
       firebase.notifications.Android.Importance.High // channel importance
-    ).setDescription("Used for getting reminder notification")
+    )
+      .setDescription("Used for getting reminder notification")
       .setLockScreenVisibility(firebase.notifications.Android.Visibility.Public)
       .enableVibration(true);
-
 
     // Create the android notification channel
     firebase.notifications().android.createChannel(channel);
@@ -59,7 +56,6 @@ class ModalExample extends Component {
           await firebase.notifications().displayNotification(notification);
         });
     } else {
-
       try {
         await firebase.messaging().requestPermission();
       } catch (error) {
@@ -90,7 +86,6 @@ class ModalExample extends Component {
     const { selectedDay, selectedDate } = this.props;
     const { NoteListName, noteId } = this.state;
 
-
     return (
       <View style={styles.content}>
         <Circle_Component selectedDay={selectedDay} />
@@ -119,7 +114,11 @@ class ModalExample extends Component {
         />
         <View style={styles.modalButton}>
           <Delete_pic onDeletePress={this.onPressDelete} />
-          <AlarmButton noteId={noteId} noteMessage={selectedDate + ' ' + NoteListName} selectedDate={selectedDate} />
+          <AlarmButton
+            noteId={noteId}
+            noteMessage={selectedDate + " " + NoteListName}
+            selectedDate={selectedDate}
+          />
           <TouchableOpacity onPress={this.onPressSave}>
             <Text
               style={{
